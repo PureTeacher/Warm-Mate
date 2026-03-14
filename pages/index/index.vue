@@ -140,11 +140,24 @@ export default {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    border-bottom: none !important;
 }
 
 .content {
     height: calc(100vh - 120rpx);
     overflow: hidden;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* 全局去除下划线和边框 */
+.page-container,
+.page-container * {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    outline: none !important;
 }
 
 /* 卡片头部样式 */
