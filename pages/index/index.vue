@@ -27,7 +27,11 @@
                     >
                         <view class="card-header">
                             <view class="emoji-container">
-                                <text class="card-emoji">{{ item.emoji }}</text>
+                                <image
+                                    class="card-emoji"
+                                    :src="item.iconPath"
+                                    mode="aspectFit"
+                                />
                             </view>
                             <view class="card-tag">{{ item.tag }}</view>
                         </view>
@@ -52,8 +56,8 @@ export default {
                 {
                     id: 1,
                     title: "心理体检",
-                    desc: "🩺 专业心理量表｜3分钟快速情绪体检",
-                    emoji: "🧠", // 大脑emoji代表心理
+                    desc: "专业心理量表｜3分钟快速情绪体检",
+                    iconPath: "/static/custom-icon-1.png",
                     path: "/pages/phq7-test/index",
                     bgColor: "#E8F5E9",
                     tag: "专业评估",
@@ -63,8 +67,8 @@ export default {
                 {
                     id: 2,
                     title: "健康科普",
-                    desc: "📚 专业健康知识｜科学养生，健康生活",
-                    emoji: "📖", // 书本emoji代表科普
+                    desc: "专业健康知识｜科学养生，健康生活",
+                    iconPath: "/static/custom-icon-2.png",
                     path: "/pages/health/index",
                     bgColor: "#E3F2FD",
                     tag: "知识分享",
@@ -74,8 +78,8 @@ export default {
                 {
                     id: 3,
                     title: "心理医生",
-                    desc: "👨‍⚕️ 专业心理咨询师｜一对一专业指导",
-                    emoji: "👩‍⚕️", // 医生emoji代表专业
+                    desc: "专业心理咨询师｜一对一专业指导",
+                    iconPath: "/static/custom-icon-3.png",
                     path: "/pages/psychologist/index",
                     bgColor: "#FFF8E1",
                     tag: "专业咨询",
@@ -85,8 +89,8 @@ export default {
                 {
                     id: 4,
                     title: "AI交流",
-                    desc: "🤖 智能心理助手｜24小时在线陪伴",
-                    emoji: "🤖", // 机器人emoji代表AI
+                    desc: "智能心理助手｜24小时在线陪伴",
+                    iconPath: "/static/custom-icon-4.png",
                     path: "/pages/message/message",
                     bgColor: "#FCE4EC",
                     tag: "智能陪伴",
@@ -161,9 +165,10 @@ export default {
 }
 
 .card-emoji {
-    font-size: 120rpx;
-    text-align: center;
-    line-height: 1;
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 50%;
+    object-fit: contain;
     filter: drop-shadow(0 4rpx 8rpx rgba(0, 0, 0, 0.1));
 }
 
