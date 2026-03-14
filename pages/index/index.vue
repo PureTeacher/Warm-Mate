@@ -6,13 +6,10 @@
             <text class="logout-btn" @click="logout">退出登录</text>
         </view>
 
-        <!-- 卡片列表区域 -->
-        <scroll-view
+        <!-- 卡片列表区域（禁止滚动） -->
+        <view
             class="content"
-            :style="{ minHeight: screenMinHeight + 'rpx' }"
-            scroll-y
-            :enable-back-to-top="true"
-            @scrolltolower="loadMore"
+            :style="{ minHeight: screenMinHeight + 'rpx', overflow: 'hidden' }"
         >
             <!-- 卡片容器：flex双列布局 -->
             <view class="content-wrapper">
@@ -42,7 +39,7 @@
                     </view>
                 </view>
             </view>
-        </scroll-view>
+        </view>
     </view>
 </template>
 
@@ -140,7 +137,14 @@ export default {
 .page-container {
     background: white;
     min-height: 100vh;
+    height: 100vh;
     width: 100%;
+    overflow: hidden;
+}
+
+.content {
+    height: calc(100vh - 120rpx);
+    overflow: hidden;
 }
 
 /* 卡片头部样式 */
