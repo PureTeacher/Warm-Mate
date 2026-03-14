@@ -7785,7 +7785,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("开始测评")]
+                [_vm._v(" 开始测评 ")]
               ),
             ],
             1
@@ -12709,7 +12709,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-                    [_vm._v("🧠")]
+                    [_vm._v("💡")]
                   ),
                   _c(
                     "v-uni-text",
@@ -12735,7 +12735,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
-                    [_vm._v("🥗")]
+                    [_vm._v("🍎")]
                   ),
                   _c(
                     "v-uni-text",
@@ -12787,7 +12787,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
-                    [_vm._v("😴")]
+                    [_vm._v("🌙")]
                   ),
                   _c(
                     "v-uni-text",
@@ -12813,7 +12813,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-                    [_vm._v("🩺")]
+                    [_vm._v("⚕️")]
                   ),
                   _c(
                     "v-uni-text",
@@ -13301,7 +13301,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("关闭")]
+                        [_vm._v(" 关闭 ")]
                       ),
                     ],
                     1
@@ -13674,27 +13674,32 @@ var render = function () {
                                           },
                                           [_vm._v(_vm._$g("23-" + $30, "t0-0"))]
                                         ),
-                                        _c(
-                                          "v-uni-text",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "24-" + $30,
-                                              "sc"
-                                            ),
-                                            attrs: { _i: "24-" + $30 },
-                                          },
-                                          [_vm._v(_vm._$g("24-" + $30, "t0-0"))]
-                                        ),
                                       ],
                                       1
                                     ),
                                     _c(
                                       "uni-view",
                                       {
-                                        staticClass: _vm._$g("25-" + $30, "sc"),
-                                        attrs: { _i: "25-" + $30 },
+                                        staticClass: _vm._$g("24-" + $30, "sc"),
+                                        attrs: { _i: "24-" + $30 },
                                       },
                                       [
+                                        _c(
+                                          "v-uni-text",
+                                          {
+                                            staticClass: _vm._$g(
+                                              "25-" + $30,
+                                              "sc"
+                                            ),
+                                            attrs: { _i: "25-" + $30 },
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._$g("25-" + $30, "t0-0") +
+                                                "岁"
+                                            ),
+                                          ]
+                                        ),
                                         _c(
                                           "v-uni-text",
                                           {
@@ -13706,8 +13711,9 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              _vm._$g("26-" + $30, "t0-0") +
-                                                "岁"
+                                              "医龄" +
+                                                _vm._$g("26-" + $30, "t0-0") +
+                                                "年"
                                             ),
                                           ]
                                         ),
@@ -13720,24 +13726,7 @@ var render = function () {
                                             ),
                                             attrs: { _i: "27-" + $30 },
                                           },
-                                          [
-                                            _vm._v(
-                                              "医龄" +
-                                                _vm._$g("27-" + $30, "t0-0") +
-                                                "年"
-                                            ),
-                                          ]
-                                        ),
-                                        _c(
-                                          "v-uni-text",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "28-" + $30,
-                                              "sc"
-                                            ),
-                                            attrs: { _i: "28-" + $30 },
-                                          },
-                                          [_vm._v(_vm._$g("28-" + $30, "t0-0"))]
+                                          [_vm._v(_vm._$g("27-" + $30, "t0-0"))]
                                         ),
                                       ],
                                       1
@@ -13748,17 +13737,28 @@ var render = function () {
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("29-" + $30, "sc"),
-                                    attrs: { _i: "29-" + $30 },
+                                    staticClass: _vm._$g("28-" + $30, "sc"),
+                                    attrs: { _i: "28-" + $30 },
                                   },
                                   [
                                     _c(
                                       "uni-view",
                                       {
-                                        staticClass: _vm._$g("30-" + $30, "sc"),
-                                        attrs: { _i: "30-" + $30 },
+                                        staticClass: _vm._$g("29-" + $30, "sc"),
+                                        attrs: { _i: "29-" + $30 },
                                       },
                                       [
+                                        _c(
+                                          "v-uni-text",
+                                          {
+                                            staticClass: _vm._$g(
+                                              "30-" + $30,
+                                              "sc"
+                                            ),
+                                            attrs: { _i: "30-" + $30 },
+                                          },
+                                          [_vm._v(_vm._$g("30-" + $30, "t0-0"))]
+                                        ),
                                         _c(
                                           "v-uni-text",
                                           {
@@ -13768,17 +13768,6 @@ var render = function () {
                                             ),
                                             attrs: { _i: "31-" + $30 },
                                           },
-                                          [_vm._v(_vm._$g("31-" + $30, "t0-0"))]
-                                        ),
-                                        _c(
-                                          "v-uni-text",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "32-" + $30,
-                                              "sc"
-                                            ),
-                                            attrs: { _i: "32-" + $30 },
-                                          },
                                           [_vm._v("⭐")]
                                         ),
                                       ],
@@ -13787,12 +13776,12 @@ var render = function () {
                                     _c(
                                       "v-uni-text",
                                       {
-                                        staticClass: _vm._$g("33-" + $30, "sc"),
-                                        attrs: { _i: "33-" + $30 },
+                                        staticClass: _vm._$g("32-" + $30, "sc"),
+                                        attrs: { _i: "32-" + $30 },
                                       },
                                       [
                                         _vm._v(
-                                          _vm._$g("33-" + $30, "t0-0") + "评价"
+                                          _vm._$g("32-" + $30, "t0-0") + "评价"
                                         ),
                                       ]
                                     ),
@@ -13805,51 +13794,51 @@ var render = function () {
                             _c(
                               "uni-view",
                               {
-                                staticClass: _vm._$g("34-" + $30, "sc"),
-                                attrs: { _i: "34-" + $30 },
+                                staticClass: _vm._$g("33-" + $30, "sc"),
+                                attrs: { _i: "33-" + $30 },
                               },
                               [
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("35-" + $30, "sc"),
-                                    attrs: { _i: "35-" + $30 },
+                                    staticClass: _vm._$g("34-" + $30, "sc"),
+                                    attrs: { _i: "34-" + $30 },
                                   },
                                   [
                                     _c(
                                       "v-uni-text",
                                       {
-                                        staticClass: _vm._$g("36-" + $30, "sc"),
-                                        attrs: { _i: "36-" + $30 },
+                                        staticClass: _vm._$g("35-" + $30, "sc"),
+                                        attrs: { _i: "35-" + $30 },
                                       },
                                       [_vm._v("专业领域：")]
                                     ),
                                     _c(
                                       "uni-view",
                                       {
-                                        staticClass: _vm._$g("37-" + $30, "sc"),
-                                        attrs: { _i: "37-" + $30 },
+                                        staticClass: _vm._$g("36-" + $30, "sc"),
+                                        attrs: { _i: "36-" + $30 },
                                       },
                                       _vm._l(
-                                        _vm._$g(38 + "-" + $30, "f"),
+                                        _vm._$g(37 + "-" + $30, "f"),
                                         function (specialty, $11, $21, $31) {
                                           return _c(
                                             "v-uni-text",
                                             {
                                               key: specialty,
                                               staticClass: _vm._$g(
-                                                "38-" + $30 + "-" + $31,
+                                                "37-" + $30 + "-" + $31,
                                                 "sc"
                                               ),
                                               attrs: {
-                                                _i: "38-" + $30 + "-" + $31,
+                                                _i: "37-" + $30 + "-" + $31,
                                               },
                                             },
                                             [
                                               _vm._v(
                                                 " " +
                                                   _vm._$g(
-                                                    "38-" + $30 + "-" + $31,
+                                                    "37-" + $30 + "-" + $31,
                                                     "t0-0"
                                                   ) +
                                                   " "
@@ -13866,17 +13855,17 @@ var render = function () {
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("39-" + $30, "sc"),
-                                    attrs: { _i: "39-" + $30 },
+                                    staticClass: _vm._$g("38-" + $30, "sc"),
+                                    attrs: { _i: "38-" + $30 },
                                   },
                                   [
                                     _c(
                                       "v-uni-text",
                                       {
-                                        staticClass: _vm._$g("40-" + $30, "sc"),
-                                        attrs: { _i: "40-" + $30 },
+                                        staticClass: _vm._$g("39-" + $30, "sc"),
+                                        attrs: { _i: "39-" + $30 },
                                       },
-                                      [_vm._v(_vm._$g("40-" + $30, "t0-0"))]
+                                      [_vm._v(_vm._$g("39-" + $30, "t0-0"))]
                                     ),
                                   ],
                                   1
@@ -13887,22 +13876,22 @@ var render = function () {
                             _c(
                               "uni-view",
                               {
-                                staticClass: _vm._$g("41-" + $30, "sc"),
-                                attrs: { _i: "41-" + $30 },
+                                staticClass: _vm._$g("40-" + $30, "sc"),
+                                attrs: { _i: "40-" + $30 },
                               },
                               [
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("42-" + $30, "sc"),
-                                    attrs: { _i: "42-" + $30 },
+                                    staticClass: _vm._$g("41-" + $30, "sc"),
+                                    attrs: { _i: "41-" + $30 },
                                   },
                                   [
                                     _c(
                                       "v-uni-button",
                                       {
-                                        staticClass: _vm._$g("43-" + $30, "sc"),
-                                        attrs: { _i: "43-" + $30 },
+                                        staticClass: _vm._$g("42-" + $30, "sc"),
+                                        attrs: { _i: "42-" + $30 },
                                         on: {
                                           click: function ($event) {
                                             return _vm.$handleViewEvent(
@@ -13931,30 +13920,30 @@ var render = function () {
             1
           )
         : _vm._e(),
-      _vm._$g(44, "i")
+      _vm._$g(43, "i")
         ? _c(
             "uni-view",
-            { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+            { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
             [
               _c("uni-view", {
-                staticClass: _vm._$g(45, "sc"),
-                attrs: { _i: 45 },
+                staticClass: _vm._$g(44, "sc"),
+                attrs: { _i: 44 },
               }),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
                 [_vm._v("加载中...")]
               ),
             ],
             1
           )
         : _vm._e(),
-      _vm._$g(47, "i")
+      _vm._$g(46, "i")
         ? _c(
             "uni-view",
             {
-              staticClass: _vm._$g(47, "sc"),
-              attrs: { _i: 47 },
+              staticClass: _vm._$g(46, "sc"),
+              attrs: { _i: 46 },
               on: {
                 click: function ($event) {
                   return _vm.$handleViewEvent($event)
@@ -13965,8 +13954,8 @@ var render = function () {
               _c(
                 "uni-view",
                 {
-                  staticClass: _vm._$g(48, "sc"),
-                  attrs: { _i: 48 },
+                  staticClass: _vm._$g(47, "sc"),
+                  attrs: { _i: 47 },
                   on: {
                     click: function ($event) {
                       return _vm.$handleViewEvent($event, { stop: true })
@@ -13976,27 +13965,35 @@ var render = function () {
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
+                    { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
                     [
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
+                        { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
                         [
                           _c("v-uni-image", {
-                            staticClass: _vm._$g(51, "sc"),
+                            staticClass: _vm._$g(50, "sc"),
                             attrs: {
-                              src: _vm._$g(51, "a-src"),
+                              src: _vm._$g(50, "a-src"),
                               mode: "aspectFill",
-                              _i: 51,
+                              _i: 50,
                             },
                           }),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(52, "sc"),
-                              attrs: { _i: 52 },
+                              staticClass: _vm._$g(51, "sc"),
+                              attrs: { _i: 51 },
                             },
                             [
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(52, "sc"),
+                                  attrs: { _i: 52 },
+                                },
+                                [_vm._v(_vm._$g(52, "t0-0"))]
+                              ),
                               _c(
                                 "v-uni-text",
                                 {
@@ -14004,14 +14001,6 @@ var render = function () {
                                   attrs: { _i: 53 },
                                 },
                                 [_vm._v(_vm._$g(53, "t0-0"))]
-                              ),
-                              _c(
-                                "v-uni-text",
-                                {
-                                  staticClass: _vm._$g(54, "sc"),
-                                  attrs: { _i: 54 },
-                                },
-                                [_vm._v(_vm._$g(54, "t0-0"))]
                               ),
                             ],
                             1
@@ -14022,8 +14011,8 @@ var render = function () {
                       _c(
                         "uni-view",
                         {
-                          staticClass: _vm._$g(55, "sc"),
-                          attrs: { _i: 55 },
+                          staticClass: _vm._$g(54, "sc"),
+                          attrs: { _i: 54 },
                           on: {
                             click: function ($event) {
                               return _vm.$handleViewEvent($event)
@@ -14037,49 +14026,49 @@ var render = function () {
                   ),
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(56, "sc"), attrs: { _i: 56 } },
+                    { staticClass: _vm._$g(55, "sc"), attrs: { _i: 55 } },
                     [
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(57, "sc"), attrs: { _i: 57 } },
+                        { staticClass: _vm._$g(56, "sc"), attrs: { _i: 56 } },
                         [
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(58, "sc"),
-                              attrs: { _i: 58 },
+                              staticClass: _vm._$g(57, "sc"),
+                              attrs: { _i: 57 },
                             },
                             [_vm._v("基本信息")]
                           ),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(59, "sc"),
-                              attrs: { _i: 59 },
+                              staticClass: _vm._$g(58, "sc"),
+                              attrs: { _i: 58 },
                             },
                             [
                               _c(
                                 "uni-view",
                                 {
-                                  staticClass: _vm._$g(60, "sc"),
-                                  attrs: { _i: 60 },
+                                  staticClass: _vm._$g(59, "sc"),
+                                  attrs: { _i: 59 },
                                 },
                                 [
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(61, "sc"),
-                                      attrs: { _i: 61 },
+                                      staticClass: _vm._$g(60, "sc"),
+                                      attrs: { _i: 60 },
                                     },
                                     [_vm._v("性别")]
                                   ),
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(62, "sc"),
-                                      attrs: { _i: 62 },
+                                      staticClass: _vm._$g(61, "sc"),
+                                      attrs: { _i: 61 },
                                     },
-                                    [_vm._v(_vm._$g(62, "t0-0"))]
+                                    [_vm._v(_vm._$g(61, "t0-0"))]
                                   ),
                                 ],
                                 1
@@ -14087,25 +14076,25 @@ var render = function () {
                               _c(
                                 "uni-view",
                                 {
-                                  staticClass: _vm._$g(63, "sc"),
-                                  attrs: { _i: 63 },
+                                  staticClass: _vm._$g(62, "sc"),
+                                  attrs: { _i: 62 },
                                 },
                                 [
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(64, "sc"),
-                                      attrs: { _i: 64 },
+                                      staticClass: _vm._$g(63, "sc"),
+                                      attrs: { _i: 63 },
                                     },
                                     [_vm._v("年龄")]
                                   ),
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(65, "sc"),
-                                      attrs: { _i: 65 },
+                                      staticClass: _vm._$g(64, "sc"),
+                                      attrs: { _i: 64 },
                                     },
-                                    [_vm._v(_vm._$g(65, "t0-0") + "岁")]
+                                    [_vm._v(_vm._$g(64, "t0-0") + "岁")]
                                   ),
                                 ],
                                 1
@@ -14113,25 +14102,25 @@ var render = function () {
                               _c(
                                 "uni-view",
                                 {
-                                  staticClass: _vm._$g(66, "sc"),
-                                  attrs: { _i: 66 },
+                                  staticClass: _vm._$g(65, "sc"),
+                                  attrs: { _i: 65 },
                                 },
                                 [
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(67, "sc"),
-                                      attrs: { _i: 67 },
+                                      staticClass: _vm._$g(66, "sc"),
+                                      attrs: { _i: 66 },
                                     },
                                     [_vm._v("医龄")]
                                   ),
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(68, "sc"),
-                                      attrs: { _i: 68 },
+                                      staticClass: _vm._$g(67, "sc"),
+                                      attrs: { _i: 67 },
                                     },
-                                    [_vm._v(_vm._$g(68, "t0-0") + "年")]
+                                    [_vm._v(_vm._$g(67, "t0-0") + "年")]
                                   ),
                                 ],
                                 1
@@ -14139,25 +14128,25 @@ var render = function () {
                               _c(
                                 "uni-view",
                                 {
-                                  staticClass: _vm._$g(69, "sc"),
-                                  attrs: { _i: 69 },
+                                  staticClass: _vm._$g(68, "sc"),
+                                  attrs: { _i: 68 },
                                 },
                                 [
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(70, "sc"),
-                                      attrs: { _i: 70 },
+                                      staticClass: _vm._$g(69, "sc"),
+                                      attrs: { _i: 69 },
                                     },
                                     [_vm._v("职称")]
                                   ),
                                   _c(
                                     "v-uni-text",
                                     {
-                                      staticClass: _vm._$g(71, "sc"),
-                                      attrs: { _i: 71 },
+                                      staticClass: _vm._$g(70, "sc"),
+                                      attrs: { _i: 70 },
                                     },
-                                    [_vm._v(_vm._$g(71, "t0-0"))]
+                                    [_vm._v(_vm._$g(70, "t0-0"))]
                                   ),
                                 ],
                                 1
@@ -14170,35 +14159,35 @@ var render = function () {
                       ),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(72, "sc"), attrs: { _i: 72 } },
+                        { staticClass: _vm._$g(71, "sc"), attrs: { _i: 71 } },
                         [
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(73, "sc"),
-                              attrs: { _i: 73 },
+                              staticClass: _vm._$g(72, "sc"),
+                              attrs: { _i: 72 },
                             },
                             [_vm._v("专业领域")]
                           ),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(74, "sc"),
-                              attrs: { _i: 74 },
+                              staticClass: _vm._$g(73, "sc"),
+                              attrs: { _i: 73 },
                             },
                             _vm._l(
-                              _vm._$g(75, "f"),
+                              _vm._$g(74, "f"),
                               function (specialty, $12, $22, $32) {
                                 return _c(
                                   "v-uni-text",
                                   {
                                     key: specialty,
-                                    staticClass: _vm._$g("75-" + $32, "sc"),
-                                    attrs: { _i: "75-" + $32 },
+                                    staticClass: _vm._$g("74-" + $32, "sc"),
+                                    attrs: { _i: "74-" + $32 },
                                   },
                                   [
                                     _vm._v(
-                                      " " + _vm._$g("75-" + $32, "t0-0") + " "
+                                      " " + _vm._$g("74-" + $32, "t0-0") + " "
                                     ),
                                   ]
                                 )
@@ -14211,46 +14200,46 @@ var render = function () {
                       ),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(76, "sc"), attrs: { _i: 76 } },
+                        { staticClass: _vm._$g(75, "sc"), attrs: { _i: 75 } },
                         [
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(77, "sc"),
-                              attrs: { _i: 77 },
+                              staticClass: _vm._$g(76, "sc"),
+                              attrs: { _i: 76 },
                             },
                             [_vm._v("个人简介")]
                           ),
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(78, "sc"),
-                              attrs: { _i: 78 },
+                              staticClass: _vm._$g(77, "sc"),
+                              attrs: { _i: 77 },
                             },
-                            [_vm._v(_vm._$g(78, "t0-0"))]
+                            [_vm._v(_vm._$g(77, "t0-0"))]
                           ),
                         ],
                         1
                       ),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(79, "sc"), attrs: { _i: 79 } },
+                        { staticClass: _vm._$g(78, "sc"), attrs: { _i: 78 } },
                         [
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(80, "sc"),
-                              attrs: { _i: 80 },
+                              staticClass: _vm._$g(79, "sc"),
+                              attrs: { _i: 79 },
                             },
                             [_vm._v("专业背景")]
                           ),
                           _c(
                             "v-uni-text",
                             {
-                              staticClass: _vm._$g(81, "sc"),
-                              attrs: { _i: 81 },
+                              staticClass: _vm._$g(80, "sc"),
+                              attrs: { _i: 80 },
                             },
-                            [_vm._v(_vm._$g(81, "t0-0"))]
+                            [_vm._v(_vm._$g(80, "t0-0"))]
                           ),
                         ],
                         1
@@ -14260,13 +14249,13 @@ var render = function () {
                   ),
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(82, "sc"), attrs: { _i: 82 } },
+                    { staticClass: _vm._$g(81, "sc"), attrs: { _i: 81 } },
                     [
                       _c(
                         "v-uni-button",
                         {
-                          staticClass: _vm._$g(83, "sc"),
-                          attrs: { _i: 83 },
+                          staticClass: _vm._$g(82, "sc"),
+                          attrs: { _i: 82 },
                           on: {
                             click: function ($event) {
                               return _vm.$handleViewEvent($event)
@@ -14383,7 +14372,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/* uni.scss */\n.psychologist-container {\n  min-height: 100vh;\n  background: #f8fafc;\n  padding-bottom: 40rpx;\n}\n.header {\n  display: flex;\n  flex-direction: column;\n  padding: 40rpx 30rpx 20rpx;\n  background: white;\n  border-bottom: 1rpx solid #e2e8f0;\n}\n.header .header-left {\n  display: flex;\n  align-items: center;\n  margin-bottom: 10rpx;\n}\n.header .back-arrow {\n  font-size: 40rpx;\n  margin-right: 20rpx;\n  color: #64748b;\n}\n.header .header-title {\n  font-size: 36rpx;\n  font-weight: 600;\n  color: #1e293b;\n}\n.header .header-right .appointment-record {\n  display: flex;\n  align-items: center;\n  background: #f1f5f9;\n  padding: 12rpx 20rpx;\n  border-radius: 20rpx;\n  transition: all 0.3s;\n  border: 1rpx solid #e2e8f0;\n}\n.header .header-right .appointment-record:active {\n  -webkit-transform: scale(0.95);\n          transform: scale(0.95);\n  background: #e2e8f0;\n}\n.header .header-right .appointment-record .record-icon {\n  font-size: 24rpx;\n  margin-right: 8rpx;\n  opacity: 0.8;\n}\n.header .header-right .appointment-record .record-text {\n  font-size: 24rpx;\n  color: #64748b;\n  font-weight: 500;\n}\n.header .header-subtitle {\n  padding: 0 30rpx 20rpx;\n}\n.header .header-subtitle .subtitle-text {\n  font-size: 24rpx;\n  color: rgba(255, 255, 255, 0.8);\n}\n.search-section {\n  padding: 20rpx 30rpx;\n  background: white;\n}\n.search-section .search-bar {\n  display: flex;\n  align-items: center;\n  background: #f8fafc;\n  border-radius: 16rpx;\n  padding: 20rpx 30rpx;\n  border: 1rpx solid #e2e8f0;\n}\n.search-section .search-bar .search-icon {\n  font-size: 32rpx;\n  margin-right: 15rpx;\n  color: #94a3b8;\n}\n.search-section .search-bar .search-input {\n  flex: 1;\n  font-size: 28rpx;\n  color: #1e293b;\n  border: none;\n  outline: none;\n  background: transparent;\n}\n.doctor-list {\n  padding: 0 30rpx;\n}\n.empty-state {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 120rpx 40rpx;\n  text-align: center;\n}\n.empty-state .empty-emoji {\n  font-size: 120rpx;\n  margin-bottom: 30rpx;\n}\n.empty-state .empty-text {\n  font-size: 32rpx;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 15rpx;\n}\n.empty-state .empty-desc {\n  font-size: 26rpx;\n  color: rgba(255, 255, 255, 0.7);\n}\n.doctor-card {\n  background: white;\n  border-radius: 16rpx;\n  padding: 32rpx;\n  margin-bottom: 16rpx;\n  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);\n  border: 1rpx solid #e2e8f0;\n  transition: all 0.3s;\n}\n.doctor-card:active {\n  -webkit-transform: scale(0.98);\n          transform: scale(0.98);\n  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);\n}\n.doctor-card .card-header {\n  display: flex;\n  align-items: center;\n  margin-bottom: 20rpx;\n}\n.doctor-card .card-header .avatar-container {\n  position: relative;\n  margin-right: 20rpx;\n}\n.doctor-card .card-header .avatar-container .doctor-avatar {\n  width: 100rpx;\n  height: 100rpx;\n  border-radius: 50%;\n  border: 3rpx solid rgba(255, 255, 255, 0.8);\n}\n.doctor-card .card-header .avatar-container .online-status {\n  position: absolute;\n  bottom: 5rpx;\n  right: 5rpx;\n  width: 20rpx;\n  height: 20rpx;\n  border-radius: 50%;\n  background: #ccc;\n  border: 2rpx solid white;\n}\n.doctor-card .card-header .avatar-container .online-status.online {\n  background: #52c41a;\n}\n.doctor-card .card-header .doctor-info {\n  flex: 1;\n}\n.doctor-card .card-header .doctor-info .name-section {\n  display: flex;\n  align-items: center;\n  margin-bottom: 8rpx;\n}\n.doctor-card .card-header .doctor-info .name-section .doctor-name {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #1e293b;\n  margin-right: 10rpx;\n}\n.doctor-card .card-header .doctor-info .name-section .doctor-gender {\n  font-size: 24rpx;\n  opacity: 0.8;\n}\n.doctor-card .card-header .doctor-info .basic-info {\n  display: flex;\n  gap: 15rpx;\n}\n.doctor-card .card-header .doctor-info .basic-info .info-item {\n  font-size: 22rpx;\n  color: #64748b;\n  background: #f1f5f9;\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n  border: 1rpx solid #e2e8f0;\n}\n.doctor-card .card-header .rating-section {\n  text-align: right;\n}\n.doctor-card .card-header .rating-section .rating {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  margin-bottom: 5rpx;\n}\n.doctor-card .card-header .rating-section .rating .rating-score {\n  font-size: 28rpx;\n  font-weight: bold;\n  color: #333;\n  margin-right: 5rpx;\n}\n.doctor-card .card-header .rating-section .rating .rating-star {\n  font-size: 20rpx;\n}\n.doctor-card .card-header .rating-section .rating-count {\n  font-size: 20rpx;\n  color: #999;\n}\n.doctor-card .card-content {\n  margin-bottom: 20rpx;\n}\n.doctor-card .card-content .specialties {\n  margin-bottom: 15rpx;\n}\n.doctor-card .card-content .specialties .specialty-label {\n  font-size: 24rpx;\n  color: #666;\n  margin-right: 10rpx;\n}\n.doctor-card .card-content .specialties .specialty-tags {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8rpx;\n  margin-top: 8rpx;\n}\n.doctor-card .card-content .specialties .specialty-tags .specialty-tag {\n  font-size: 20rpx;\n  color: var(--theme-color);\n  background: rgba(79, 172, 254, 0.1);\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n}\n.doctor-card .card-content .introduction {\n  margin-bottom: 15rpx;\n}\n.doctor-card .card-content .introduction .intro-text {\n  font-size: 26rpx;\n  color: #666;\n  line-height: 1.5;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n.doctor-card .card-footer {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n.doctor-card .card-footer .action-buttons .appointment-btn {\n  background: var(--theme-color);\n  color: white;\n  border: none;\n  border-radius: 25rpx;\n  padding: 12rpx 30rpx;\n  font-size: 26rpx;\n  font-weight: bold;\n}\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 120rpx 40rpx;\n}\n.loading-container .loading-spinner {\n  width: 60rpx;\n  height: 60rpx;\n  border: 4rpx solid rgba(255, 255, 255, 0.3);\n  border-top: 4rpx solid white;\n  border-radius: 50%;\n  -webkit-animation: spin 1s linear infinite;\n          animation: spin 1s linear infinite;\n  margin-bottom: 20rpx;\n}\n.loading-container .loading-text {\n  font-size: 28rpx;\n  color: white;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n.detail-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.6);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 1000;\n  padding: 40rpx;\n  -webkit-animation: fadeIn 0.3s ease;\n          animation: fadeIn 0.3s ease;\n}\n.detail-content {\n  background: white;\n  border-radius: 24rpx;\n  width: 100%;\n  max-width: 600rpx;\n  max-height: 85vh;\n  overflow: hidden;\n  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);\n  -webkit-animation: slideUp 0.3s ease;\n          animation: slideUp 0.3s ease;\n  display: flex;\n  flex-direction: column;\n}\n.detail-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 40rpx 40rpx 20rpx;\n  border-bottom: 1rpx solid #f0f0f0;\n}\n.detail-header .doctor-profile {\n  display: flex;\n  align-items: center;\n}\n.detail-header .doctor-profile .detail-avatar {\n  width: 80rpx;\n  height: 80rpx;\n  border-radius: 50%;\n  margin-right: 20rpx;\n}\n.detail-header .doctor-profile .profile-info .detail-name {\n  display: block;\n  font-size: 32rpx;\n  font-weight: bold;\n  color: #333;\n  margin-bottom: 8rpx;\n}\n.detail-header .doctor-profile .profile-info .detail-title {\n  font-size: 24rpx;\n  color: #666;\n}\n.detail-header .close-btn {\n  width: 60rpx;\n  height: 60rpx;\n  border-radius: 50%;\n  background: #f5f5f5;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 40rpx;\n  color: #999;\n  font-weight: 300;\n}\n.detail-body {\n  padding: 40rpx;\n  flex: 1;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-height: 0;\n}\n.detail-section {\n  margin-bottom: 30rpx;\n}\n.detail-section .section-label {\n  display: block;\n  font-size: 26rpx;\n  color: #666;\n  margin-bottom: 15rpx;\n  font-weight: bold;\n}\n.detail-section .info-grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20rpx;\n}\n.detail-section .info-grid .info-item .info-label {\n  display: block;\n  font-size: 22rpx;\n  color: #999;\n  margin-bottom: 8rpx;\n}\n.detail-section .info-grid .info-item .info-value {\n  font-size: 26rpx;\n  color: #333;\n  font-weight: bold;\n}\n.detail-section .specialty-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10rpx;\n}\n.detail-section .specialty-list .specialty-item {\n  font-size: 22rpx;\n  color: var(--theme-color);\n  background: rgba(79, 172, 254, 0.1);\n  padding: 8rpx 16rpx;\n  border-radius: 15rpx;\n}\n.detail-section .detail-intro, .detail-section .detail-background {\n  font-size: 26rpx;\n  color: #333;\n  line-height: 1.6;\n  word-wrap: break-word;\n  word-break: break-all;\n  white-space: pre-wrap;\n  display: block;\n}\n.detail-footer {\n  padding: 20rpx 40rpx 40rpx;\n}\n.detail-footer .detail-appointment-btn {\n  width: 100%;\n  height: 80rpx;\n  background: var(--theme-color);\n  color: white;\n  border-radius: 40rpx;\n  font-size: 30rpx;\n  font-weight: bold;\n  border: none;\n}\n@-webkit-keyframes fadeIn {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes fadeIn {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@-webkit-keyframes slideUp {\nfrom {\n    opacity: 0;\n    -webkit-transform: translateY(50rpx);\n            transform: translateY(50rpx);\n}\nto {\n    opacity: 1;\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n}\n}\n@keyframes slideUp {\nfrom {\n    opacity: 0;\n    -webkit-transform: translateY(50rpx);\n            transform: translateY(50rpx);\n}\nto {\n    opacity: 1;\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n}\n}", ""]);
+exports.push([module.i, "/* uni.scss */\n.psychologist-container {\n  min-height: 100vh;\n  background: #f8fafc;\n  padding-bottom: 40rpx;\n}\n.header {\n  display: flex;\n  flex-direction: column;\n  padding: 40rpx 30rpx 20rpx;\n  background: white;\n  border-bottom: 1rpx solid #e2e8f0;\n}\n.header .header-left {\n  display: flex;\n  align-items: center;\n  margin-bottom: 10rpx;\n}\n.header .back-arrow {\n  font-size: 40rpx;\n  margin-right: 20rpx;\n  color: #64748b;\n}\n.header .header-title {\n  font-size: 36rpx;\n  font-weight: 600;\n  color: #1e293b;\n}\n.header .header-right .appointment-record {\n  display: flex;\n  align-items: center;\n  background: #f1f5f9;\n  padding: 12rpx 20rpx;\n  border-radius: 20rpx;\n  transition: all 0.3s;\n  border: 1rpx solid #e2e8f0;\n}\n.header .header-right .appointment-record:active {\n  -webkit-transform: scale(0.95);\n          transform: scale(0.95);\n  background: #e2e8f0;\n}\n.header .header-right .appointment-record .record-icon {\n  font-size: 24rpx;\n  margin-right: 8rpx;\n  opacity: 0.8;\n}\n.header .header-right .appointment-record .record-text {\n  font-size: 24rpx;\n  color: #64748b;\n  font-weight: 500;\n}\n.header .header-subtitle {\n  padding: 0 30rpx 20rpx;\n}\n.header .header-subtitle .subtitle-text {\n  font-size: 24rpx;\n  color: rgba(255, 255, 255, 0.8);\n}\n.search-section {\n  padding: 20rpx 30rpx;\n  background: white;\n}\n.search-section .search-bar {\n  display: flex;\n  align-items: center;\n  background: #f8fafc;\n  border-radius: 16rpx;\n  padding: 20rpx 30rpx;\n  border: 1rpx solid #e2e8f0;\n}\n.search-section .search-bar .search-icon {\n  font-size: 32rpx;\n  margin-right: 15rpx;\n  color: #94a3b8;\n}\n.search-section .search-bar .search-input {\n  flex: 1;\n  font-size: 28rpx;\n  color: #1e293b;\n  border: none;\n  outline: none;\n  background: transparent;\n}\n.doctor-list {\n  padding: 0 30rpx;\n}\n.empty-state {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 120rpx 40rpx;\n  text-align: center;\n}\n.empty-state .empty-emoji {\n  font-size: 120rpx;\n  margin-bottom: 30rpx;\n}\n.empty-state .empty-text {\n  font-size: 32rpx;\n  color: white;\n  font-weight: bold;\n  margin-bottom: 15rpx;\n}\n.empty-state .empty-desc {\n  font-size: 26rpx;\n  color: rgba(255, 255, 255, 0.7);\n}\n.doctor-card {\n  background: white;\n  border-radius: 16rpx;\n  padding: 32rpx;\n  margin-bottom: 16rpx;\n  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);\n  border: 1rpx solid #e2e8f0;\n  transition: all 0.3s;\n}\n.doctor-card:active {\n  -webkit-transform: scale(0.98);\n          transform: scale(0.98);\n  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);\n}\n.doctor-card .card-header {\n  display: flex;\n  align-items: center;\n  margin-bottom: 20rpx;\n}\n.doctor-card .card-header .avatar-container {\n  position: relative;\n  margin-right: 20rpx;\n}\n.doctor-card .card-header .avatar-container .doctor-avatar {\n  width: 100rpx;\n  height: 100rpx;\n  border-radius: 50%;\n  border: 3rpx solid rgba(255, 255, 255, 0.8);\n}\n.doctor-card .card-header .avatar-container .online-status {\n  position: absolute;\n  bottom: 5rpx;\n  right: 5rpx;\n  width: 20rpx;\n  height: 20rpx;\n  border-radius: 50%;\n  background: #ccc;\n  border: 2rpx solid white;\n}\n.doctor-card .card-header .avatar-container .online-status.online {\n  background: #52c41a;\n}\n.doctor-card .card-header .doctor-info {\n  flex: 1;\n}\n.doctor-card .card-header .doctor-info .name-section {\n  display: flex;\n  align-items: center;\n  margin-bottom: 8rpx;\n}\n.doctor-card .card-header .doctor-info .name-section .doctor-name {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #1e293b;\n  margin-right: 10rpx;\n}\n.doctor-card .card-header .doctor-info .name-section .doctor-gender {\n  font-size: 24rpx;\n  opacity: 0.8;\n}\n.doctor-card .card-header .doctor-info .basic-info {\n  display: flex;\n  gap: 15rpx;\n}\n.doctor-card .card-header .doctor-info .basic-info .info-item {\n  font-size: 22rpx;\n  color: #64748b;\n  background: #f1f5f9;\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n  border: 1rpx solid #e2e8f0;\n}\n.doctor-card .card-header .rating-section {\n  text-align: right;\n}\n.doctor-card .card-header .rating-section .rating {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  margin-bottom: 5rpx;\n}\n.doctor-card .card-header .rating-section .rating .rating-score {\n  font-size: 28rpx;\n  font-weight: bold;\n  color: #333;\n  margin-right: 5rpx;\n}\n.doctor-card .card-header .rating-section .rating .rating-star {\n  font-size: 20rpx;\n}\n.doctor-card .card-header .rating-section .rating-count {\n  font-size: 20rpx;\n  color: #999;\n}\n.doctor-card .card-content {\n  margin-bottom: 20rpx;\n}\n.doctor-card .card-content .specialties {\n  margin-bottom: 15rpx;\n}\n.doctor-card .card-content .specialties .specialty-label {\n  font-size: 24rpx;\n  color: #666;\n  margin-right: 10rpx;\n}\n.doctor-card .card-content .specialties .specialty-tags {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8rpx;\n  margin-top: 8rpx;\n}\n.doctor-card .card-content .specialties .specialty-tags .specialty-tag {\n  font-size: 20rpx;\n  color: var(--theme-color);\n  background: rgba(79, 172, 254, 0.1);\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n}\n.doctor-card .card-content .introduction {\n  margin-bottom: 15rpx;\n}\n.doctor-card .card-content .introduction .intro-text {\n  font-size: 26rpx;\n  color: #666;\n  line-height: 1.5;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n.doctor-card .card-footer {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n.doctor-card .card-footer .action-buttons .appointment-btn {\n  background: var(--theme-color);\n  color: white;\n  border: none;\n  border-radius: 25rpx;\n  padding: 12rpx 30rpx;\n  font-size: 26rpx;\n  font-weight: bold;\n}\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 120rpx 40rpx;\n}\n.loading-container .loading-spinner {\n  width: 60rpx;\n  height: 60rpx;\n  border: 4rpx solid rgba(255, 255, 255, 0.3);\n  border-top: 4rpx solid white;\n  border-radius: 50%;\n  -webkit-animation: spin 1s linear infinite;\n          animation: spin 1s linear infinite;\n  margin-bottom: 20rpx;\n}\n.loading-container .loading-text {\n  font-size: 28rpx;\n  color: white;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n.detail-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.6);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 1000;\n  padding: 40rpx;\n  -webkit-animation: fadeIn 0.3s ease;\n          animation: fadeIn 0.3s ease;\n}\n.detail-content {\n  background: white;\n  border-radius: 24rpx;\n  width: 100%;\n  max-width: 600rpx;\n  max-height: 85vh;\n  overflow: hidden;\n  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);\n  -webkit-animation: slideUp 0.3s ease;\n          animation: slideUp 0.3s ease;\n  display: flex;\n  flex-direction: column;\n}\n.detail-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 40rpx 40rpx 20rpx;\n  border-bottom: 1rpx solid #f0f0f0;\n}\n.detail-header .doctor-profile {\n  display: flex;\n  align-items: center;\n}\n.detail-header .doctor-profile .detail-avatar {\n  width: 80rpx;\n  height: 80rpx;\n  border-radius: 50%;\n  margin-right: 20rpx;\n}\n.detail-header .doctor-profile .profile-info .detail-name {\n  display: block;\n  font-size: 32rpx;\n  font-weight: bold;\n  color: #333;\n  margin-bottom: 8rpx;\n}\n.detail-header .doctor-profile .profile-info .detail-title {\n  font-size: 24rpx;\n  color: #666;\n}\n.detail-header .close-btn {\n  width: 60rpx;\n  height: 60rpx;\n  border-radius: 50%;\n  background: #f5f5f5;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 40rpx;\n  color: #999;\n  font-weight: 300;\n}\n.detail-body {\n  padding: 40rpx;\n  flex: 1;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-height: 0;\n}\n.detail-section {\n  margin-bottom: 30rpx;\n}\n.detail-section .section-label {\n  display: block;\n  font-size: 26rpx;\n  color: #666;\n  margin-bottom: 15rpx;\n  font-weight: bold;\n}\n.detail-section .info-grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20rpx;\n}\n.detail-section .info-grid .info-item .info-label {\n  display: block;\n  font-size: 22rpx;\n  color: #999;\n  margin-bottom: 8rpx;\n}\n.detail-section .info-grid .info-item .info-value {\n  font-size: 26rpx;\n  color: #333;\n  font-weight: bold;\n}\n.detail-section .specialty-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10rpx;\n}\n.detail-section .specialty-list .specialty-item {\n  font-size: 22rpx;\n  color: var(--theme-color);\n  background: rgba(79, 172, 254, 0.1);\n  padding: 8rpx 16rpx;\n  border-radius: 15rpx;\n}\n.detail-section .detail-intro,\n.detail-section .detail-background {\n  font-size: 26rpx;\n  color: #333;\n  line-height: 1.6;\n  word-wrap: break-word;\n  word-break: break-all;\n  white-space: pre-wrap;\n  display: block;\n}\n.detail-footer {\n  padding: 20rpx 40rpx 40rpx;\n}\n.detail-footer .detail-appointment-btn {\n  width: 100%;\n  height: 80rpx;\n  background: var(--theme-color);\n  color: white;\n  border-radius: 40rpx;\n  font-size: 30rpx;\n  font-weight: bold;\n  border: none;\n}\n@-webkit-keyframes fadeIn {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes fadeIn {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@-webkit-keyframes slideUp {\nfrom {\n    opacity: 0;\n    -webkit-transform: translateY(50rpx);\n            transform: translateY(50rpx);\n}\nto {\n    opacity: 1;\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n}\n}\n@keyframes slideUp {\nfrom {\n    opacity: 0;\n    -webkit-transform: translateY(50rpx);\n            transform: translateY(50rpx);\n}\nto {\n    opacity: 1;\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n}\n}", ""]);
 // Exports
 module.exports = exports;
 
