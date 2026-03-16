@@ -139,6 +139,15 @@
 				"navigationBarTextStyle": "white"
 
 			}
+		},
+		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor": "#667eea",
+				"navigationBarTextStyle": "white"
+
+			}
 		}
 
 	],
@@ -149,6 +158,19 @@
 		"app-plus": {
 			"titleView": false
 		}
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#667eea",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "主页"
+		}, {
+			"pagePath": "pages/profile/index",
+			"text": "个人中心"
+		}]
 	},
 	"uniIdRouter": {}
 }

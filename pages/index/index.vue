@@ -1,11 +1,5 @@
 <template>
     <view class="page-container">
-        <!-- 顶部导航栏 -->
-        <view class="header">
-            <text class="sunshine-title">暖愈心伴</text>
-            <text class="logout-btn" @click="logout">退出登录</text>
-        </view>
-
         <!-- 卡片列表区域（禁止滚动） -->
         <view
             class="content"
@@ -123,11 +117,6 @@ export default {
             uni.navigateTo({
                 url: path,
             });
-        },
-        logout() {
-            uni.removeStorageSync("Access-Token");
-            uni.$u.toast("已退出登录");
-            uni.$u.route("/pages/login/login");
         },
     },
 };
