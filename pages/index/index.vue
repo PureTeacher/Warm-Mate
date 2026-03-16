@@ -40,6 +40,23 @@
                 </view>
             </view>
         </view>
+
+        <!-- 底部快捷入口 -->
+        <view class="shortcut-bar bottom">
+            <view
+                class="shortcut-btn"
+                v-for="(item, index) in shortcutList"
+                :key="item.id"
+                @click="navigateTo(item.path)"
+            >
+                <image
+                    :src="item.iconPath"
+                    class="shortcut-icon"
+                    mode="aspectFit"
+                />
+                <text class="shortcut-text">{{ item.title }}</text>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -48,6 +65,39 @@ export default {
     data() {
         return {
             screenMinHeight: 1500, // 默认值（单位：rpx）
+            // 快捷入口数据
+            shortcutList: [
+                {
+                    id: 1,
+                    title: "心理体检",
+                    iconPath: "/static/custom-icon-1.png",
+                    path: "/pages/phq7-test/index",
+                },
+                {
+                    id: 2,
+                    title: "健康科普",
+                    iconPath: "/static/custom-icon-2.png",
+                    path: "/pages/health/index",
+                },
+                {
+                    id: 3,
+                    title: "主页",
+                    iconPath: "/static/logo.png",
+                    path: "/pages/index/index",
+                },
+                {
+                    id: 4,
+                    title: "心理医生",
+                    iconPath: "/static/custom-icon-3.png",
+                    path: "/pages/psychologist/index",
+                },
+                {
+                    id: 5,
+                    title: "AI交流",
+                    iconPath: "/static/custom-icon-4.png",
+                    path: "/pages/message/message",
+                },
+            ],
             // 卡片数据示例
             cardList: [
                 {
@@ -238,6 +288,59 @@ export default {
     }
 }
 
+.shortcut-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16rpx;
+    background: #ffffff;
+    border-radius: 24rpx;
+    box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.08);
+    z-index: 9;
+}
+
+.shortcut-bar.bottom {
+    position: fixed;
+    left: 20rpx;
+    right: 20rpx;
+    bottom: 20rpx;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20rpx);
+}
+
+.content {
+    height: calc(100vh - 120rpx);
+    overflow: hidden;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    padding-bottom: 180rpx;
+}
+
+.shortcut-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150rpx;
+    padding: 12rpx;
+    border-radius: 18rpx;
+    background: rgba(102, 126, 234, 0.08);
+}
+
+.shortcut-icon {
+    width: 70rpx;
+    height: 70rpx;
+    margin-bottom: 10rpx;
+}
+
+.shortcut-text {
+    font-size: 22rpx;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
 /* 卡片容器样式 */
 .card-container {
     display: flex;
@@ -308,6 +411,7 @@ export default {
     flex: 1;
     background: white;
     padding: 20rpx 0;
+    padding-bottom: 180rpx;
     min-height: 750rpx;
     position: relative;
 }
