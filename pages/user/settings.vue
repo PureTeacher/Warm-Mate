@@ -6,7 +6,9 @@
             <view class="settings-item">
                 <view class="item-left">
                     <text class="item-label">显示我的心理数据</text>
-                    <text class="item-desc">允许其他用户查看你的心理测试结果概览</text>
+                    <text class="item-desc"
+                        >允许其他用户查看你的心理测试结果概览</text
+                    >
                 </view>
                 <switch
                     :checked="settings.showPsychData"
@@ -68,13 +70,6 @@
         <!-- 显示设置 -->
         <view class="settings-section">
             <view class="section-title">显示设置</view>
-            <view class="settings-item" @click="themeModalVisible = true">
-                <view class="item-left">
-                    <text class="item-label">主题</text>
-                    <text class="item-desc">{{ themeLabel }}</text>
-                </view>
-                <text class="menu-arrow">&gt;</text>
-            </view>
             <view class="settings-item" @click="fontModalVisible = true">
                 <view class="item-left">
                     <text class="item-label">字体大小</text>
@@ -121,57 +116,14 @@
             </view>
         </view>
 
-        <!-- 底部功能按钮 -->
-        <view class="settings-section">
-            <button class="account-btn" @click="navigateToAccount">账号管理</button>
-            <button class="password-btn" @click="navigateToPassword">修改密码</button>
-        </view>
-
-        <!-- 主题选择弹窗 -->
-        <uni-popup ref="themePopup" type="bottom" :maskClick="true">
-            <view class="popup-container">
-                <view class="popup-header">
-                    <text class="popup-title">选择主题</text>
-                    <view class="close-btn" @click="themeModalVisible = false">✕</view>
-                </view>
-                <view class="popup-content">
-                    <view
-                        class="theme-option"
-                        :class="{ selected: settings.theme === 'light' }"
-                        @click="changeTheme('light')"
-                    >
-                        <view class="theme-preview light-preview"></view>
-                        <text class="theme-name">浅色主题</text>
-                        <text class="theme-check" v-if="settings.theme === 'light'">✓</text>
-                    </view>
-                    <view
-                        class="theme-option"
-                        :class="{ selected: settings.theme === 'dark' }"
-                        @click="changeTheme('dark')"
-                    >
-                        <view class="theme-preview dark-preview"></view>
-                        <text class="theme-name">深色主题</text>
-                        <text class="theme-check" v-if="settings.theme === 'dark'">✓</text>
-                    </view>
-                    <view
-                        class="theme-option"
-                        :class="{ selected: settings.theme === 'auto' }"
-                        @click="changeTheme('auto')"
-                    >
-                        <view class="theme-preview auto-preview"></view>
-                        <text class="theme-name">自动</text>
-                        <text class="theme-check" v-if="settings.theme === 'auto'">✓</text>
-                    </view>
-                </view>
-            </view>
-        </uni-popup>
-
         <!-- 字体大小选择弹窗 -->
         <uni-popup ref="fontPopup" type="bottom" :maskClick="true">
             <view class="popup-container">
                 <view class="popup-header">
                     <text class="popup-title">选择字体大小</text>
-                    <view class="close-btn" @click="fontModalVisible = false">✕</view>
+                    <view class="close-btn" @click="fontModalVisible = false"
+                        >✕</view
+                    >
                 </view>
                 <view class="popup-content font-options">
                     <view
@@ -181,7 +133,11 @@
                     >
                         <text class="font-preview small">Aa</text>
                         <text class="font-name">小</text>
-                        <text class="font-check" v-if="settings.fontSize === 'small'">✓</text>
+                        <text
+                            class="font-check"
+                            v-if="settings.fontSize === 'small'"
+                            >✓</text
+                        >
                     </view>
                     <view
                         class="font-option"
@@ -190,7 +146,11 @@
                     >
                         <text class="font-preview medium">Aa</text>
                         <text class="font-name">中（默认）</text>
-                        <text class="font-check" v-if="settings.fontSize === 'medium'">✓</text>
+                        <text
+                            class="font-check"
+                            v-if="settings.fontSize === 'medium'"
+                            >✓</text
+                        >
                     </view>
                     <view
                         class="font-option"
@@ -199,7 +159,11 @@
                     >
                         <text class="font-preview large">Aa</text>
                         <text class="font-name">大</text>
-                        <text class="font-check" v-if="settings.fontSize === 'large'">✓</text>
+                        <text
+                            class="font-check"
+                            v-if="settings.fontSize === 'large'"
+                            >✓</text
+                        >
                     </view>
                 </view>
             </view>
@@ -217,22 +181,12 @@ export default {
                 testReminder: true,
                 appointmentReminder: true,
                 messageReminder: true,
-                theme: this.$themeManager.getTheme(),
                 fontSize: this.$themeManager.getFontSize(),
             },
-            themeModalVisible: false,
             fontModalVisible: false,
         };
     },
     computed: {
-        themeLabel() {
-            const themeMap = {
-                light: "浅色",
-                dark: "深色",
-                auto: "自动",
-            };
-            return themeMap[this.settings.theme] || "浅色";
-        },
         fontSizeLabel() {
             const fontMap = {
                 small: "小",
@@ -241,18 +195,8 @@ export default {
             };
             return fontMap[this.settings.fontSize] || "中";
         },
-        containerClasses() {
-            return `theme-${this.settings.theme} font-${this.settings.fontSize}`;
-        },
     },
     watch: {
-        themeModalVisible(newVal) {
-            if (newVal) {
-                this.$refs.themePopup?.open();
-            } else {
-                this.$refs.themePopup?.close();
-            }
-        },
         fontModalVisible(newVal) {
             if (newVal) {
                 this.$refs.fontPopup?.open();
@@ -266,7 +210,6 @@ export default {
     },
     onShow() {
         // 每次进入页面更新设置
-        this.settings.theme = this.$themeManager.getTheme();
         this.settings.fontSize = this.$themeManager.getFontSize();
     },
     methods: {
@@ -274,10 +217,7 @@ export default {
             try {
                 const savedSettings = uni.getStorageSync("userSettings");
                 if (savedSettings) {
-                    this.settings = Object.assign(
-                        this.settings,
-                        savedSettings
-                    );
+                    this.settings = Object.assign(this.settings, savedSettings);
                 }
             } catch (e) {
                 console.error("加载设置出错", e);
@@ -286,16 +226,6 @@ export default {
         toggleSetting(key) {
             this.settings[key] = !this.settings[key];
             this.saveSettings();
-        },
-        changeTheme(theme) {
-            this.settings.theme = theme;
-            this.$themeManager.setTheme(theme);
-            this.themeModalVisible = false;
-            uni.showToast({
-                title: "主题已更改",
-                icon: "success",
-                duration: 800,
-            });
         },
         changeFontSize(size) {
             this.settings.fontSize = size;
@@ -364,18 +294,6 @@ export default {
             } catch (e) {
                 console.error("清空缓存出错", e);
             }
-        },
-        navigateToAccount() {
-            uni.showToast({
-                title: "账号管理功能开发中",
-                icon: "none",
-            });
-        },
-        navigateToPassword() {
-            uni.showToast({
-                title: "修改密码功能开发中",
-                icon: "none",
-            });
         },
     },
 };
@@ -467,12 +385,6 @@ export default {
             .font-check {
                 background-color: #444444;
             }
-        }
-
-        .password-btn {
-            background-color: #333333;
-            color: #667eea;
-            border-color: #444444;
         }
     }
 
@@ -571,74 +483,12 @@ export default {
     }
 }
 
-// 主题选项样式
-.theme-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20upx;
-    border: 2upx solid #f0f0f0;
-    border-radius: 12upx;
-    background-color: #fafafa;
-    position: relative;
-    transition: all 0.3s;
-
-    &.selected {
-        border-color: #667eea;
-        background-color: #f0f0ff;
-    }
-
-    .theme-preview {
-        width: 80upx;
-        height: 80upx;
-        border-radius: 8upx;
-        margin-bottom: 12upx;
-
-        &.light-preview {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            box-shadow: 0 2upx 4upx rgba(0, 0, 0, 0.1);
-        }
-
-        &.dark-preview {
-            background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
-            box-shadow: 0 2upx 4upx rgba(255, 255, 255, 0.1);
-        }
-
-        &.auto-preview {
-            background: linear-gradient(90deg, #ffffff 0%, #ffffff 50%, #333333 50%, #333333 100%);
-            box-shadow: 0 2upx 4upx rgba(0, 0, 0, 0.1);
-        }
-    }
-
-    .theme-name {
-        font-size: 26upx;
-        color: #333333;
-        font-weight: 500;
-        margin-bottom: 8upx;
-    }
-
-    .theme-check {
-        position: absolute;
-        top: 12upx;
-        right: 12upx;
-        font-size: 24upx;
-        color: #667eea;
-        background-color: white;
-        border-radius: 50%;
-        width: 32upx;
-        height: 32upx;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-}
-
 // 字体大小选项样式
 .font-options {
     display: flex;
     gap: 12upx;
     padding: 20upx 20upx !important;
+    max-height: 400upx;
 }
 
 .font-option {
@@ -697,24 +547,5 @@ export default {
         justify-content: center;
         font-weight: bold;
     }
-}
-
-// 按钮样式
-.account-btn,
-.password-btn {
-    width: 90%;
-    margin: 15upx auto;
-    padding: 20upx;
-    border-radius: 8upx;
-    font-size: 32upx;
-    border: none;
-    background-color: #667eea;
-    color: white;
-}
-
-.password-btn {
-    background-color: #f5f5f5;
-    color: #667eea;
-    border: 1upx solid #ddd;
 }
 </style>
