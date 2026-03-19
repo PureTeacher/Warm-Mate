@@ -3,7 +3,6 @@
         <!-- 顶部导航栏 -->
         <view class="header">
             <text class="sunshine-title">暖愈心伴</text>
-            <text class="logout-btn" @click="logout">退出登录</text>
         </view>
 
         <!-- 卡片列表区域（禁止滚动） -->
@@ -124,11 +123,6 @@ export default {
                 url: path,
             });
         },
-        logout() {
-            uni.removeStorageSync("Access-Token");
-            uni.$u.toast("已退出登录");
-            uni.$u.route("/pages/login/login");
-        },
     },
 };
 </script>
@@ -222,19 +216,6 @@ export default {
         bottom: 0;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10rpx);
-    }
-
-    .logout-btn {
-        position: absolute;
-        right: 20rpx;
-        top: calc(var(--status-bar-height) + 30rpx);
-        color: #ffffff;
-        font-size: 24rpx;
-        border: 1rpx solid rgba(255, 255, 255, 0.8);
-        border-radius: 16rpx;
-        padding: 8rpx 18rpx;
-        z-index: 20;
-        background: rgba(255, 255, 255, 0.2);
     }
 }
 

@@ -139,6 +139,14 @@
 				"navigationBarTextStyle": "white"
 
 			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor": "#667eea",
+				"navigationBarTextStyle": "white"
+			}
 		}
 
 	],
@@ -149,6 +157,26 @@
 		"app-plus": {
 			"titleView": false
 		}
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#667eea",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/tab-home.png",
+				"selectedIconPath": "/static/tab-home-active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"iconPath": "/static/tab-user.png",
+				"selectedIconPath": "/static/tab-user-active.png",
+				"text": "个人中心"
+			}
+		]
 	},
 	"uniIdRouter": {}
 }
