@@ -1,5 +1,5 @@
 <template>
-    <view class="test-container" :style="{ '--theme-color': themeColor }">
+    <view :class="['test-container', containerClasses]" :style="{ '--theme-color': themeColor }">
         <!-- 角色引导区 -->
         <view class="guide-area">
             <text class="guide-emoji">☀️</text>

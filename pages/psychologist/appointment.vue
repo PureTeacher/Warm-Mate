@@ -1,5 +1,5 @@
 <template>
-  <view class="appointment-container" :style="{'--theme-color': themeColor}">
+  <view :class="['appointment-container', containerClasses]" :style="{'--theme-color': themeColor}">
     <!-- 顶部导航 -->
     <!-- <view class="header">
       <view class="header-left">

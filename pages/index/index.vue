@@ -1,5 +1,5 @@
 <template>
-    <view class="page-container">
+    <view :class="['page-container', containerClasses]">
         <!-- 顶部导航栏 -->
         <view class="header">
             <text class="sunshine-title">暖愈心伴</text>

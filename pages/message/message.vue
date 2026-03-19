@@ -1,5 +1,5 @@
 <template>
-  <view class="message">
+  <view :class="['message', containerClasses]">
     <!-- 顶部导航 -->
     
 

@@ -1,5 +1,5 @@
 <template>
-    <view class="login">
+    <view :class="['login', containerClasses]">
         <view class="container">
             <!-- logo -->
             <view class="logo">

@@ -1,5 +1,5 @@
 <template>
-    <view class="health-container" :style="{ '--theme-color': themeColor }">
+    <view :class="['health-container', containerClasses]" :style="{ '--theme-color': themeColor }">
         <!-- 顶部导航 -->
         <!-- <view class="header">
 		  <view class="header-left">

@@ -1,6 +1,6 @@
 <template>
     <view
-        class="psychologist-container"
+        :class="['psychologist-container', containerClasses]"
         :style="{ '--theme-color': themeColor }"
     >
         <!-- 顶部导航 -->

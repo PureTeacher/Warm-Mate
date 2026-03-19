@@ -1,5 +1,5 @@
 <template>
-  <view class="record-container" :style="{'--theme-color': themeColor}">
+  <view :class="['record-container', containerClasses]" :style="{'--theme-color': themeColor}">
     <!-- 顶部导航 -->
   <!--  <view class="header">
       <view class="header-left">

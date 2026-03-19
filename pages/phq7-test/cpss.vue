@@ -1,5 +1,5 @@
 <template>
-  <view class="test-page" :style="{'--theme-color': themeColor}">
+  <view :class="['test-page', containerClasses]" :style="{'--theme-color': themeColor}">
     <!-- 顶部导航 -->
  
     <!-- 顶部进度条 -->

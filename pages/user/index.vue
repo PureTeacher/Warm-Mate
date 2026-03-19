@@ -1,5 +1,5 @@
 <template>
-    <view class="user-center">
+    <view :class="['user-center', containerClasses]">
         <!-- 用户信息卡片 -->
         <view class="user-info-card">
             <view class="avatar-container">
@@ -131,10 +131,25 @@ export default {
             }
         },
         navigateTo(page) {
-            uni.showToast({
-                title: `${page} 功能开发中`,
-                icon: "none",
-            });
+            const pageRoutes = {
+                account: "/pages/user/settings",
+                password: "/pages/user/settings",
+                settings: "/pages/user/settings",
+                feedback: undefined, // 待开发
+                about: undefined, // 待开发
+            };
+
+            const route = pageRoutes[page];
+            if (route) {
+                uni.navigateTo({
+                    url: route,
+                });
+            } else {
+                uni.showToast({
+                    title: `${page} 功能开发中`,
+                    icon: "none",
+                });
+            }
         },
         // 核心退出登录逻辑，原生确认弹框
         confirmLogout() {

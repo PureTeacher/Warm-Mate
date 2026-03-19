@@ -1,5 +1,5 @@
 <template>
-  <view class="history-container" :style="{'--theme-color': themeColor}">
+  <view :class="['history-container', containerClasses]" :style="{'--theme-color': themeColor}">
     <!-- 顶部导航 -->
     <!-- <view class="history-header">
       <view class="header-left">
