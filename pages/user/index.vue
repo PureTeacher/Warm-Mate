@@ -135,7 +135,7 @@ export default {
                 account: "/pages/user/settings",
                 password: "/pages/user/settings",
                 settings: "/pages/user/settings",
-                feedback: undefined, // 待开发
+                feedback: "/pages/feedback/index",
                 about: undefined, // 待开发
             };
 
