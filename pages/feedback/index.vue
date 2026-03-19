@@ -1,14 +1,5 @@
 <template>
     <view :class="['feedback-page', containerClasses]">
-        <!-- 导航栏 -->
-        <view class="nav-header">
-            <view class="nav-back" @click="goBack">
-                <text>&lt;</text>
-            </view>
-            <text class="nav-title">帮助与反馈</text>
-            <view class="nav-placeholder"></view>
-        </view>
-
         <!-- 选项卡 -->
         <view class="tab-container">
             <view

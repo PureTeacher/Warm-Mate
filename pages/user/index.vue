@@ -136,7 +136,7 @@ export default {
                 password: "/pages/user/settings",
                 settings: "/pages/user/settings",
                 feedback: "/pages/feedback/index",
-                about: undefined, // 待开发
+                about: "/pages/about/index",
             };
 
             const route = pageRoutes[page];

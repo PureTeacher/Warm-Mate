@@ -1,14 +1,5 @@
 <template>
     <view :class="['help-page', containerClasses]">
-        <!-- 导航栏 -->
-        <view class="nav-header">
-            <view class="nav-back" @click="goBack">
-                <text>&lt;</text>
-            </view>
-            <text class="nav-title">帮助中心</text>
-            <view class="nav-placeholder"></view>
-        </view>
-
         <!-- 帮助内容 -->
         <view class="help-content">
             <!-- 快速导航 -->
