@@ -16983,7 +16983,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(59, "sc"), attrs: { _i: 59 } },
-                    [_vm._v("v1.0.0")]
+                    [_vm._v("v1.2.0")]
                   ),
                 ],
                 1
@@ -18578,7 +18578,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                    [_vm._v("1.0.0")]
+                    [_vm._v("1.2.0")]
                   ),
                 ],
                 1
