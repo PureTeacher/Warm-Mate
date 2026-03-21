@@ -1,31 +1,33 @@
-const http = uni.$u.http;
+// 动态获取 http 对象，确保 uView 已初始化
+const getHttp = () => uni.$u?.http || uni.request
+
 const api = {
     /**
      * 登录
      */
     login(params) {
-        return http.post("/login", params, { custom: { auth: false } });
+        return getHttp().post("/login", params, { custom: { auth: false } });
     },
 
     /**
      * 注册
      */
     register(params) {
-        return http.post("/register", params, { custom: { auth: false } });
+        return getHttp().post("/register", params, { custom: { auth: false } });
     },
 
     /**
      * 发送消息
      */
     message(params) {
-        return http.post("/message", params, { custom: { auth: true } });
+        return getHttp().post("/message", params, { custom: { auth: true } });
     },
 
     /**
      * 消息分页
      */
     messagePage(params) {
-        return http.get("/message", { params });
+        return getHttp().get("/message", { params });
     },
 
     /**
@@ -34,37 +36,37 @@ const api = {
     questionnaire: {
         // 保存问卷结果
         saveResult(data) {
-            return http.post("/questionnaireResults/savePhq9Result", data);
+            return getHttp().post("/questionnaireResults/savePhq9Result", data);
         },
 
         // 获取用户问卷结果列表
         getUserResults(userId) {
-            return http.get(`/questionnaireResults/listByUserId/${userId}`);
+            return getHttp().get(`/questionnaireResults/listByUserId/${userId}`);
         },
 
         // 获取用户最新问卷结果
         getLatestResult(userId) {
-            return http.get(`/questionnaireResults/latestByUserId/${userId}`);
+            return getHttp().get(`/questionnaireResults/latestByUserId/${userId}`);
         },
 
         // 获取问卷结果详情
         getResultDetail(id) {
-            return http.get(`/questionnaireResults/${id}`);
+            return getHttp().get(`/questionnaireResults/${id}`);
         },
 
         // 删除问卷结果
         deleteResult(id) {
-            return http.delete(`/questionnaireResults/${id}`);
+            return getHttp().delete(`/questionnaireResults/${id}`);
         },
 
         // 批量删除问卷结果
         batchDeleteResult(ids) {
-            return http.delete("/questionnaireResults/batch", { data: ids });
+            return getHttp().delete("/questionnaireResults/batch", { data: ids });
         },
 
         // 统计问卷结果数量
         getResultCount(params) {
-            return http.get("/questionnaireResults/count", { params });
+            return getHttp().get("/questionnaireResults/count", { params });
         },
     },
 
@@ -74,27 +76,27 @@ const api = {
     appointment: {
         // 保存预约申请
         saveAppointment(data) {
-            return http.post("/appointment/saveAppointment", data);
+            return getHttp().post("/appointment/saveAppointment", data);
         },
 
         // 获取预约申请列表
         getAppointmentList(params) {
-            return http.get("/appointment/list", { params });
+            return getHttp().get("/appointment/list", { params });
         },
 
         // 根据医生ID获取预约申请列表
         getAppointmentByDoctorId(doctorId) {
-            return http.get(`/appointment/listByDoctorId/${doctorId}`);
+            return getHttp().get(`/appointment/listByDoctorId/${doctorId}`);
         },
 
         // 根据患者手机号获取预约申请列表
         getAppointmentByPatientPhone(patientPhone) {
-            return http.get(`/appointment/listByPatientPhone/${patientPhone}`);
+            return getHttp().get(`/appointment/listByPatientPhone/${patientPhone}`);
         },
 
         // 获取预约申请详情
         getAppointmentDetail(id) {
-            return http.get(`/appointment/${id}`);
+            return getHttp().get(`/appointment/${id}`);
         },
 
         // 更新预约申请

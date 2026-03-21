@@ -389,7 +389,7 @@
 				}
 			})
 		},
-		destroyed() {
+		unmounted() {
 			// 注销全局配置监听
 			uni.$off("setMescrollGlobalOption")
 		}

@@ -1,0 +1,184 @@
+/* uni.scss */
+.page-container {
+  background: white;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: none !important;
+}
+.content {
+  height: calc(100vh - 3.75rem);
+  overflow: hidden;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* 全局去除下划线和边框 */
+.page-container,
+.page-container * {
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+/* 卡片头部样式 */
+.card-header {
+  position: relative;
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+}
+.emoji-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(0.3125rem);
+          backdrop-filter: blur(0.3125rem);
+}
+.card-emoji {
+  width: 4.0625rem;
+  height: 4.0625rem;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.1));
+}
+.card-tag {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #666;
+  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.625rem;
+  font-weight: 500;
+  -webkit-backdrop-filter: blur(0.3125rem);
+          backdrop-filter: blur(0.3125rem);
+}
+.header {
+  height: 3.75rem;
+  padding-top: var(--status-bar-height);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0.125rem 0.625rem rgba(102, 126, 234, 0.3);
+}
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(0.3125rem);
+          backdrop-filter: blur(0.3125rem);
+}
+
+/* 卡片容器样式 */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.9375rem;
+  justify-content: space-between;
+  gap: 0;
+}
+.card {
+  width: calc(50% - 0.46875rem);
+  margin-bottom: 0.9375rem;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  min-height: 10rem;
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.625rem;
+  z-index: 1;
+}
+.card:active {
+  transform: translateY(-0.125rem) scale(0.98);
+  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.15);
+}
+.card-content {
+  padding: 0.9375rem;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(0.625rem);
+          backdrop-filter: blur(0.625rem);
+  position: relative;
+  z-index: 2;
+  min-height: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.375rem;
+  text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1);
+}
+.card-desc {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+.content {
+  flex: 1;
+  background: white;
+  padding: 0.625rem 0;
+  min-height: 23.4375rem;
+  position: relative;
+}
+.content-wrapper {
+  min-height: 31.25rem;
+  max-width: 23.4375rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+.sunshine-title {
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3);
+  font-size: 1.125rem;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  letter-spacing: 0.03125rem;
+}
+.sunshine-title::before {
+  position: absolute;
+  left: -1.40625rem;
+  top: -0.15625rem;
+  font-size: 1.125rem;
+  filter: drop-shadow(0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.2));
+}

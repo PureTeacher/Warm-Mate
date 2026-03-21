@@ -1,0 +1,483 @@
+/* uni.scss */
+.msg[data-v-9a378a39] {
+  margin-top: 10px;
+  background: #F5F5F5;
+  padding: 0 10px 0;
+  display: flex;
+}
+.msg .content[data-v-9a378a39] {
+  padding: 8px;
+  max-width: 70%;
+  min-height: 21px;
+  border-radius: 5px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  word-break: break-word;
+}
+.left .content[data-v-9a378a39] {
+  margin-left: 6px;
+  background: #FFFFFF;
+}
+.right[data-v-9a378a39] {
+  flex-direction: row-reverse;
+}
+.right .content[data-v-9a378a39] {
+  margin-right: 6px;
+  background: #95EC69;
+}
+.u-content[data-v-9a378a39] {
+  font-size: 12px;
+  color: #606266;
+  line-height: 1.6;
+}
+/* uni.scss */
+.input-box[data-v-1e520b65] {
+  width: 100%;
+  min-height: 50px;
+  background-color: #f2f2f2;
+  display: flex;
+  position: fixed;
+  z-index: 20;
+  bottom: -0.0625rem;
+  transition: all 0.15s linear;
+  border-bottom: solid 1px #ddd;
+}
+.input-box .send[data-v-1e520b65] {
+  flex-shrink: 0;
+  width: 15%;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+}
+.input-box .send .btn[data-v-1e520b65] {
+  margin: 0 auto;
+  width: 90%;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #5ac725, #53c21d);
+  color: #fff;
+  border-radius: 0.1875rem;
+  font-size: 0.75rem;
+}
+.input-box .textbox[data-v-1e520b65] {
+  min-height: 35px;
+  flex-shrink: 0;
+  width: 83%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.input-box .textbox .text-mode[data-v-1e520b65] {
+  width: 100%;
+  min-height: 2.1875rem;
+  display: flex;
+  background-color: #fff;
+  border-radius: 1.25rem;
+}
+.input-box .textbox .text-mode .box[data-v-1e520b65] {
+  width: 100%;
+  padding-left: 0.9375rem;
+  min-height: 2.1875rem;
+  display: flex;
+  align-items: center;
+}
+.input-box .textbox .text-mode .box uni-textarea[data-v-1e520b65] {
+  width: 100%;
+}
+.input-box .textbox .text-mode .em[data-v-1e520b65] {
+  flex-shrink: 0;
+  width: 2.5rem;
+  padding-left: 0.3125rem;
+  height: 2.1875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content[data-v-1e520b65] {
+  width: 100%;
+}
+.content .msg-list[data-v-1e520b65] {
+  width: 100%;
+  padding: 0 2%;
+  position: absolute;
+  top: 0;
+  bottom: 3.125rem;
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+}
+.content .msg-list .loading[data-v-1e520b65] {
+  display: flex;
+  justify-content: center;
+}
+@keyframes stretchdelay-1e520b65 {
+0%, 40%, 100% {
+    transform: scaleY(0.6);
+}
+20% {
+    transform: scaleY(1);
+}
+}
+.content .msg-list .loading .spinner[data-v-1e520b65] {
+  margin: 0.625rem 0;
+  width: 1.875rem;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content .msg-list .loading .spinner uni-view[data-v-1e520b65] {
+  background-color: #f06c7a;
+  height: 1.5625rem;
+  width: 0.1875rem;
+  border-radius: 0.1875rem;
+  animation: stretchdelay-1e520b65 1.2s infinite ease-in-out;
+}
+.content .msg-list .loading .spinner .rect2[data-v-1e520b65] {
+  animation-delay: -1.1s;
+}
+.content .msg-list .loading .spinner .rect3[data-v-1e520b65] {
+  animation-delay: -1s;
+}
+.content .msg-list .loading .spinner .rect4[data-v-1e520b65] {
+  animation-delay: -0.9s;
+}
+.content .msg-list .loading .spinner .rect5[data-v-1e520b65] {
+  animation-delay: -0.8s;
+}
+
+/* 无任何数据的空布局 */
+.mescroll-empty[data-v-03ed58fb] {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 3.125rem 1.5625rem;
+	text-align: center;
+}
+.mescroll-empty.empty-fixed[data-v-03ed58fb] {
+	z-index: 99;
+	position: absolute; /*transform会使fixed失效,最终会降级为absolute */
+	top: 3.125rem;
+	left: 0;
+}
+.mescroll-empty .empty-icon[data-v-03ed58fb] {
+	width: 8.75rem;
+	height: 8.75rem;
+}
+.mescroll-empty .empty-tip[data-v-03ed58fb] {
+	margin-top: 0.625rem;
+	font-size: 0.75rem;
+	color: gray;
+}
+.mescroll-empty .empty-btn[data-v-03ed58fb] {
+	display: inline-block;
+	margin-top: 1.25rem;
+	min-width: 6.25rem;
+	padding: 0.5625rem;
+	font-size: 0.875rem;
+	border: 0.03125rem solid #e04b28;
+	border-radius: 1.875rem;
+	color: #e04b28;
+}
+.mescroll-empty .empty-btn[data-v-03ed58fb]:active {
+	opacity: 0.75;
+}
+
+
+/* 回到顶部的按钮 */
+.mescroll-totop[data-v-465fa157] {
+	z-index: 9990;
+	position: fixed !important; /* 加上important避免编译到H5,在多mescroll中定位失效 */
+	right: 0.625rem;
+	bottom: 3.75rem;
+	width: 2.25rem;
+	height: auto;
+	border-radius: 50%;
+	opacity: 0;
+	transition: opacity 0.5s; /* 过渡 */
+	margin-bottom: var(--window-bottom); /* css变量 */
+}
+
+/* 适配 iPhoneX */
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+.mescroll-totop-safearea[data-v-465fa157] {
+		margin-bottom: calc(var(--window-bottom) + constant(safe-area-inset-bottom)); /* window-bottom + 适配 iPhoneX */
+		margin-bottom: calc(var(--window-bottom) + env(safe-area-inset-bottom));
+}
+}
+
+/* 显示 -- 淡入 */
+.mescroll-totop-in[data-v-465fa157] {
+	opacity: 1;
+}
+
+/* 隐藏 -- 淡出且不接收事件*/
+.mescroll-totop-out[data-v-465fa157] {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.mescroll-body[data-v-396f6d3f] {
+	position: relative; /* 下拉刷新区域相对自身定位 */
+	height: auto; /* 不可固定高度,否则overflow:hidden导致无法滑动; 同时使设置的最小高生效,实现列表不满屏仍可下拉*/
+	overflow: hidden; /* 当有元素写在mescroll-body标签前面时,可遮住下拉刷新区域 */
+	box-sizing: border-box; /* 避免设置padding出现双滚动条的问题 */
+}
+
+/* 使sticky生效: 父元素不能overflow:hidden或者overflow:auto属性 */
+.mescroll-body.mescorll-sticky[data-v-396f6d3f]{
+	overflow: unset !important
+}
+
+/* 适配 iPhoneX */
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+.mescroll-safearea[data-v-396f6d3f] {
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom);
+}
+}
+
+/* 下拉刷新区域 */
+.mescroll-downwarp[data-v-396f6d3f] {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+/* 下拉刷新--内容区,定位于区域底部 */
+.mescroll-downwarp .downwarp-content[data-v-396f6d3f] {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	min-height: 1.875rem;
+	padding: 0.625rem 0;
+	text-align: center;
+}
+
+/* 下拉刷新--提示文本 */
+.mescroll-downwarp .downwarp-tip[data-v-396f6d3f] {
+	display: inline-block;
+	font-size: 0.875rem;
+	vertical-align: middle;
+	margin-left: 0.5rem;
+	/* color: gray; 已在style设置color,此处删去*/
+}
+
+/* 下拉刷新--旋转进度条 */
+.mescroll-downwarp .downwarp-progress[data-v-396f6d3f] {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	border: 0.0625rem solid gray;
+	border-bottom-color: transparent !important; /*已在style设置border-color,此处需加 !important*/
+	vertical-align: middle;
+}
+
+/* 旋转动画 */
+.mescroll-downwarp .mescroll-rotate[data-v-396f6d3f] {
+	animation: mescrollDownRotate-396f6d3f 0.6s linear infinite;
+}
+@keyframes mescrollDownRotate-396f6d3f {
+0% {
+		transform: rotate(0deg);
+}
+100% {
+		transform: rotate(360deg);
+}
+}
+
+/* 上拉加载区域 */
+.mescroll-upwarp[data-v-396f6d3f] {
+	box-sizing: border-box;
+	min-height: 3.4375rem;
+	padding: 0.9375rem 0;
+	text-align: center;
+	clear: both;
+}
+
+/*提示文本 */
+.mescroll-upwarp .upwarp-tip[data-v-396f6d3f],
+.mescroll-upwarp .upwarp-nodata[data-v-396f6d3f] {
+	display: inline-block;
+	font-size: 0.875rem;
+	vertical-align: middle;
+	/* color: gray; 已在style设置color,此处删去*/
+}
+.mescroll-upwarp .upwarp-tip[data-v-396f6d3f] {
+	margin-left: 0.5rem;
+}
+
+/*旋转进度条 */
+.mescroll-upwarp .upwarp-progress[data-v-396f6d3f] {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	border: 0.0625rem solid gray;
+	border-bottom-color: transparent !important; /*已在style设置border-color,此处需加 !important*/
+	vertical-align: middle;
+}
+
+/* 旋转动画 */
+.mescroll-upwarp .mescroll-rotate[data-v-396f6d3f] {
+	animation: mescrollUpRotate-396f6d3f 0.6s linear infinite;
+}
+@keyframes mescrollUpRotate-396f6d3f {
+0% {
+		transform: rotate(0deg);
+}
+100% {
+		transform: rotate(360deg);
+}
+}
+
+/* uni.scss */
+body[data-v-4c1b26cf] {
+  background: #f8fafc;
+}
+.message[data-v-4c1b26cf] {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* 顶部导航栏 */
+.header[data-v-4c1b26cf] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  border-bottom: 0.03125rem solid #e2e8f0;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.05);
+  padding: 0.625rem 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left[data-v-4c1b26cf] {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.back-arrow[data-v-4c1b26cf] {
+  font-size: 1rem;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.back-arrow[data-v-4c1b26cf]:active {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+.header-title[data-v-4c1b26cf] {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.03125rem;
+}
+.header-subtitle[data-v-4c1b26cf] {
+  margin-top: 0.25rem;
+}
+.subtitle-text[data-v-4c1b26cf] {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* 无更多消息 */
+.msg-end[data-v-4c1b26cf] {
+  padding: 0.9375rem 0;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #94a3b8;
+  background: #f1f5f9;
+  margin: 0.625rem 0.9375rem;
+  border-radius: 0.375rem;
+  border: 0.03125rem solid #e2e8f0;
+}
+.msgList[data-v-4c1b26cf] {
+  padding: 3.75rem 0.9375rem 3.75rem;
+  background: #f8fafc;
+}
+
+/* 消息容器优化 */
+.mescroll[data-v-4c1b26cf] {
+  background: #f8fafc;
+}
+
+/* 输入框容器优化 */
+.input-box-container[data-v-4c1b26cf] {
+  background: white;
+  border-top: 0.03125rem solid #e2e8f0;
+  box-shadow: 0 -0.0625rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+/* 消息气泡样式优化 */
+.msg-bubble[data-v-4c1b26cf] {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.08);
+  border: 0.03125rem solid rgba(0, 0, 0, 0.05);
+}
+
+/* 时间戳样式优化 */
+.msg-time[data-v-4c1b26cf] {
+  color: #94a3b8;
+  font-size: 0.6875rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.625rem;
+  -webkit-backdrop-filter: blur(0.3125rem);
+          backdrop-filter: blur(0.3125rem);
+}
+
+/* 头像样式优化 */
+.msg-avatar[data-v-4c1b26cf] {
+  border: 0.0625rem solid #e2e8f0;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+/* 加载状态优化 */
+.loading-container[data-v-4c1b26cf] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9375rem;
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+/* 滚动条样式优化 */
+[data-v-4c1b26cf]::-webkit-scrollbar {
+  width: 0.1875rem;
+}
+[data-v-4c1b26cf]::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 0.09375rem;
+}
+[data-v-4c1b26cf]::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 0.09375rem;
+}
+[data-v-4c1b26cf]::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 响应式优化 */
+@media screen and (max-width: 750rpx) {
+.msgList[data-v-4c1b26cf] {
+    padding: 0.46875rem 0.625rem 3.125rem;
+}
+.msg-end[data-v-4c1b26cf] {
+    margin: 0.46875rem 0.625rem;
+    padding: 0.78125rem 0;
+}
+}

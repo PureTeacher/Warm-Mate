@@ -1,0 +1,259 @@
+/* uni.scss */
+.appointment-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding-bottom: 1.25rem;
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 0.9375rem 0.625rem;
+  background: white;
+  border-bottom: 0.03125rem solid #e2e8f0;
+}
+.header .header-left {
+  display: flex;
+  align-items: center;
+}
+.header .back-arrow {
+  font-size: 1.25rem;
+  margin-right: 0.625rem;
+  color: #64748b;
+}
+.header .header-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.doctor-card {
+  margin: 0.625rem 0.9375rem;
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.03125rem 0.09375rem rgba(0, 0, 0, 0.1);
+  border: 0.03125rem solid #e2e8f0;
+}
+.doctor-card .doctor-info {
+  display: flex;
+  align-items: center;
+}
+.doctor-card .doctor-info .doctor-avatar {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+  border: 0.09375rem solid #e2e8f0;
+}
+.doctor-card .doctor-info .doctor-details {
+  flex: 1;
+}
+.doctor-card .doctor-info .doctor-details .doctor-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+.doctor-card .doctor-info .doctor-details .doctor-title {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+.doctor-card .doctor-info .doctor-details .doctor-specialties {
+  font-size: 0.6875rem;
+  color: #999;
+}
+.form-container {
+  margin: 0.625rem 0.9375rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.625rem;
+  padding: 1.25rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(0.3125rem);
+          backdrop-filter: blur(0.3125rem);
+}
+.form-container .form-title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.form-container .form-title .title-text {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.3125rem;
+}
+.form-container .form-title .title-desc {
+  font-size: 0.75rem;
+  color: #666;
+}
+.form-container .form-content .form-item {
+  margin-bottom: 0.9375rem;
+}
+.form-container .form-content .form-item .form-label {
+  display: block;
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.46875rem;
+  font-weight: 500;
+}
+.form-container .form-content .form-item .form-label .required {
+  color: #ff4d4f;
+  margin-left: 0.15625rem;
+}
+.form-container .form-content .form-item .form-input {
+  width: 100%;
+  height: 2.5rem;
+  background: #f8f9fa;
+  border: 0.0625rem solid #e9ecef;
+  border-radius: 0.375rem;
+  padding: 0 0.625rem;
+  font-size: 0.875rem;
+  color: #333;
+  box-sizing: border-box;
+}
+.form-container .form-content .form-item .form-input:focus {
+  border-color: var(--theme-color);
+  background: white;
+}
+.form-container .form-content .form-item .form-textarea {
+  width: 100%;
+  min-height: 3.75rem;
+  background: #f8f9fa;
+  border: 0.0625rem solid #e9ecef;
+  border-radius: 0.375rem;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  color: #333;
+  box-sizing: border-box;
+  resize: none;
+}
+.form-container .form-content .form-item .form-textarea:focus {
+  border-color: var(--theme-color);
+  background: white;
+}
+.form-container .form-content .form-item .gender-options, .form-container .form-content .form-item .urgency-options, .form-container .form-content .form-item .time-options {
+  display: flex;
+  gap: 0.625rem;
+}
+.form-container .form-content .form-item .gender-options .gender-option, .form-container .form-content .form-item .gender-options .urgency-option, .form-container .form-content .form-item .gender-options .time-option, .form-container .form-content .form-item .urgency-options .gender-option, .form-container .form-content .form-item .urgency-options .urgency-option, .form-container .form-content .form-item .urgency-options .time-option, .form-container .form-content .form-item .time-options .gender-option, .form-container .form-content .form-item .time-options .urgency-option, .form-container .form-content .form-item .time-options .time-option {
+  flex: 1;
+  height: 1.875rem;
+  background: #f8f9fa;
+  border: 0.0625rem solid #e9ecef;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.form-container .form-content .form-item .gender-options .gender-option.selected, .form-container .form-content .form-item .gender-options .urgency-option.selected, .form-container .form-content .form-item .gender-options .time-option.selected, .form-container .form-content .form-item .urgency-options .gender-option.selected, .form-container .form-content .form-item .urgency-options .urgency-option.selected, .form-container .form-content .form-item .urgency-options .time-option.selected, .form-container .form-content .form-item .time-options .gender-option.selected, .form-container .form-content .form-item .time-options .urgency-option.selected, .form-container .form-content .form-item .time-options .time-option.selected {
+  background: var(--theme-color);
+  border-color: var(--theme-color);
+  color: white;
+}
+.form-container .form-content .form-item .gender-options .gender-option .gender-icon, .form-container .form-content .form-item .gender-options .urgency-option .gender-icon, .form-container .form-content .form-item .gender-options .time-option .gender-icon, .form-container .form-content .form-item .urgency-options .gender-option .gender-icon, .form-container .form-content .form-item .urgency-options .urgency-option .gender-icon, .form-container .form-content .form-item .urgency-options .time-option .gender-icon, .form-container .form-content .form-item .time-options .gender-option .gender-icon, .form-container .form-content .form-item .time-options .urgency-option .gender-icon, .form-container .form-content .form-item .time-options .time-option .gender-icon {
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+}
+.form-container .form-content .form-item .gender-options .gender-option .gender-text, .form-container .form-content .form-item .gender-options .gender-option .urgency-text, .form-container .form-content .form-item .gender-options .gender-option .time-text, .form-container .form-content .form-item .gender-options .urgency-option .gender-text, .form-container .form-content .form-item .gender-options .urgency-option .urgency-text, .form-container .form-content .form-item .gender-options .urgency-option .time-text, .form-container .form-content .form-item .gender-options .time-option .gender-text, .form-container .form-content .form-item .gender-options .time-option .urgency-text, .form-container .form-content .form-item .gender-options .time-option .time-text, .form-container .form-content .form-item .urgency-options .gender-option .gender-text, .form-container .form-content .form-item .urgency-options .gender-option .urgency-text, .form-container .form-content .form-item .urgency-options .gender-option .time-text, .form-container .form-content .form-item .urgency-options .urgency-option .gender-text, .form-container .form-content .form-item .urgency-options .urgency-option .urgency-text, .form-container .form-content .form-item .urgency-options .urgency-option .time-text, .form-container .form-content .form-item .urgency-options .time-option .gender-text, .form-container .form-content .form-item .urgency-options .time-option .urgency-text, .form-container .form-content .form-item .urgency-options .time-option .time-text, .form-container .form-content .form-item .time-options .gender-option .gender-text, .form-container .form-content .form-item .time-options .gender-option .urgency-text, .form-container .form-content .form-item .time-options .gender-option .time-text, .form-container .form-content .form-item .time-options .urgency-option .gender-text, .form-container .form-content .form-item .time-options .urgency-option .urgency-text, .form-container .form-content .form-item .time-options .urgency-option .time-text, .form-container .form-content .form-item .time-options .time-option .gender-text, .form-container .form-content .form-item .time-options .time-option .urgency-text, .form-container .form-content .form-item .time-options .time-option .time-text {
+  font-size: 0.8125rem;
+}
+.form-container .submit-section {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+.form-container .submit-section .submit-btn {
+  width: 100%;
+  height: 2.5rem;
+  background: var(--theme-color);
+  color: white;
+  border: none;
+  border-radius: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  margin-bottom: 0.46875rem;
+  transition: all 0.3s;
+}
+.form-container .submit-section .submit-btn.disabled {
+  background: #ccc;
+  color: #999;
+}
+.form-container .submit-section .submit-tip {
+  font-size: 0.6875rem;
+  color: #999;
+}
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.25rem;
+  animation: fadeIn 0.3s ease;
+}
+.success-content {
+  background: white;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 15.625rem;
+  padding: 1.875rem 1.25rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+.success-content .success-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.625rem;
+}
+.success-content .success-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.625rem;
+}
+.success-content .success-message {
+  font-size: 0.8125rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  display: block;
+}
+.success-content .success-btn {
+  width: 6.25rem;
+  height: 1.875rem;
+  background: var(--theme-color);
+  color: white;
+  border: none;
+  border-radius: 0.9375rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+}
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(1.5625rem);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}

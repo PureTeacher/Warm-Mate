@@ -1,6 +1,7 @@
 // 此vm参数为页面的实例，可以通过它引用vuex中的变量
 import env from '@/common/config/env.js'
-module.exports = (vm) => {
+
+export default (vm) => {
     // 初始化请求配置
     uni.$u.http.setConfig((config) => {
         /* config 为默认全局配置*/

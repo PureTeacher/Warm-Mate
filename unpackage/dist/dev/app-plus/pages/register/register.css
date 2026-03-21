@@ -1,0 +1,33 @@
+/* uni.scss */
+.register .container {
+  background: #fff;
+  width: 100vw;
+  padding-top: 10vh;
+  height: 90vh;
+}
+.register .container .logo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100vw;
+}
+.register .container .title {
+  text-align: center;
+  margin-top: 20px;
+}
+.register .container .form {
+  padding: 0 30px;
+  margin-top: 40px;
+}
+.register .container .footer {
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 40px;
+}
+.register .container .footer .footer-text {
+  font-size: 14px;
+  color: #296db5;
+  padding: 15px;
+}

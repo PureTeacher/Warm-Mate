@@ -2,12 +2,12 @@
  * 全局主题管理 - 使用 Vue 响应式系统
  */
 
-import Vue from 'vue'
+import { reactive } from 'vue'
 
 class ThemeManager {
   constructor() {
-    // 使用 Vue.observable 使状态响应式
-    this.state = Vue.observable({
+    // 使用 reactive 使状态响应式（Vue 3 方式）
+    this.state = reactive({
       currentTheme: 'light',
       currentFontSize: 'medium',
     });

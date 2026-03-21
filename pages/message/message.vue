@@ -147,7 +147,7 @@ export default {
         clearInterval(this.interval)
       }
       this.targetMsg.msgContent = content.substring(0,this.times);
-      this.$set(this.msgList, this.msgList.length-1, this.targetMsg);
+      this.msgList[this.msgList.length-1] = this.targetMsg;
       this.$nextTick(function () {
         this.mescroll.scrollTo(99999, 0)
       })

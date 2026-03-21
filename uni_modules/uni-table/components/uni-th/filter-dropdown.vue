@@ -253,7 +253,7 @@
 				var items = this.dataList
 				for (let i = 0; i < items.length; i++) {
 					let item = items[i]
-					this.$set(item, 'checked', false)
+					item.checked = false
 				}
 				this.checkedValues = []
 				this.handleSelectSubmit()

@@ -466,7 +466,7 @@
 			// 设置容器的高度
 			this.setClientHeight()
 		},
-		destroyed() {
+		unmounted() {
 			// 注销全局配置监听
 			uni.$off("setMescrollGlobalOption")
 		}
