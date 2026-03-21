@@ -23,13 +23,13 @@
                     labelWidth="80"
                 >
                     <u-form-item
-                        label="手机号"
+                        label="用户名"
                         prop="user.username"
                         borderBottom
                         customStyle="margin-bottom: 10px"
                     >
                         <u--input
-                            placeholder="请输入手机号"
+                            placeholder="请输入用户名或手机号"
                             v-model="model.user.username"
                             border="none"
                         />
@@ -85,18 +85,8 @@ export default {
                 "user.username": [
                     {
                         required: true,
-                        message: "请输入手机号",
+                        message: "请输入用户名",
                         trigger: ["change", "blur"],
-                    },
-                    {
-                        validator: (rule, value, callback) => {
-                            if (uni.$u.test.mobile(value)) {
-                                callback();
-                            } else {
-                                callback(new Error("手机号码不正确"));
-                            }
-                        },
-                        trigger: ["blur"],
                     },
                 ],
                 "user.password": [
@@ -118,10 +108,19 @@ export default {
             try {
                 console.log("===== 开始执行登录流程 =====");
                 // 1. 表单验证
-                const validateRes = await this.$refs.loginForm.validate();
+                let validateRes;
+                try {
+                    validateRes = await this.$refs.loginForm.validate();
+                } catch (validateErr) {
+                    console.error("表单验证异常：", validateErr);
+                    uni.$u.toast("请检查填写的信息是否正确");
+                    return;
+                }
+                
                 console.log("表单验证结果：", validateRes);
                 if (!validateRes) {
                     console.log("表单验证失败，终止登录");
+                    uni.$u.toast("请检查填写的信息是否正确");
                     return;
                 }
 
@@ -166,19 +165,23 @@ export default {
                         },
                     });
                 } else {
-                    const errMsg =
-                        result.message ||
-                        result.msg ||
-                        "登录失败，账号或密码错误";
+                    // 根据不同的错误码显示相应的错误信息
+                    let errMsg = "登录失败";
+                    if (result.code === 401) {
+                        errMsg = "用户名或密码错误";
+                    } else if (result.code === 404) {
+                        errMsg = "用户不存在";
+                    } else {
+                        errMsg = result.message || result.msg || "登录失败，请重试";
+                    }
                     console.log("登录接口返回失败：", errMsg);
                     uni.$u.toast(errMsg);
                 }
             } catch (error) {
                 // 捕获所有异常并打印（关键：能看到具体错在哪）
                 console.error("登录流程异常：", error);
-                uni.$u.toast(
-                    `登录失败：${error.message || "网络异常，请重试"}`,
-                );
+                const errMsg = error.message || "网络错误，请检查连接后重试";
+                uni.$u.toast(errMsg);
             }
         },
         register() {

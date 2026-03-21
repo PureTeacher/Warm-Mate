@@ -24,12 +24,24 @@
                 >
                     <u-form-item
                         label="手机号"
-                        prop="user.username"
+                        prop="user.phone"
                         borderBottom
                         customStyle="margin-bottom: 10px"
                     >
                         <u--input
                             placeholder="请输入手机号"
+                            v-model="model.user.phone"
+                            border="none"
+                        ></u--input>
+                    </u-form-item>
+                    <u-form-item
+                        label="用户名"
+                        prop="user.username"
+                        borderBottom
+                        customStyle="margin-bottom: 10px"
+                    >
+                        <u--input
+                            placeholder="请输入用户名"
                             v-model="model.user.username"
                             border="none"
                         ></u--input>
@@ -92,10 +104,12 @@ export default {
                 user: {
                     username: "",
                     password: "",
+                    phone: "",
+                    email: "",
                 },
             },
             rules: {
-                "user.username": [
+                "user.phone": [
                     {
                         required: true,
                         message: "请输入手机号",
@@ -107,6 +121,13 @@ export default {
                         },
                         message: "手机号码不正确",
                         trigger: ["blur"],
+                    },
+                ],
+                "user.username": [
+                    {
+                        required: true,
+                        message: "请输入用户名",
+                        trigger: ["change", "blur"],
                     },
                 ],
                 "user.password": [
@@ -143,18 +164,54 @@ export default {
     methods: {
         // 注册提交
         submit() {
-            this.$refs.registerForm.validate().then((res) => {
-                let param = this.model.user;
+            let validateRes;
+            try {
+                validateRes = this.$refs.registerForm.validate();
+            } catch (validateErr) {
+                console.error("表单验证异常：", validateErr);
+                uni.$u.toast("请填写完整的表单信息");
+                return;
+            }
+            
+            validateRes.then((res) => {
+                if (!res) {
+                    uni.$u.toast("请填写完整的表单信息");
+                    return;
+                }
+                
+                let param = {
+                    username: this.model.user.username,
+                    password: this.model.user.password,
+                    phone: this.model.user.phone,
+                    email: this.model.user.email || undefined,
+                };
                 this.$api.register(param).then((res) => {
-                    if (res.success) {
+                    // 检查后端返回的code是否为200
+                    if (res.code === 200) {
                         uni.$u.toast("注册成功");
                         setTimeout(() => {
                             uni.$u.route("/pages/login/login");
                         }, 1000);
                     } else {
-                        uni.$u.toast(res.message);
+                        // 根据不同的错误码显示相应的错误信息
+                        let errMsg = "注册失败";
+                        if (res.code === 409) {
+                            errMsg = "用户名已存在，请更换用户名";
+                        } else if (res.code === 400) {
+                            errMsg = res.message || "填写信息不完整或格式错误";
+                        } else {
+                            errMsg = res.message || "注册失败，请重试";
+                        }
+                        uni.$u.toast(errMsg);
                     }
+                }).catch((err) => {
+                    const errMsg = err.message || "网络错误，请检查连接后重试";
+                    uni.$u.toast(errMsg);
                 });
+            }).catch((err) => {
+                // 表单验证失败
+                console.error("表单验证失败：", err);
+                uni.$u.toast("请填写完整的表单信息");
             });
         },
         // 已有账号

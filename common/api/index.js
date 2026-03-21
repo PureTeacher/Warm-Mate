@@ -4,14 +4,14 @@ const api = {
      * 登录
      */
     login(params) {
-        return http.post("/login", params, { custom: { auth: false } });
+        return http.post("/login", params, { custom: { auth: false, catch: true, toast: false } });
     },
 
     /**
      * 注册
      */
     register(params) {
-        return http.post("/register", params, { custom: { auth: false } });
+        return http.post("/register", params, { custom: { auth: false, catch: true, toast: false } });
     },
 
     /**

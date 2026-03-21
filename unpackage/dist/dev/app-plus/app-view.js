@@ -7202,7 +7202,7 @@ var render = function () {
                         model: {
                           value: _vm._$g(9, "v-model"),
                           callback: function () {},
-                          expression: "model.user.username",
+                          expression: "model.user.phone",
                         },
                       }),
                     ],
@@ -7217,7 +7217,7 @@ var render = function () {
                         model: {
                           value: _vm._$g(11, "v-model"),
                           callback: function () {},
-                          expression: "model.user.password",
+                          expression: "model.user.username",
                         },
                       }),
                     ],
@@ -7232,6 +7232,21 @@ var render = function () {
                         model: {
                           value: _vm._$g(13, "v-model"),
                           callback: function () {},
+                          expression: "model.user.password",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _c(
+                    "u-form-item",
+                    { attrs: { _i: 14 } },
+                    [
+                      _c("u--input", {
+                        attrs: { _i: 15 },
+                        model: {
+                          value: _vm._$g(15, "v-model"),
+                          callback: function () {},
                           expression: "model.user.passwordVerify",
                         },
                       }),
@@ -7242,7 +7257,7 @@ var render = function () {
                 1
               ),
               _c("u-button", {
-                attrs: { _i: 14 },
+                attrs: { _i: 16 },
                 on: {
                   click: function ($event) {
                     return _vm.$handleViewEvent($event)
@@ -7254,13 +7269,13 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+            { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
             [
               _c(
                 "v-uni-text",
                 {
-                  staticClass: _vm._$g(16, "sc"),
-                  attrs: { _i: 16 },
+                  staticClass: _vm._$g(18, "sc"),
+                  attrs: { _i: 18 },
                   on: {
                     click: function ($event) {
                       return _vm.$handleViewEvent($event)
