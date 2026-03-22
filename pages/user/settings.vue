@@ -111,7 +111,7 @@
             <view class="settings-item">
                 <view class="item-left">
                     <text class="item-label">应用版本</text>
-                    <text class="item-desc">v1.2.0</text>
+                    <text class="item-desc">v1.2.1</text>
                 </view>
             </view>
         </view>
