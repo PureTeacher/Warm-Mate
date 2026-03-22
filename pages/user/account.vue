@@ -200,27 +200,40 @@
             <view class="history-modal" @click.stop>
                 <view class="modal-header">
                     <text class="modal-title">登录日志</text>
+                    <view class="modal-close" @click="showHistoryModal = false">✕</view>
+                </view>
+                <view class="history-controls">
+                    <button class="btn-clear" @click="clearAllLogs" v-if="loginHistory.length > 0">
+                        清空所有
+                    </button>
                 </view>
                 <view class="history-list">
+                    <view v-if="loginLoading" class="loading-tip">
+                        <text>加载中...</text>
+                    </view>
+                    <view v-else-if="loginHistory.length === 0" class="empty-tip">
+                        <text>暂无登录记录</text>
+                    </view>
                     <view
                         v-for="log in loginHistory"
                         :key="log.id"
                         class="history-item"
                     >
                         <view class="history-info">
-                            <text class="history-device">{{
-                                log.deviceInfo
-                            }}</text>
-                            <text class="history-time">
-                                {{ formatTime(log.loginTime) }}
-                            </text>
-                            <text class="history-location">{{
-                                log.location || "未知位置"
-                            }}</text>
+                            <view class="history-device">{{ log.device_info }}</view>
+                            <view class="history-time">
+                                {{ formatTime(log.login_time) }}
+                            </view>
+                            <view v-if="log.ip_address" class="history-ip">
+                                IP: {{ log.ip_address }}
+                            </view>
                         </view>
-                        <text class="status-badge verified">{{
-                            log.status
-                        }}</text>
+                        <button 
+                            class="btn-delete"
+                            @click="deleteLoginLog(log.id)"
+                        >
+                            删除
+                        </button>
                     </view>
                 </view>
             </view>
@@ -248,6 +261,7 @@ export default {
             showPhoneModal: false,
             showUsernameModal: false,
             showHistoryModal: false,
+            loginLoading: false,
         };
     },
     computed: {
@@ -455,37 +469,107 @@ export default {
             });
         },
         showLoginHistory() {
-            this.loadLoginHistory();
+            this.loginLoading = true;
             this.showHistoryModal = true;
+            this.loadLoginHistory();
         },
         loadLoginHistory() {
-            // 模拟登录历史数据
-            this.loginHistory = [
-                {
-                    id: 1,
-                    deviceInfo: "iPhone 12 - Safari",
-                    loginTime: new Date().getTime() - 1000 * 60 * 5,
-                    location: "北京",
-                    status: "成功",
-                },
-                {
-                    id: 2,
-                    deviceInfo: "Android - Chrome",
-                    loginTime: new Date().getTime() - 1000 * 60 * 60 * 2,
-                    location: "上海",
-                    status: "成功",
-                },
-                {
-                    id: 3,
-                    deviceInfo: "Windows - Edge",
-                    loginTime: new Date().getTime() - 1000 * 60 * 60 * 24,
-                    location: "深圳",
-                    status: "成功",
-                },
-            ];
+            this.loginLoading = true;
+            this.$api.account.getLatestLoginLogs({ limit: 20 })
+                .then(res => {
+                    this.loginLoading = false;
+                    if (res && res.code === 200) {
+                        this.loginHistory = res.data || [];
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "加载失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch(err => {
+                    this.loginLoading = false;
+                    uni.showToast({
+                        title: "加载失败: " + err.message,
+                        icon: "none",
+                    });
+                });
+        },
+        deleteLoginLog(logId) {
+            uni.showModal({
+                title: "删除登录日志",
+                content: "确定要删除这条登录记录吗？",
+                confirmText: "删除",
+                cancelText: "取消",
+                success: (res) => {
+                    if (res.confirm) {
+                        this.$api.account.deleteLoginLog(logId)
+                            .then(response => {
+                                if (response && response.code === 200) {
+                                    uni.showToast({
+                                        title: "删除成功",
+                                        icon: "success",
+                                    });
+                                    this.loadLoginHistory();
+                                } else {
+                                    uni.showToast({
+                                        title: response?.message || "删除失败",
+                                        icon: "none",
+                                    });
+                                }
+                            })
+                            .catch(err => {
+                                uni.showToast({
+                                    title: "删除失败: " + err.message,
+                                    icon: "none",
+                                });
+                            });
+                    }
+                }
+            });
+        },
+        clearAllLogs() {
+            uni.showModal({
+                title: "清空登录日志",
+                content: "确定要清空所有登录记录吗？此操作不可撤销。",
+                confirmText: "清空",
+                cancelText: "取消",
+                confirmColor: "#f5576c",
+                success: (res) => {
+                    if (res.confirm) {
+                        this.$api.account.clearLoginLogs()
+                            .then(response => {
+                                if (response && response.code === 200) {
+                                    uni.showToast({
+                                        title: "清空成功",
+                                        icon: "success",
+                                    });
+                                    this.loginHistory = [];
+                                } else {
+                                    uni.showToast({
+                                        title: response?.message || "清空失败",
+                                        icon: "none",
+                                    });
+                                }
+                            })
+                            .catch(err => {
+                                uni.showToast({
+                                    title: "清空失败: " + err.message,
+                                    icon: "none",
+                                });
+                            });
+                    }
+                }
+            });
         },
         formatTime(timestamp) {
-            const date = new Date(timestamp);
+            // 处理 MySQL 返回的时间戳格式 (YYYY-MM-DD HH:MM:SS)
+            let date;
+            if (typeof timestamp === 'string') {
+                date = new Date(timestamp.replace(' ', 'T'));
+            } else {
+                date = new Date(timestamp);
+            }
             const now = new Date();
             const diff = now - date;
 
@@ -499,7 +583,17 @@ export default {
                 return `${hours}小时前`;
             } else {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                return `${days}天前`;
+                if (days < 30) {
+                    return `${days}天前`;
+                } else {
+                    // 返回具体时间
+                    return date.toLocaleString('zh-CN', {
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                }
             }
         }
     }
@@ -1022,4 +1116,94 @@ export default {
         }
     }
 }
+
+// 登录日志样式
+.history-controls {
+    padding: 16rpx 30rpx;
+    border-bottom: 1rpx solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10rpx;
+
+    .btn-clear {
+        padding: 8rpx 16rpx;
+        background-color: #f5576c;
+        color: #fff;
+        border-radius: 6rpx;
+        font-size: 24rpx;
+        border: none;
+
+        &:active {
+            opacity: 0.8;
+        }
+    }
+}
+
+.loading-tip,
+.empty-tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40rpx 20rpx;
+    color: #999;
+    font-size: 28rpx;
+
+    .dark-mode & {
+        color: #aaa;
+    }
+}
+
+.history-item {
+    .history-info {
+        .history-device {
+            font-size: 28rpx;
+            color: #333;
+            margin-bottom: 8rpx;
+            font-weight: 500;
+
+            .dark-mode & {
+                color: #fff;
+            }
+        }
+
+        .history-time {
+            font-size: 24rpx;
+            color: #999;
+            margin-bottom: 4rpx;
+
+            .dark-mode & {
+                color: #aaa;
+            }
+        }
+
+        .history-ip {
+            font-size: 22rpx;
+            color: #bbb;
+
+            .dark-mode & {
+                color: #888;
+            }
+        }
+    }
+
+    .btn-delete {
+        padding: 8rpx 16rpx;
+        background-color: #f0f0f0;
+        color: #999;
+        border-radius: 6rpx;
+        font-size: 22rpx;
+        border: none;
+        margin-left: 10rpx;
+
+        .dark-mode & {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        &:active {
+            opacity: 0.7;
+        }
+    }
+}
+
 </style>

@@ -221,6 +221,26 @@ const api = {
         getSecurityStatus() {
             return http.get("/user/security-status");
         },
+
+        // 获取登录日志（分页）
+        getLoginLogs(params) {
+            return http.get("/user/login-logs", { params });
+        },
+
+        // 获取最近的登录记录
+        getLatestLoginLogs(params) {
+            return http.get("/user/login-logs/latest", { params });
+        },
+
+        // 删除指定登录日志
+        deleteLoginLog(logId) {
+            return http.post("/user/login-logs/delete", { logId });
+        },
+
+        // 清空所有登录日志
+        clearLoginLogs() {
+            return http.post("/user/login-logs/clear");
+        },
     },
 };
 
