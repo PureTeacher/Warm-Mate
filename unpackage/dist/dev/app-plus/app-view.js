@@ -18582,7 +18582,7 @@ var render = function () {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
-                        [_vm._v(" 至少 8 个字符（最多 32 个字符） ")]
+                        [_vm._v(" 6-16 个字符 ")]
                       ),
                     ],
                     1
@@ -18599,62 +18599,7 @@ var render = function () {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
-                        [_vm._v(" 包含至少 1 个大写字母（A-Z） ")]
-                      ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
-                    [
-                      _c(
-                        "v-uni-text",
-                        { class: _vm._$g(35, "c"), attrs: { _i: 35 } },
-                        [_vm._v(" " + _vm._$g(35, "t0-0") + " ")]
-                      ),
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
-                        [_vm._v(" 包含至少 1 个小写字母（a-z） ")]
-                      ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
-                    [
-                      _c(
-                        "v-uni-text",
-                        { class: _vm._$g(38, "c"), attrs: { _i: 38 } },
-                        [_vm._v(" " + _vm._$g(38, "t0-0") + " ")]
-                      ),
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
-                        [_vm._v(" 包含至少 1 个数字（0-9） ")]
-                      ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
-                    [
-                      _c(
-                        "v-uni-text",
-                        { class: _vm._$g(41, "c"), attrs: { _i: 41 } },
-                        [_vm._v(" " + _vm._$g(41, "t0-0") + " ")]
-                      ),
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
-                        [
-                          _vm._v(
-                            " 包含至少 1 个特殊字符（!@#$%^&*()_+-=[]{}；'：\"\\\\|,.<>/?） "
-                          ),
-                        ]
+                        [_vm._v(" 包含字母、数字或符号（至少一种） ")]
                       ),
                     ],
                     1
@@ -18667,20 +18612,20 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+            { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
             [
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+                { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
+                    { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
                     [_vm._v("确认密码")]
                   ),
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                    { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
                     [_vm._v("*")]
                   ),
                 ],
@@ -18688,14 +18633,14 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
+                { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
                 [
                   _c("v-uni-input", {
-                    staticClass: _vm._$g(48, "sc"),
+                    staticClass: _vm._$g(39, "sc"),
                     attrs: {
-                      type: _vm._$g(48, "a-type"),
+                      type: _vm._$g(39, "a-type"),
                       placeholder: "请再次输入新密码",
-                      _i: 48,
+                      _i: 39,
                     },
                     on: {
                       blur: function ($event) {
@@ -18703,9 +18648,9 @@ var render = function () {
                       },
                     },
                     model: {
-                      value: _vm._$g(48, "v-model"),
+                      value: _vm._$g(39, "v-model"),
                       callback: function ($$v) {
-                        _vm.$handleVModelEvent(48, $$v)
+                        _vm.$handleVModelEvent(39, $$v)
                       },
                       expression: "confirmPassword",
                     },
@@ -18713,24 +18658,24 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     {
-                      staticClass: _vm._$g(49, "sc"),
-                      attrs: { _i: 49 },
+                      staticClass: _vm._$g(40, "sc"),
+                      attrs: { _i: 40 },
                       on: {
                         click: function ($event) {
                           return _vm.$handleViewEvent($event)
                         },
                       },
                     },
-                    [_vm._v(" " + _vm._$g(49, "t0-0") + " ")]
+                    [_vm._v(" " + _vm._$g(40, "t0-0") + " ")]
                   ),
                 ],
                 1
               ),
-              _vm._$g(50, "i")
+              _vm._$g(41, "i")
                 ? _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
-                    [_vm._v(" " + _vm._$g(50, "t0-0") + " ")]
+                    { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+                    [_vm._v(" " + _vm._$g(41, "t0-0") + " ")]
                   )
                 : _vm._e(),
             ],
@@ -18738,16 +18683,16 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(51, "sc"), attrs: { _i: 51 } },
+            { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
             [
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
+                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
                 [_vm._v("ℹ️")]
               ),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(53, "sc"), attrs: { _i: 53 } },
+                { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
                 [
                   _vm._v(
                     " 密码修改后，请妥善保管，不要泄露给他人。为了账号安全，请定期更换密码。 "
@@ -18762,13 +18707,13 @@ var render = function () {
       ),
       _c(
         "uni-view",
-        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
+        { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
         [
           _c(
             "v-uni-button",
             {
-              staticClass: _vm._$g(55, "sc"),
-              attrs: { _i: 55 },
+              staticClass: _vm._$g(46, "sc"),
+              attrs: { _i: 46 },
               on: {
                 click: function ($event) {
                   return _vm.$handleViewEvent($event)
@@ -18780,12 +18725,12 @@ var render = function () {
           _c(
             "v-uni-button",
             {
-              staticClass: _vm._$g(56, "sc"),
-              class: _vm._$g(56, "c"),
+              staticClass: _vm._$g(47, "sc"),
+              class: _vm._$g(47, "c"),
               attrs: {
-                disabled: _vm._$g(56, "a-disabled"),
-                loading: _vm._$g(56, "a-loading"),
-                _i: 56,
+                disabled: _vm._$g(47, "a-disabled"),
+                loading: _vm._$g(47, "a-loading"),
+                _i: 47,
               },
               on: {
                 click: function ($event) {

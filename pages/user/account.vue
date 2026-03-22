@@ -382,7 +382,7 @@ export default {
                 .catch(err => {
                     uni.hideLoading();
                     uni.showToast({
-                        title: "修改失败: " + err.message,
+                        title: this.getErrorMessage(err),
                         icon: "none",
                     });
                 });
@@ -418,7 +418,7 @@ export default {
                 .catch(err => {
                     uni.hideLoading();
                     uni.showToast({
-                        title: "修改失败: " + err.message,
+                        title: this.getErrorMessage(err),
                         icon: "none",
                     });
                 });
@@ -458,7 +458,7 @@ export default {
                 .catch(err => {
                     uni.hideLoading();
                     uni.showToast({
-                        title: "修改失败: " + err.message,
+                        title: this.getErrorMessage(err),
                         icon: "none",
                     });
                 });
@@ -490,7 +490,7 @@ export default {
                 .catch(err => {
                     this.loginLoading = false;
                     uni.showToast({
-                        title: "加载失败: " + err.message,
+                        title: this.getErrorMessage(err),
                         icon: "none",
                     });
                 });
@@ -520,7 +520,7 @@ export default {
                             })
                             .catch(err => {
                                 uni.showToast({
-                                    title: "删除失败: " + err.message,
+                                    title: this.getErrorMessage(err),
                                     icon: "none",
                                 });
                             });
@@ -554,7 +554,7 @@ export default {
                             })
                             .catch(err => {
                                 uni.showToast({
-                                    title: "清空失败: " + err.message,
+                                    title: this.getErrorMessage(err),
                                     icon: "none",
                                 });
                             });
@@ -595,6 +595,15 @@ export default {
                     });
                 }
             }
+        },
+        getErrorMessage(err) {
+            // 统一处理错误信息
+            if (!err) return "操作失败";
+            if (typeof err === 'string') return err;
+            if (err.message) return err.message;
+            if (err.statusText) return err.statusText;
+            if (err.errMsg) return err.errMsg;
+            return "操作失败";
         }
     }
 };

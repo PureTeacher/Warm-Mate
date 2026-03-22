@@ -86,53 +86,18 @@
                             {{ lengthMet ? "✓" : "○" }}
                         </text>
                         <text class="requirement-text">
-                            至少 8 个字符（最多 32 个字符）
+                            6-16 个字符
                         </text>
                     </view>
 
                     <view class="requirement-item">
                         <text
-                            :class="['requirement-icon', { met: upperCaseMet }]"
+                            :class="['requirement-icon', { met: digitMet || upperCaseMet || lowerCaseMet }]"
                         >
-                            {{ upperCaseMet ? "✓" : "○" }}
+                            {{ (digitMet || upperCaseMet || lowerCaseMet) ? "✓" : "○" }}
                         </text>
                         <text class="requirement-text">
-                            包含至少 1 个大写字母（A-Z）
-                        </text>
-                    </view>
-
-                    <view class="requirement-item">
-                        <text
-                            :class="['requirement-icon', { met: lowerCaseMet }]"
-                        >
-                            {{ lowerCaseMet ? "✓" : "○" }}
-                        </text>
-                        <text class="requirement-text">
-                            包含至少 1 个小写字母（a-z）
-                        </text>
-                    </view>
-
-                    <view class="requirement-item">
-                        <text :class="['requirement-icon', { met: digitMet }]">
-                            {{ digitMet ? "✓" : "○" }}
-                        </text>
-                        <text class="requirement-text">
-                            包含至少 1 个数字（0-9）
-                        </text>
-                    </view>
-
-                    <view class="requirement-item">
-                        <text
-                            :class="[
-                                'requirement-icon',
-                                { met: specialCharMet },
-                            ]"
-                        >
-                            {{ specialCharMet ? "✓" : "○" }}
-                        </text>
-                        <text class="requirement-text">
-                            包含至少 1
-                            个特殊字符（!@#$%^&*()_+-=[]{}；'："\\|,.<>/?）
+                            包含字母、数字或符号（至少一种）
                         </text>
                     </view>
                 </view>
@@ -209,7 +174,7 @@ export default {
     computed: {
         lengthMet() {
             return (
-                this.newPassword.length >= 8 && this.newPassword.length <= 32
+                this.newPassword.length >= 6 && this.newPassword.length <= 16
             );
         },
         upperCaseMet() {
@@ -227,17 +192,23 @@ export default {
             );
         },
         passwordStrength() {
-            const requirements = [
-                this.lengthMet,
-                this.upperCaseMet,
-                this.lowerCaseMet,
-                this.digitMet,
-                this.specialCharMet,
-            ];
-            const metCount = requirements.filter(Boolean).length;
-
-            if (metCount <= 2) return "weak";
-            if (metCount <= 3) return "medium";
+            // 简化的强度检查：只需要长度正确且包含允许的字符
+            if (!this.newPassword) return "weak";
+            if (!this.lengthMet) return "weak";
+            
+            // 检查是否只包含允许的字符
+            const validCharsRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
+            if (!validCharsRegex.test(this.newPassword)) return "weak";
+            
+            // 根据字符多样性判断强度
+            const hasLetters = /[a-zA-Z]/.test(this.newPassword);
+            const hasDigits = /\d/.test(this.newPassword);
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(this.newPassword);
+            
+            const diversityCount = [hasLetters, hasDigits, hasSpecial].filter(Boolean).length;
+            
+            if (diversityCount <= 1) return "weak";
+            if (diversityCount === 2) return "medium";
             return "strong";
         },
         strengthText() {
@@ -273,7 +244,7 @@ export default {
                 !this.currentPasswordError &&
                 !this.newPasswordError &&
                 !this.confirmPasswordError &&
-                this.passwordStrength !== "weak"
+                this.lengthMet
             );
         },
     },
@@ -302,16 +273,22 @@ export default {
             if (!this.newPassword) {
                 return true;
             }
-            if (this.newPassword.length < 8) {
-                this.newPasswordError = "密码长度至少 8 个字符";
+            if (this.newPassword.length < 6) {
+                this.newPasswordError = "密码长度至少 6 个字符";
                 return false;
             }
-            if (this.newPassword.length > 32) {
-                this.newPasswordError = "密码长度不能超过 32 个字符";
+            if (this.newPassword.length > 16) {
+                this.newPasswordError = "密码长度不能超过 16 个字符";
                 return false;
             }
             if (this.newPassword === this.currentPassword) {
                 this.newPasswordError = "新密码不能与当前密码相同";
+                return false;
+            }
+            // 检查密码是否只包含字母、数字或符号
+            const validCharsRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
+            if (!validCharsRegex.test(this.newPassword)) {
+                this.newPasswordError = "密码只能包含字母、数字或符号";
                 return false;
             }
             return true;
@@ -340,39 +317,71 @@ export default {
                 return;
             }
 
-            // 检查密码强度
-            if (this.passwordStrength === "weak") {
-                uni.showToast({
-                    title: "密码强度过弱，请加强密码复杂性",
-                    icon: "none",
-                });
-                return;
-            }
-
             this.submitLoading = true;
             uni.showLoading({
                 title: "修改中...",
             });
 
-            // 模拟API调用 - 实际应该调用真实的API
-            setTimeout(() => {
-                uni.hideLoading();
-                this.submitLoading = false;
+            // 调用修改密码 API
+            this.$api.account.changePassword({
+                oldPassword: this.currentPassword,
+                newPassword: this.newPassword
+            })
+                .then(res => {
+                    uni.hideLoading();
+                    this.submitLoading = false;
 
-                // 模拟API成功
-                uni.showToast({
-                    title: "密码修改成功，请重新登录",
-                    icon: "success",
-                    duration: 2000,
-                });
+                    if (res && res.code === 200) {
+                        uni.showToast({
+                            title: "密码修改成功",
+                            icon: "success",
+                            duration: 2000,
+                        });
 
-                // 2秒后跳转到登录页面
-                setTimeout(() => {
-                    uni.reLaunch({
-                        url: "/pages/login/login",
+                        // 1.5秒后清除登录信息并跳转到登录页面
+                        setTimeout(() => {
+                            // 清除本地存储的登录信息
+                            uni.removeStorageSync("Access-Token");
+                            uni.removeStorageSync("userId");
+                            uni.removeStorageSync("username");
+                            uni.removeStorageSync("userInfo");
+                            uni.removeStorageSync("uid");
+
+                            // 跳转到登录页面
+                            uni.reLaunch({
+                                url: "/pages/login/login",
+                            });
+                        }, 1500);
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch(err => {
+                    uni.hideLoading();
+                    this.submitLoading = false;
+
+                    // 改进错误提示
+                    let errorMsg = "修改失败";
+                    if (err && typeof err === 'object') {
+                        if (err.message) {
+                            errorMsg = err.message;
+                        } else if (err.statusText) {
+                            errorMsg = err.statusText;
+                        } else if (err.errMsg) {
+                            errorMsg = err.errMsg;
+                        }
+                    } else if (typeof err === 'string') {
+                        errorMsg = err;
+                    }
+
+                    uni.showToast({
+                        title: errorMsg,
+                        icon: "none",
                     });
-                }, 2000);
-            }, 1500);
+                });
         },
         navigateBack() {
             uni.navigateBack({
