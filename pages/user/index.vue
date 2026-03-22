@@ -11,10 +11,7 @@
             </view>
             <view class="user-details">
                 <text class="user-name">{{ userInfo.username || "用户" }}</text>
-                <text class="user-id">ID: {{ userInfo.id || "暂未获取" }}</text>
-                <text class="user-phone">{{
-                    userInfo.phone || "未绑定手机"
-                }}</text>
+                <text class="user-id">UID: {{ userInfo.uid || userInfo.id || "暂未获取" }}</text>
             </view>
         </view>
 
@@ -90,6 +87,7 @@ export default {
             userInfo: {
                 username: "",
                 id: "",
+                uid: "",
                 avatar: "",
                 phone: "",
                 email: "",
@@ -97,37 +95,61 @@ export default {
         };
     },
     onLoad() {
+        console.log("[user/index] onLoad 被调用");
         this.loadUserInfo();
     },
     onShow() {
+        console.log("[user/index] onShow 被调用");
         // 每次进入页面刷新用户信息，确保退出后状态正确
         this.loadUserInfo();
     },
     methods: {
         loadUserInfo() {
             try {
-                console.log("开始读取用户信息");
                 const userInfo = uni.getStorageSync("userInfo");
-                console.log("读取到的用户信息：", userInfo);
                 if (userInfo) {
                     this.userInfo = {
                         username: userInfo.username || "用户",
                         id: userInfo.id || userInfo.userId || "暂未获取",
+                        uid: userInfo.uid || (userInfo.id ? 100000000 + parseInt(userInfo.id) : "暂未获取"),
                         avatar: userInfo.avatar || "",
                         phone: userInfo.phone || "未绑定手机",
                         email: userInfo.email || "",
                     };
+                    this.fetchUserInfoFromServer();
                 } else {
                     this.userInfo = {
                         username: "",
                         id: "",
+                        uid: "",
                         avatar: "",
                         phone: "",
                         email: "",
                     };
+                    this.fetchUserInfoFromServer();
                 }
             } catch (e) {
                 console.error("获取用户信息失败", e);
+            }
+        },
+
+        async fetchUserInfoFromServer() {
+            try {
+                const response = await this.$api.user.getInfo();
+                if (response && response.code === 200 && response.data) {
+                    const data = response.data;
+                    this.userInfo = {
+                        username: data.username || "用户",
+                        id: data.id || "暂未获取",
+                        uid: data.uid || (100000000 + data.id) || "暂未获取",
+                        avatar: data.avatar || "",
+                        phone: data.phone || "未绑定手机",
+                        email: data.email || "",
+                    };
+                    uni.setStorageSync("userInfo", this.userInfo);
+                }
+            } catch (error) {
+                console.error("获取用户信息出错", error);
             }
         },
         navigateTo(page) {

@@ -119,6 +119,21 @@ const api = {
     },
 
     /**
+     * 用户信息相关API
+     */
+    user: {
+        // 获取用户信息
+        getInfo() {
+            return http.get("/user/info");
+        },
+
+        // 更新用户信息
+        updateInfo(data) {
+            return http.put("/user/info", data);
+        },
+    },
+
+    /**
      * 账户管理相关API
      */
     account: {
@@ -129,7 +144,7 @@ const api = {
 
         // 更新账户基本信息
         updateAccountInfo(data) {
-            return http.put("/user/account", data);
+            return http.put("/user/info", data);
         },
 
         // 更新邮箱

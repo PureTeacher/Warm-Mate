@@ -14,16 +14,14 @@
             <view class="account-item">
                 <view class="item-label">
                     <text class="label-text">用户名</text>
-                    <text class="label-required">*</text>
                 </view>
                 <view class="item-content">
-                    <input
-                        v-model="accountInfo.username"
-                        type="text"
-                        placeholder="请输入用户名"
-                        class="account-input"
-                        @blur="validateUsername"
-                    />
+                    <text class="username-text">{{ accountInfo.username }}</text>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="openUsernameModal">
+                        修改
+                    </button>
                 </view>
             </view>
 
@@ -66,97 +64,67 @@
             </view>
         </view>
 
-        <!-- 社交账号部分 -->
-        <view class="account-section">
-            <view class="section-title">社交账号</view>
-
-            <view class="social-item">
-                <view class="social-header">
-                    <text class="social-icon">🔗</text>
-                    <text class="social-name">微信</text>
-                </view>
-                <view class="social-status">
-                    <text
-                        v-if="accountInfo.wechatBound"
-                        class="status-badge verified"
-                    >
-                        已绑定
-                    </text>
-                    <text v-else class="status-badge unbound">未绑定</text>
-                </view>
-                <button
-                    class="social-btn"
-                    :class="{ 'unbind-btn': accountInfo.wechatBound }"
-                    @click="toggleWechatBinding"
-                >
-                    {{ accountInfo.wechatBound ? "解绑" : "绑定" }}
-                </button>
-            </view>
-
-            <view class="social-item">
-                <view class="social-header">
-                    <text class="social-icon">🆔</text>
-                    <text class="social-name">QQ</text>
-                </view>
-                <view class="social-status">
-                    <text
-                        v-if="accountInfo.qqBound"
-                        class="status-badge verified"
-                    >
-                        已绑定
-                    </text>
-                    <text v-else class="status-badge unbound">未绑定</text>
-                </view>
-                <button
-                    class="social-btn"
-                    :class="{ 'unbind-btn': accountInfo.qqBound }"
-                    @click="toggleQqBinding"
-                >
-                    {{ accountInfo.qqBound ? "解绑" : "绑定" }}
-                </button>
-            </view>
-        </view>
-
         <!-- 账号安全部分 -->
         <view class="account-section">
             <view class="section-title">账号安全</view>
 
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">修改密码</text>
-                    <text class="item-desc">定期更新密码保护账号安全</text>
+            <view class="account-item">
+                <view class="item-label">
+                    <text class="label-text">修改密码</text>
                 </view>
-                <button class="edit-btn" @click="navigateToPassword">
-                    修改
-                </button>
+                <view class="item-content">
+                    <text class="security-text">定期更新密码保护账号安全</text>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="navigateToPassword">
+                        修改
+                    </button>
+                </view>
             </view>
 
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">登录设备</text>
-                    <text class="item-desc">查看和管理登录过的设备</text>
+            <view class="account-item">
+                <view class="item-label">
+                    <text class="label-text">登录日志</text>
                 </view>
-                <button class="edit-btn" @click="showDeviceList">管理</button>
-            </view>
-
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">登录日志</text>
-                    <text class="item-desc">查看账号的登录历史记录</text>
+                <view class="item-content">
+                    <text class="security-text">查看账号的登录历史记录</text>
                 </view>
-                <button class="edit-btn" @click="showLoginHistory">查看</button>
+                <view class="item-action">
+                    <button class="edit-btn" @click="showLoginHistory">查看</button>
+                </view>
             </view>
         </view>
 
-        <!-- 操作按钮 -->
-        <view class="action-section">
-            <button
-                class="save-btn"
-                :loading="saveLoading"
-                @click="saveAccountInfo"
-            >
-                保存修改
-            </button>
+        <!-- 修改用户名弹窗 -->
+        <view
+            v-if="showUsernameModal"
+            class="modal-overlay"
+            @click="showUsernameModal = false"
+        >
+            <view class="modal-content" @click.stop>
+                <view class="modal-header">
+                    <text class="modal-title">修改用户名</text>
+                    <view class="modal-close" @click="showUsernameModal = false"
+                        >✕</view
+                    >
+                </view>
+                <view class="modal-body">
+                    <input
+                        v-model="usernameInput"
+                        type="text"
+                        placeholder="请输入新用户名"
+                        class="modal-input"
+                    />
+                </view>
+                <view class="modal-footer">
+                    <button class="btn-cancel" @click="showUsernameModal = false">
+                        取消
+                    </button>
+                    <button class="btn-confirm" @click="updateUsername">
+                        确认
+                    </button>
+                </view>
+            </view>
         </view>
 
         <!-- 修改邮箱弹窗 -->
@@ -197,7 +165,7 @@
             class="modal-overlay"
             @click="showPhoneModal = false"
         >
-            <view class="modal-content phone-modal-content" @click.stop>
+            <view class="modal-content" @click.stop>
                 <view class="modal-header">
                     <text class="modal-title">修改手机号</text>
                     <view class="modal-close" @click="showPhoneModal = false">
@@ -205,86 +173,20 @@
                     </view>
                 </view>
                 <view class="modal-body">
-                    <view class="form-group">
-                        <text class="form-label">新手机号</text>
-                        <input
-                            v-model="phoneInput"
-                            type="number"
-                            placeholder="请输入新手机号"
-                            class="form-input"
-                        />
-                    </view>
-                    <view class="form-group">
-                        <view class="verify-section">
-                            <input
-                                v-model="phoneCode"
-                                type="text"
-                                placeholder="验证码"
-                                class="form-input verify-input"
-                            />
-                            <button
-                                class="send-code-btn"
-                                :disabled="codeCountdown > 0"
-                                @click="sendPhoneCode"
-                            >
-                                {{
-                                    codeCountdown > 0
-                                        ? `${codeCountdown}s`
-                                        : "发送验证码"
-                                }}
-                            </button>
-                        </view>
-                    </view>
+                    <input
+                        v-model="phoneInput"
+                        type="number"
+                        placeholder="请输入新手机号"
+                        class="modal-input"
+                    />
                 </view>
                 <view class="modal-footer">
-                    <button
-                        class="btn btn-cancel"
-                        @click="showPhoneModal = false"
-                    >
+                    <button class="btn-cancel" @click="showPhoneModal = false">
                         取消
                     </button>
-                    <button
-                        class="btn btn-confirm"
-                        :loading="phoneLoading"
-                        @click="confirmPhoneUpdate"
-                    >
-                        确认修改
+                    <button class="btn-confirm" @click="confirmPhoneUpdate">
+                        确认
                     </button>
-                </view>
-            </view>
-        </view>
-
-        <!-- 设备列表弹窗 -->
-        <view
-            v-if="showDeviceModal"
-            class="modal-overlay-bottom"
-            @click="showDeviceModal = false"
-        >
-            <view class="device-modal" @click.stop>
-                <view class="modal-header">
-                    <text class="modal-title">登录设备</text>
-                </view>
-                <view class="device-list">
-                    <view
-                        v-for="device in deviceList"
-                        :key="device.id"
-                        class="device-item"
-                    >
-                        <view class="device-info">
-                            <text class="device-name">{{
-                                device.deviceName
-                            }}</text>
-                            <text class="device-time">
-                                最后登录: {{ formatTime(device.lastLoginTime) }}
-                            </text>
-                        </view>
-                        <button
-                            class="logout-device-btn"
-                            @click="logoutDevice(device.id)"
-                        >
-                            退出登录
-                        </button>
-                    </view>
                 </view>
             </view>
         </view>
@@ -334,25 +236,25 @@ export default {
                 username: "",
                 email: "",
                 phone: "",
-                wechatBound: false,
-                qqBound: false,
             },
             emailInput: "",
             phoneInput: "",
+            usernameInput: "",
             phoneCode: "",
             codeCountdown: 0,
-            saveLoading: false,
             phoneLoading: false,
-            deviceList: [],
             loginHistory: [],
-            containerClasses: "",
             showEmailModal: false,
             showPhoneModal: false,
-            showDeviceModal: false,
+            showUsernameModal: false,
             showHistoryModal: false,
         };
     },
     computed: {
+        containerClasses() {
+            const isDark = uni.getStorageSync("darkMode");
+            return isDark ? "dark-mode" : "";
+        },
         maskedPhone() {
             const phone = this.accountInfo.phone;
             if (!phone) return "未绑定";
@@ -362,10 +264,9 @@ export default {
     onLoad() {
         console.log("账号管理页面加载");
         this.loadAccountInfo();
-        this.applyTheme();
     },
     onShow() {
-        this.applyTheme();
+        // 刷新主题
     },
     methods: {
         loadAccountInfo() {
@@ -376,17 +277,11 @@ export default {
                         username: userInfo.username || "",
                         email: userInfo.email || "",
                         phone: userInfo.phone || "",
-                        wechatBound: userInfo.wechatBound || false,
-                        qqBound: userInfo.qqBound || false,
                     };
                 }
             } catch (e) {
                 console.error("加载账号信息失败", e);
             }
-        },
-        applyTheme() {
-            const isDark = uni.getStorageSync("darkMode");
-            this.containerClasses = isDark ? "dark-mode" : "";
         },
         validateUsername() {
             if (!this.accountInfo.username.trim()) {
@@ -430,14 +325,53 @@ export default {
             }
             return true;
         },
+        openUsernameModal() {
+            this.usernameInput = this.accountInfo.username || "";
+            this.showUsernameModal = true;
+        },
         openEmailModal() {
             this.emailInput = this.accountInfo.email || "";
             this.showEmailModal = true;
         },
         openPhoneModal() {
             this.phoneInput = this.accountInfo.phone || "";
-            this.phoneCode = "";
             this.showPhoneModal = true;
+        },
+        updateUsername() {
+            if (!this.validateUsername()) {
+                return;
+            }
+
+            uni.showLoading({
+                title: "更新中...",
+            });
+
+            this.$api.account.updateAccountInfo({ 
+                username: this.usernameInput
+            })
+                .then(res => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.username = this.usernameInput;
+                        uni.showToast({
+                            title: "用户名修改成功",
+                            icon: "success",
+                        });
+                        this.showUsernameModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch(err => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: "修改失败: " + err.message,
+                        icon: "none",
+                    });
+                });
         },
         updateEmail() {
             if (!this.validateEmail()) {
@@ -448,160 +382,81 @@ export default {
                 title: "更新中...",
             });
 
-            // 模拟API调用
-            setTimeout(() => {
-                uni.hideLoading();
-                this.accountInfo.email = this.emailInput;
-                uni.showToast({
-                    title: "邮箱修改成功",
-                    icon: "success",
+            this.$api.account.updateAccountInfo({ 
+                email: this.emailInput
+            })
+                .then(res => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.email = this.emailInput;
+                        uni.showToast({
+                            title: "邮箱修改成功",
+                            icon: "success",
+                        });
+                        this.showEmailModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch(err => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: "修改失败: " + err.message,
+                        icon: "none",
+                    });
                 });
-                this.showEmailModal = false;
-            }, 1000);
         },
         sendPhoneCode() {
-            if (!this.validatePhone()) {
-                return;
-            }
-
-            uni.showLoading({
-                title: "发送中...",
-            });
-
-            // 模拟发送验证码
-            setTimeout(() => {
-                uni.hideLoading();
-                this.codeCountdown = 60;
-                const timer = setInterval(() => {
-                    this.codeCountdown--;
-                    if (this.codeCountdown <= 0) {
-                        clearInterval(timer);
-                    }
-                }, 1000);
-                uni.showToast({
-                    title: "验证码已发送",
-                    icon: "success",
-                });
-            }, 500);
+            // 暂未实现，直接进行验证
+            this.confirmPhoneUpdate();
         },
         confirmPhoneUpdate() {
             if (!this.validatePhone()) {
                 return;
             }
-            if (!this.phoneCode || this.phoneCode.length < 4) {
-                uni.showToast({
-                    title: "请输入验证码",
-                    icon: "none",
-                });
-                return;
-            }
 
-            this.phoneLoading = true;
             uni.showLoading({
-                title: "验证中...",
+                title: "更新中...",
             });
 
-            // 模拟API调用
-            setTimeout(() => {
-                uni.hideLoading();
-                this.phoneLoading = false;
-                this.accountInfo.phone = this.phoneInput;
-                uni.showToast({
-                    title: "手机号修改成功",
-                    icon: "success",
-                });
-                this.showPhoneModal = false;
-            }, 1000);
-        },
-        toggleWechatBinding() {
-            if (this.accountInfo.wechatBound) {
-                this.confirmUnbind("微信");
-            } else {
-                this.bindWechat();
-            }
-        },
-        toggleQqBinding() {
-            if (this.accountInfo.qqBound) {
-                this.confirmUnbind("QQ");
-            } else {
-                this.bindQq();
-            }
-        },
-        bindWechat() {
-            uni.showToast({
-                title: "微信绑定功能开发中",
-                icon: "none",
-            });
-        },
-        bindQq() {
-            uni.showToast({
-                title: "QQ绑定功能开发中",
-                icon: "none",
-            });
-        },
-        confirmUnbind(platform) {
-            uni.showModal({
-                title: "解绑确认",
-                content: `确定要解绑${platform}账号吗？`,
-                confirmText: "确定",
-                cancelText: "取消",
-                success: (res) => {
-                    if (res.confirm) {
-                        this.unbindPlatform(platform);
+            this.$api.account.updateAccountInfo({ 
+                phone: this.phoneInput
+            })
+                .then(res => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.phone = this.phoneInput;
+                        uni.showToast({
+                            title: "手机号修改成功",
+                            icon: "success",
+                        });
+                        this.showPhoneModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
                     }
-                },
-            });
-        },
-        unbindPlatform(platform) {
-            uni.showLoading({
-                title: "解绑中...",
-            });
-
-            setTimeout(() => {
-                uni.hideLoading();
-                if (platform === "微信") {
-                    this.accountInfo.wechatBound = false;
-                } else if (platform === "QQ") {
-                    this.accountInfo.qqBound = false;
-                }
-                uni.showToast({
-                    title: `已解绑${platform}`,
-                    icon: "success",
+                })
+                .catch(err => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: "修改失败: " + err.message,
+                        icon: "none",
+                    });
                 });
-            }, 1000);
         },
         navigateToPassword() {
             uni.navigateTo({
                 url: "/pages/user/change-password",
             });
         },
-        showDeviceList() {
-            this.loadDevices();
-            this.showDeviceModal = true;
-        },
         showLoginHistory() {
             this.loadLoginHistory();
             this.showHistoryModal = true;
-        },
-        loadDevices() {
-            // 模拟设备列表数据
-            this.deviceList = [
-                {
-                    id: 1,
-                    deviceName: "iPhone 12 - Safari",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 5,
-                },
-                {
-                    id: 2,
-                    deviceName: "Android - Chrome",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 60 * 2,
-                },
-                {
-                    id: 3,
-                    deviceName: "Windows - Edge",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 60 * 24,
-                },
-            ];
         },
         loadLoginHistory() {
             // 模拟登录历史数据
@@ -629,23 +484,6 @@ export default {
                 },
             ];
         },
-        logoutDevice(deviceId) {
-            uni.showModal({
-                title: "退出登录",
-                content: "确定要在该设备上退出登录吗？",
-                success: (res) => {
-                    if (res.confirm) {
-                        this.deviceList = this.deviceList.filter(
-                            (d) => d.id !== deviceId,
-                        );
-                        uni.showToast({
-                            title: "已退出该设备",
-                            icon: "success",
-                        });
-                    }
-                },
-            });
-        },
         formatTime(timestamp) {
             const date = new Date(timestamp);
             const now = new Date();
@@ -660,40 +498,11 @@ export default {
                 const hours = Math.floor(diff / (1000 * 60 * 60));
                 return `${hours}小时前`;
             } else {
-                return date.toLocaleDateString();
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                return `${days}天前`;
             }
-        },
-        saveAccountInfo() {
-            if (!this.validateUsername()) {
-                return;
-            }
-
-            this.saveLoading = true;
-            uni.showLoading({
-                title: "保存中...",
-            });
-
-            // 模拟API调用
-            setTimeout(() => {
-                uni.hideLoading();
-                this.saveLoading = false;
-
-                // 保存到本地存储
-                const userInfo = uni.getStorageSync("userInfo") || {};
-                userInfo.username = this.accountInfo.username;
-                userInfo.email = this.accountInfo.email;
-                userInfo.phone = this.accountInfo.phone;
-                userInfo.wechatBound = this.accountInfo.wechatBound;
-                userInfo.qqBound = this.accountInfo.qqBound;
-                uni.setStorageSync("userInfo", userInfo);
-
-                uni.showToast({
-                    title: "账号信息已保存",
-                    icon: "success",
-                });
-            }, 1000);
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -805,8 +614,9 @@ export default {
             border-radius: 6rpx;
             font-size: 28rpx;
             color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
             height: 80rpx;
-            line-height: 56rpx;
 
             .dark-mode & {
                 background-color: #333;
@@ -877,6 +687,15 @@ export default {
             align-self: flex-end;
         }
     }
+
+    .security-text {
+        font-size: 24rpx;
+        color: #999;
+
+        .dark-mode & {
+            color: #aaa;
+        }
+    }
 }
 
 .status-badge {
@@ -900,80 +719,6 @@ export default {
 
         .dark-mode & {
             background-color: #3a1a1a;
-        }
-    }
-}
-
-.social-item {
-    display: flex;
-    align-items: center;
-    padding: 20rpx;
-    background-color: #f9f9f9;
-    border-radius: 8rpx;
-    margin-bottom: 16rpx;
-
-    .dark-mode & {
-        background-color: #333;
-    }
-
-    .social-header {
-        display: flex;
-        align-items: center;
-        flex: 1;
-
-        .social-icon {
-            font-size: 40rpx;
-            margin-right: 12rpx;
-        }
-
-        .social-name {
-            font-size: 28rpx;
-            color: #333;
-
-            .dark-mode & {
-                color: #fff;
-            }
-        }
-    }
-
-    .social-status {
-        margin: 0 20rpx;
-    }
-
-    .social-btn {
-        padding: 8rpx 16rpx;
-        background-color: #667eea;
-        color: #fff;
-        border-radius: 6rpx;
-        font-size: 24rpx;
-        border: none;
-
-        &.unbind-btn {
-            background-color: #f5576c;
-        }
-
-        &:active {
-            opacity: 0.8;
-        }
-    }
-}
-
-.action-section {
-    padding: 30rpx;
-    margin-top: 20rpx;
-
-    .save-btn {
-        width: 100%;
-        padding: 16rpx;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
-        border-radius: 8rpx;
-        font-size: 32rpx;
-        font-weight: 600;
-        border: none;
-
-        &:active {
-            opacity: 0.9;
         }
     }
 }
@@ -1041,9 +786,9 @@ export default {
                 border-radius: 6rpx;
                 font-size: 28rpx;
                 color: #333;
+                background-color: #fff;
                 box-sizing: border-box;
                 height: 80rpx;
-                line-height: 56rpx;
 
                 .dark-mode & {
                     background-color: #333;
@@ -1073,9 +818,9 @@ export default {
                     border-radius: 6rpx;
                     font-size: 28rpx;
                     color: #333;
+                    background-color: #fff;
                     box-sizing: border-box;
                     height: 80rpx;
-                    line-height: 56rpx;
 
                     .dark-mode & {
                         background-color: #333;
