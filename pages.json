@@ -33,6 +33,13 @@
             }
         },
         {
+            "path": "pages/login/forgot-password",
+            "style": {
+                "navigationBarTitleText": "找回密码",
+                "navigationStyle": "custom"
+            }
+        },
+        {
             "path": "pages/phq7-test/index",
             "style": {
                 "navigationBarTitleText": "心理体检",

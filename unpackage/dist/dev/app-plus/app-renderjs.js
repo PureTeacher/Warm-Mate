@@ -25,7 +25,7 @@ __renderjsModules["4c1ee3ae"] = (() => {
     default: () => stdin_default
   });
 
-  // C:/Users/while/Desktop/Warm-Mate/components/mescroll-uni/wxs/renderjs.js
+  // C:/Users/18354/Desktop/Warm-Mate/components/mescroll-uni/wxs/renderjs.js
   var me = {};
   if (window && !window.$mescrollRenderInit) {
     window.$mescrollRenderInit = true;

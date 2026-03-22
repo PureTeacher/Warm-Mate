@@ -48,7 +48,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$s = {
+  const _sfc_main$t = {
     data() {
       return {
         screenMinHeight: 1500,
@@ -121,7 +121,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -198,8 +198,8 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$r], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/index/index.vue"]]);
-  const _sfc_main$r = {
+  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$s], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/index/index.vue"]]);
+  const _sfc_main$s = {
     data() {
       return {};
     },
@@ -232,7 +232,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_u_avatar = vue.resolveComponent("u-avatar");
     const _component_u_parse = vue.resolveComponent("u-parse");
     return vue.openBlock(), vue.createElementBlock("view", null, [
@@ -261,8 +261,8 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const msg = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$q], ["__scopeId", "data-v-9a378a39"], ["__file", "C:/Users/while/Desktop/Warm-Mate/components/msg/msg.vue"]]);
-  const _sfc_main$q = {
+  const msg = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$r], ["__scopeId", "data-v-9a378a39"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/components/msg/msg.vue"]]);
+  const _sfc_main$r = {
     data() {
       return {
         // 文字消息
@@ -305,7 +305,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createElementVNode(
         "view",
@@ -349,7 +349,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$p], ["__scopeId", "data-v-1e520b65"], ["__file", "C:/Users/while/Desktop/Warm-Mate/components/inputBox/inputBox.vue"]]);
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$q], ["__scopeId", "data-v-1e520b65"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/components/inputBox/inputBox.vue"]]);
   const MescrollMixin = {
     data() {
       return {
@@ -1172,7 +1172,7 @@ if (uni.restoreGlobal) {
       uni.setStorageSync("mescroll-i18n", type);
     }
   };
-  const _sfc_main$p = {
+  const _sfc_main$q = {
     props: {
       // empty的配置项: 默认为GlobalOption.up.empty
       option: {
@@ -1227,7 +1227,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -1269,8 +1269,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const MescrollEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$o], ["__scopeId", "data-v-03ed58fb"], ["__file", "C:/Users/while/Desktop/Warm-Mate/components/mescroll-uni/components/mescroll-empty.vue"]]);
-  const _sfc_main$o = {
+  const MescrollEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$p], ["__scopeId", "data-v-03ed58fb"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/components/mescroll-uni/components/mescroll-empty.vue"]]);
+  const _sfc_main$p = {
     props: {
       // up.toTop的配置项
       option: Object,
@@ -1305,7 +1305,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
     return $options.mOption.src ? (vue.openBlock(), vue.createElementBlock("image", {
       key: 0,
       class: vue.normalizeClass(["mescroll-totop", [$props.value ? "mescroll-totop-in" : "mescroll-totop-out", { "mescroll-totop-safearea": $options.mOption.safearea }]]),
@@ -1315,7 +1315,7 @@ if (uni.restoreGlobal) {
       onClick: _cache[0] || (_cache[0] = (...args) => $options.toTopClick && $options.toTopClick(...args))
     }, null, 14, ["src"])) : vue.createCommentVNode("v-if", true);
   }
-  const MescrollTop = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$n], ["__scopeId", "data-v-465fa157"], ["__file", "C:/Users/while/Desktop/Warm-Mate/components/mescroll-uni/components/mescroll-top.vue"]]);
+  const MescrollTop = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$o], ["__scopeId", "data-v-465fa157"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/components/mescroll-uni/components/mescroll-top.vue"]]);
   const WxsMixin = {
     data() {
       return {
@@ -1401,7 +1401,7 @@ if (uni.restoreGlobal) {
     (Comp.$renderjs || (Comp.$renderjs = [])).push("renderBiz");
     (Comp.$renderjsModules || (Comp.$renderjsModules = {}))["renderBiz"] = "4c1ee3ae";
   };
-  const _sfc_main$n = {
+  const _sfc_main$o = {
     name: "mescroll-body",
     mixins: [WxsMixin],
     components: {
@@ -1684,7 +1684,7 @@ if (uni.restoreGlobal) {
       uni.$off("setMescrollGlobalOption");
     }
   };
-  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_mescroll_empty = vue.resolveComponent("mescroll-empty");
     const _component_mescroll_top = vue.resolveComponent("mescroll-top");
     return vue.openBlock(), vue.createElementBlock("view", {
@@ -1818,11 +1818,11 @@ if (uni.restoreGlobal) {
     ], 46, ["change:prop", "prop"]);
   }
   if (typeof block0 === "function")
-    block0(_sfc_main$n);
+    block0(_sfc_main$o);
   if (typeof block1 === "function")
-    block1(_sfc_main$n);
-  const MescrollBody = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$m], ["__scopeId", "data-v-396f6d3f"], ["__file", "C:/Users/while/Desktop/Warm-Mate/components/mescroll-uni/mescroll-body.vue"]]);
-  const _sfc_main$m = {
+    block1(_sfc_main$o);
+  const MescrollBody = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$n], ["__scopeId", "data-v-396f6d3f"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/components/mescroll-uni/mescroll-body.vue"]]);
+  const _sfc_main$n = {
     mixins: [MescrollMixin],
     // 使用mixin
     components: {
@@ -2009,7 +2009,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_msg = resolveEasycom(vue.resolveDynamicComponent("msg"), msg);
     const _component_mescroll_body = vue.resolveComponent("mescroll-body");
     const _component_inputBox = resolveEasycom(vue.resolveDynamicComponent("inputBox"), __easycom_1);
@@ -2068,24 +2068,467 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesMessageMessage = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-4c1b26cf"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/message/message.vue"]]);
+  const PagesMessageMessage = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$m], ["__scopeId", "data-v-4c1b26cf"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/message/message.vue"]]);
+  const _sfc_main$m = {
+    data() {
+      return {
+        title: "暖愈心伴",
+        isLoading: false,
+        formData: {
+          phone: "",
+          password: ""
+        },
+        errors: {
+          phone: "",
+          password: ""
+        }
+      };
+    },
+    onLoad() {
+      const token2 = uni.getStorageSync("Access-Token");
+      if (token2) {
+        uni.reLaunch({
+          url: "/pages/index/index"
+        });
+      }
+    },
+    methods: {
+      validatePhone() {
+        const phone = this.formData.phone.trim();
+        if (!phone) {
+          this.errors.phone = "请输入手机号";
+          return false;
+        }
+        if (!/^1[3-9]\d{9}$/.test(phone)) {
+          this.errors.phone = "手机号格式不正确";
+          return false;
+        }
+        this.errors.phone = "";
+        return true;
+      },
+      validatePassword() {
+        const password = this.formData.password;
+        if (!password) {
+          this.errors.password = "请输入密码";
+          return false;
+        }
+        if (password.length < 6 || password.length > 16) {
+          this.errors.password = "密码长度为6-16位";
+          return false;
+        }
+        this.errors.password = "";
+        return true;
+      },
+      async handleLogin() {
+        var _a, _b, _c;
+        try {
+          if (!this.validatePhone() || !this.validatePassword()) {
+            return;
+          }
+          this.isLoading = true;
+          const result = await this.$api.login({
+            username: this.formData.phone,
+            password: this.formData.password
+          });
+          if (result.code === 200 || result.success) {
+            const token2 = ((_a = result.data) == null ? void 0 : _a.accessToken) || ((_b = result.data) == null ? void 0 : _b.token) || result.token;
+            if (!token2) {
+              uni.$u.toast("登录异常：未获取到token");
+              return;
+            }
+            uni.setStorageSync("Access-Token", token2);
+            if ((_c = result.data) == null ? void 0 : _c.user) {
+              uni.setStorageSync("userInfo", result.data.user);
+            }
+            uni.$u.toast("登录成功");
+            uni.reLaunch({
+              url: "/pages/index/index"
+            });
+          } else {
+            uni.$u.toast(result.message || "登录失败，请检查账号密码");
+          }
+        } catch (error2) {
+          formatAppLog("error", "at pages/login/login.vue:187", "登录错误：", error2);
+          uni.$u.toast("登录失败，请重试");
+        } finally {
+          this.isLoading = false;
+        }
+      },
+      goToForgotPassword() {
+        uni.navigateTo({
+          url: "/pages/login/forgot-password"
+        });
+      },
+      goToRegister() {
+        uni.navigateTo({
+          url: "/pages/register/register"
+        });
+      },
+      handleWechatLogin() {
+        uni.$u.toast("微信登录开发中");
+      }
+    }
+  };
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_avatar = vue.resolveComponent("u-avatar");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "login-page" }, [
+      vue.createElementVNode("view", { class: "login-container" }, [
+        vue.createElementVNode("view", { class: "logo-section" }, [
+          vue.createVNode(_component_u_avatar, {
+            src: "/static/logo2.png",
+            shape: "square",
+            size: "100"
+          })
+        ]),
+        vue.createElementVNode("view", { class: "title-section" }, [
+          vue.createElementVNode(
+            "text",
+            { class: "app-title" },
+            vue.toDisplayString($data.title),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("text", { class: "app-subtitle" }, "专业心理健康陪伴")
+        ]),
+        vue.createElementVNode("view", { class: "form-section" }, [
+          vue.createElementVNode("view", { class: "input-item" }, [
+            vue.createElementVNode("text", { class: "input-label" }, "手机号"),
+            vue.withDirectives(vue.createElementVNode(
+              "input",
+              {
+                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.formData.phone = $event),
+                type: "number",
+                placeholder: "请输入手机号",
+                class: "text-input",
+                onBlur: _cache[1] || (_cache[1] = (...args) => $options.validatePhone && $options.validatePhone(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ), [
+              [vue.vModelText, $data.formData.phone]
+            ])
+          ]),
+          $data.errors.phone ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 0,
+              class: "error-msg"
+            },
+            vue.toDisplayString($data.errors.phone),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "input-item" }, [
+            vue.createElementVNode("text", { class: "input-label" }, "密码"),
+            vue.withDirectives(vue.createElementVNode(
+              "input",
+              {
+                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.formData.password = $event),
+                type: "password",
+                placeholder: "请输入密码",
+                class: "text-input",
+                onBlur: _cache[3] || (_cache[3] = (...args) => $options.validatePassword && $options.validatePassword(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ), [
+              [vue.vModelText, $data.formData.password]
+            ])
+          ]),
+          $data.errors.password ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 1,
+              class: "error-msg"
+            },
+            vue.toDisplayString($data.errors.password),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "forget-pwd-link" }, [
+            vue.createElementVNode("text", {
+              onClick: _cache[4] || (_cache[4] = (...args) => $options.goToForgotPassword && $options.goToForgotPassword(...args))
+            }, "忘记密码?")
+          ]),
+          vue.createElementVNode("button", {
+            class: "login-btn",
+            onClick: _cache[5] || (_cache[5] = (...args) => $options.handleLogin && $options.handleLogin(...args)),
+            disable: $data.isLoading
+          }, vue.toDisplayString($data.isLoading ? "登录中..." : "登录"), 9, ["disable"])
+        ]),
+        vue.createElementVNode("view", { class: "divider-section" }, [
+          vue.createElementVNode("view", { class: "divider-line" }),
+          vue.createElementVNode("text", { class: "divider-text" }, "或使用其他方式登录"),
+          vue.createElementVNode("view", { class: "divider-line" })
+        ]),
+        vue.createElementVNode("view", { class: "social-section" }, [
+          vue.createElementVNode("view", {
+            class: "social-btn",
+            onClick: _cache[6] || (_cache[6] = (...args) => $options.handleWechatLogin && $options.handleWechatLogin(...args))
+          }, [
+            vue.createElementVNode("text", null, "微信登录")
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "register-section" }, [
+          vue.createElementVNode("text", null, [
+            vue.createTextVNode("没有账号？"),
+            vue.createElementVNode("text", {
+              class: "link",
+              onClick: _cache[7] || (_cache[7] = (...args) => $options.goToRegister && $options.goToRegister(...args))
+            }, "立即注册")
+          ])
+        ])
+      ])
+    ]);
+  }
+  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-e4e4508d"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/login/login.vue"]]);
   const _sfc_main$l = {
     data() {
       return {
         title: "暖愈心伴",
-        modalShow: false,
-        retrievePwd: {
-          username: "",
-          email: ""
+        isLoading: false,
+        formData: {
+          phone: "",
+          password: "",
+          passwordConfirm: ""
         },
-        model: {
-          user: {
-            username: "",
-            password: ""
+        errors: {
+          phone: "",
+          password: "",
+          passwordConfirm: ""
+        }
+      };
+    },
+    onLoad() {
+      const token2 = uni.getStorageSync("Access-Token");
+      if (token2) {
+        uni.reLaunch({
+          url: "/pages/index/index"
+        });
+      }
+    },
+    methods: {
+      validatePhone() {
+        const phone = this.formData.phone.trim();
+        if (!phone) {
+          this.errors.phone = "请输入手机号";
+          return false;
+        }
+        if (!/^1[3-9]\d{9}$/.test(phone)) {
+          this.errors.phone = "手机号格式不正确";
+          return false;
+        }
+        this.errors.phone = "";
+        return true;
+      },
+      validatePassword() {
+        const password = this.formData.password;
+        if (!password) {
+          this.errors.password = "请输入密码";
+          return false;
+        }
+        if (password.length < 6 || password.length > 16) {
+          this.errors.password = "密码长度为6-16位";
+          return false;
+        }
+        this.errors.password = "";
+        return true;
+      },
+      validatePasswordConfirm() {
+        const passwordConfirm = this.formData.passwordConfirm;
+        if (!passwordConfirm) {
+          this.errors.passwordConfirm = "请确认密码";
+          return false;
+        }
+        if (passwordConfirm !== this.formData.password) {
+          this.errors.passwordConfirm = "两次密码不一致";
+          return false;
+        }
+        this.errors.passwordConfirm = "";
+        return true;
+      },
+      async handleRegister() {
+        try {
+          if (!this.validatePhone() || !this.validatePassword() || !this.validatePasswordConfirm()) {
+            return;
           }
+          this.isLoading = true;
+          const result = await this.$api.register({
+            username: this.formData.phone,
+            password: this.formData.password
+          });
+          if (result.code === 200 || result.success) {
+            uni.$u.toast("注册成功，请登录");
+            setTimeout(() => {
+              uni.reLaunch({
+                url: "/pages/login/login"
+              });
+            }, 1e3);
+          } else {
+            uni.$u.toast(result.message || "注册失败，请重试");
+          }
+        } catch (error2) {
+          formatAppLog("error", "at pages/register/register.vue:193", "注册错误：", error2);
+          uni.$u.toast("注册失败，请重试");
+        } finally {
+          this.isLoading = false;
+        }
+      },
+      goToLogin() {
+        uni.reLaunch({
+          url: "/pages/login/login"
+        });
+      }
+    }
+  };
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_u_avatar = vue.resolveComponent("u-avatar");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "register-page" }, [
+      vue.createElementVNode("view", { class: "register-container" }, [
+        vue.createElementVNode("view", { class: "logo-section" }, [
+          vue.createVNode(_component_u_avatar, {
+            src: "/static/logo2.png",
+            shape: "square",
+            size: "100"
+          })
+        ]),
+        vue.createElementVNode("view", { class: "title-section" }, [
+          vue.createElementVNode(
+            "text",
+            { class: "app-title" },
+            vue.toDisplayString($data.title),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("text", { class: "app-subtitle" }, "创建账号开始心理健康之旅")
+        ]),
+        vue.createElementVNode("view", { class: "form-section" }, [
+          vue.createElementVNode("view", { class: "input-item" }, [
+            vue.createElementVNode("text", { class: "input-label" }, "手机号"),
+            vue.withDirectives(vue.createElementVNode(
+              "input",
+              {
+                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.formData.phone = $event),
+                type: "number",
+                placeholder: "请输入手机号",
+                class: "text-input",
+                onBlur: _cache[1] || (_cache[1] = (...args) => $options.validatePhone && $options.validatePhone(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ), [
+              [vue.vModelText, $data.formData.phone]
+            ])
+          ]),
+          $data.errors.phone ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 0,
+              class: "error-msg"
+            },
+            vue.toDisplayString($data.errors.phone),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "input-item" }, [
+            vue.createElementVNode("text", { class: "input-label" }, "密码"),
+            vue.withDirectives(vue.createElementVNode(
+              "input",
+              {
+                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.formData.password = $event),
+                type: "password",
+                placeholder: "请输入密码(6-16位)",
+                class: "text-input",
+                onBlur: _cache[3] || (_cache[3] = (...args) => $options.validatePassword && $options.validatePassword(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ), [
+              [vue.vModelText, $data.formData.password]
+            ])
+          ]),
+          $data.errors.password ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 1,
+              class: "error-msg"
+            },
+            vue.toDisplayString($data.errors.password),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "input-item" }, [
+            vue.createElementVNode("text", { class: "input-label" }, "确认密码"),
+            vue.withDirectives(vue.createElementVNode(
+              "input",
+              {
+                "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => $data.formData.passwordConfirm = $event),
+                type: "password",
+                placeholder: "请再次输入密码",
+                class: "text-input",
+                onBlur: _cache[5] || (_cache[5] = (...args) => $options.validatePasswordConfirm && $options.validatePasswordConfirm(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ), [
+              [vue.vModelText, $data.formData.passwordConfirm]
+            ])
+          ]),
+          $data.errors.passwordConfirm ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 2,
+              class: "error-msg"
+            },
+            vue.toDisplayString($data.errors.passwordConfirm),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("button", {
+            class: "register-btn",
+            onClick: _cache[6] || (_cache[6] = (...args) => $options.handleRegister && $options.handleRegister(...args)),
+            disabled: $data.isLoading
+          }, vue.toDisplayString($data.isLoading ? "注册中..." : "注册"), 9, ["disabled"])
+        ]),
+        vue.createElementVNode("view", { class: "divider-section" }, [
+          vue.createElementVNode("view", { class: "divider-line" }),
+          vue.createElementVNode("text", { class: "divider-text" }, "已有账号？"),
+          vue.createElementVNode("view", { class: "divider-line" })
+        ]),
+        vue.createElementVNode("view", { class: "login-section" }, [
+          vue.createElementVNode("text", null, [
+            vue.createElementVNode("text", {
+              class: "link",
+              onClick: _cache[7] || (_cache[7] = (...args) => $options.goToLogin && $options.goToLogin(...args))
+            }, "返回登录")
+          ])
+        ])
+      ])
+    ]);
+  }
+  const PagesRegisterRegister = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-bac4a35d"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/register/register.vue"]]);
+  const _sfc_main$k = {
+    data() {
+      return {
+        currentStep: 1,
+        codeCountdown: 0,
+        isVerifying: false,
+        isResetting: false,
+        verifyModel: {
+          phone: "",
+          code: ""
         },
-        rules: {
-          "user.username": [
+        resetModel: {
+          newPassword: "",
+          confirmPassword: ""
+        },
+        verifyRules: {
+          phone: [
             {
               required: true,
               message: "请输入手机号",
@@ -2102,374 +2545,458 @@ if (uni.restoreGlobal) {
               trigger: ["blur"]
             }
           ],
-          "user.password": [
+          code: [
+            {
+              required: true,
+              message: "请输入验证码",
+              trigger: ["change", "blur"]
+            },
+            {
+              len: 6,
+              message: "验证码为6位数字",
+              trigger: ["blur"]
+            }
+          ]
+        },
+        resetRules: {
+          newPassword: [
+            {
+              required: true,
+              message: "请输入新密码",
+              trigger: ["change", "blur"]
+            },
             {
               type: "string",
               min: 6,
               max: 16,
-              required: true,
-              message: "请输入6-16位密码",
+              message: "密码长度6-16位",
               trigger: ["blur"]
             }
-          ]
-        }
-      };
-    },
-    onLoad() {
-    },
-    methods: {
-      async submit() {
-        var _a, _b;
-        try {
-          formatAppLog("log", "at pages/login/login.vue:119", "===== 开始执行登录流程 =====");
-          const validateRes = await this.$refs.loginForm.validate();
-          formatAppLog("log", "at pages/login/login.vue:122", "表单验证结果：", validateRes);
-          if (!validateRes) {
-            formatAppLog("log", "at pages/login/login.vue:124", "表单验证失败，终止登录");
-            return;
-          }
-          const param = this.model.user;
-          formatAppLog("log", "at pages/login/login.vue:130", "登录请求参数：", param);
-          const result = await this.$api.login(param);
-          formatAppLog("log", "at pages/login/login.vue:134", "登录接口完整返回值：", JSON.stringify(result));
-          const isSuccess = result.success || result.code === 200 || result.code === 0;
-          if (isSuccess) {
-            const accessToken = ((_a = result.data) == null ? void 0 : _a.accessToken) || result.token || ((_b = result.data) == null ? void 0 : _b.token);
-            if (!accessToken) {
-              throw new Error(
-                "接口未返回token，字段可能是token/accessToken，请核对"
-              );
-            }
-            uni.setStorageSync("Access-Token", accessToken);
-            formatAppLog("log", "at pages/login/login.vue:153", "Token存储成功：", accessToken);
-            uni.reLaunch({
-              url: "/pages/index/index",
-              // 确认pages.json里的首页路径
-              success: () => {
-                formatAppLog("log", "at pages/login/login.vue:159", "跳转首页成功");
-              },
-              fail: (err) => {
-                formatAppLog("error", "at pages/login/login.vue:162", "跳转首页失败：", err);
-                uni.$u.toast(
-                  "登录成功，但跳转失败，请检查首页路径"
-                );
-              }
-            });
-          } else {
-            const errMsg = result.message || result.msg || "登录失败，账号或密码错误";
-            formatAppLog("log", "at pages/login/login.vue:173", "登录接口返回失败：", errMsg);
-            uni.$u.toast(errMsg);
-          }
-        } catch (error2) {
-          formatAppLog("error", "at pages/login/login.vue:178", "登录流程异常：", error2);
-          uni.$u.toast(
-            `登录失败：${error2.message || "网络异常，请重试"}`
-          );
-        }
-      },
-      register() {
-        uni.$u.route("/pages/register/register");
-      }
-    }
-  };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_avatar = vue.resolveComponent("u-avatar");
-    const _component_u__input = vue.resolveComponent("u--input");
-    const _component_u_form_item = vue.resolveComponent("u-form-item");
-    const _component_u__form = vue.resolveComponent("u--form");
-    const _component_u_button = vue.resolveComponent("u-button");
-    return vue.openBlock(), vue.createElementBlock(
-      "view",
-      {
-        class: vue.normalizeClass(["login", _ctx.containerClasses])
-      },
-      [
-        vue.createElementVNode("view", { class: "container" }, [
-          vue.createElementVNode("view", { class: "logo" }, [
-            vue.createVNode(_component_u_avatar, {
-              src: "/static/logo2.png",
-              shape: "square",
-              size: "100"
-            })
-          ]),
-          vue.createElementVNode("view", { class: "title" }, [
-            vue.createElementVNode(
-              "h2",
-              null,
-              vue.toDisplayString($data.title),
-              1
-              /* TEXT */
-            )
-          ]),
-          vue.createElementVNode("view", { class: "form" }, [
-            vue.createVNode(_component_u__form, {
-              labelPosition: "left",
-              model: $data.model,
-              rules: $data.rules,
-              ref: "loginForm",
-              labelWidth: "80"
-            }, {
-              default: vue.withCtx(() => [
-                vue.createVNode(_component_u_form_item, {
-                  label: "手机号",
-                  prop: "user.username",
-                  borderBottom: "",
-                  customStyle: "margin-bottom: 10px"
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createVNode(_component_u__input, {
-                      placeholder: "请输入手机号",
-                      modelValue: $data.model.user.username,
-                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.model.user.username = $event),
-                      border: "none"
-                    }, null, 8, ["modelValue"])
-                  ]),
-                  _: 1
-                  /* STABLE */
-                }),
-                vue.createVNode(_component_u_form_item, {
-                  label: "密码",
-                  prop: "user.password",
-                  borderBottom: "",
-                  customStyle: "margin: 10px 0"
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createVNode(_component_u__input, {
-                      placeholder: "请输入密码",
-                      modelValue: $data.model.user.password,
-                      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.model.user.password = $event),
-                      border: "none",
-                      password: "",
-                      clearable: ""
-                    }, null, 8, ["modelValue"])
-                  ]),
-                  _: 1
-                  /* STABLE */
-                })
-              ]),
-              _: 1
-              /* STABLE */
-            }, 8, ["model", "rules"]),
-            vue.createVNode(_component_u_button, {
-              type: "success",
-              text: "登录",
-              customStyle: "margin-top: 50px",
-              shape: "circle",
-              onClick: $options.submit
-            }, null, 8, ["onClick"])
-          ]),
-          vue.createElementVNode("view", { class: "footer" }, [
-            vue.createElementVNode("text", {
-              class: "footer-text",
-              onClick: _cache[2] || (_cache[2] = (...args) => $options.register && $options.register(...args))
-            }, "账号注册")
-          ])
-        ])
-      ],
-      2
-      /* CLASS */
-    );
-  }
-  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/login/login.vue"]]);
-  const _sfc_main$k = {
-    data() {
-      let _this = this;
-      return {
-        title: "暖愈心伴",
-        model: {
-          user: {
-            username: "",
-            password: ""
-          }
-        },
-        rules: {
-          "user.username": [
+          ],
+          confirmPassword: [
             {
               required: true,
-              message: "请输入手机号",
+              message: "请确认密码",
               trigger: ["change", "blur"]
             },
             {
               validator: (rule, value, callback) => {
-                return uni.$u.test.mobile(value);
+                if (value === this.resetModel.newPassword) {
+                  callback();
+                } else {
+                  callback(new Error("两次输入密码不一致"));
+                }
               },
-              message: "手机号码不正确",
-              trigger: ["blur"]
-            }
-          ],
-          "user.password": [
-            {
-              type: "string",
-              min: 6,
-              max: 16,
-              required: true,
-              message: "请输入6-16位密码",
-              trigger: ["blur"]
-            }
-          ],
-          "user.passwordVerify": [
-            {
-              type: "string",
-              min: 6,
-              max: 16,
-              required: true,
-              message: "请输入6-16位确认密码",
-              trigger: ["blur"]
-            },
-            {
-              validator: (rule, value, callback) => {
-                return value === _this.model.user.password;
-              },
-              message: "两次密码不一致",
               trigger: ["blur"]
             }
           ]
         }
       };
     },
-    onLoad() {
+    computed: {
+      containerClasses() {
+        if (this.$themeManager) {
+          const theme = this.$themeManager.getTheme();
+          return theme === "dark" ? "dark-mode" : "";
+        }
+        return "";
+      },
+      codeButtonText() {
+        return this.codeCountdown > 0 ? `${this.codeCountdown}s` : "发送验证码";
+      },
+      strengthText() {
+        const password = this.resetModel.newPassword;
+        if (!password)
+          return "";
+        if (password.length < 6)
+          return "弱";
+        if (this.hasLetters && this.hasNumbers)
+          return "强";
+        return "中等";
+      },
+      hasMinLength() {
+        return this.resetModel.newPassword.length >= 6 && this.resetModel.newPassword.length <= 16;
+      },
+      hasLetters() {
+        return /[a-zA-Z]/.test(this.resetModel.newPassword);
+      },
+      hasNumbers() {
+        return /[0-9]/.test(this.resetModel.newPassword);
+      }
     },
     methods: {
-      // 注册提交
-      submit() {
-        this.$refs.registerForm.validate().then((res) => {
-          let param = this.model.user;
-          this.$api.register(param).then((res2) => {
-            if (res2.success) {
-              uni.$u.toast("注册成功");
-              setTimeout(() => {
-                uni.$u.route("/pages/login/login");
-              }, 1e3);
-            } else {
-              uni.$u.toast(res2.message);
-            }
-          });
-        });
+      goBack() {
+        uni.navigateBack();
       },
-      // 已有账号
-      hasAccount() {
-        uni.$u.route("/pages/login/login");
+      async sendCode() {
+        try {
+          const validateRes = await this.$refs.verifyForm.validate();
+          if (!validateRes) {
+            return;
+          }
+          uni.$u.toast("验证码已发送到您的手机");
+          this.startCountdown();
+        } catch (error2) {
+          uni.$u.toast("发送验证码失败，请重试");
+        }
+      },
+      startCountdown() {
+        this.codeCountdown = 60;
+        const timer = setInterval(() => {
+          this.codeCountdown--;
+          if (this.codeCountdown === 0) {
+            clearInterval(timer);
+          }
+        }, 1e3);
+      },
+      async verifyIdentity() {
+        try {
+          this.isVerifying = true;
+          const validateRes = await this.$refs.verifyForm.validate();
+          if (!validateRes) {
+            this.isVerifying = false;
+            return;
+          }
+          formatAppLog("log", "at pages/login/forgot-password.vue:354", "验证信息：", this.verifyModel);
+          uni.$u.toast("身份验证成功");
+          this.currentStep = 2;
+        } catch (error2) {
+          uni.$u.toast("验证失败，请检查信息后重试");
+        } finally {
+          this.isVerifying = false;
+        }
+      },
+      getPasswordStrength(level) {
+        const password = this.resetModel.newPassword;
+        if (!password || password.length < 6)
+          return "";
+        let strength = 0;
+        if (/[a-z]/.test(password))
+          strength++;
+        if (/[A-Z]/.test(password))
+          strength++;
+        if (/[0-9]/.test(password))
+          strength++;
+        if (level <= strength) {
+          return strength >= 3 ? "strong" : strength >= 2 ? "medium" : "weak";
+        }
+        return "";
+      },
+      async resetPassword() {
+        try {
+          this.isResetting = true;
+          const validateRes = await this.$refs.resetForm.validate();
+          if (!validateRes) {
+            this.isResetting = false;
+            return;
+          }
+          formatAppLog("log", "at pages/login/forgot-password.vue:391", "重置密码信息：", this.resetModel);
+          uni.$u.toast("密码重置成功");
+          this.currentStep = 3;
+        } catch (error2) {
+          uni.$u.toast("密码重置失败，请重试");
+        } finally {
+          this.isResetting = false;
+        }
+      },
+      goToLogin() {
+        uni.reLaunch({
+          url: "/pages/login/login"
+        });
       }
     }
   };
   function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_u_avatar = vue.resolveComponent("u-avatar");
     const _component_u__input = vue.resolveComponent("u--input");
     const _component_u_form_item = vue.resolveComponent("u-form-item");
-    const _component_u__form = vue.resolveComponent("u--form");
     const _component_u_button = vue.resolveComponent("u-button");
+    const _component_u__form = vue.resolveComponent("u--form");
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
-        class: vue.normalizeClass(["register", _ctx.containerClasses])
+        class: vue.normalizeClass(["forgot-password-page", $options.containerClasses])
       },
       [
+        vue.createElementVNode("view", { class: "nav-header" }, [
+          vue.createElementVNode("text", {
+            class: "nav-back",
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.goBack && $options.goBack(...args))
+          }, "← 返回"),
+          vue.createElementVNode("text", { class: "nav-title" }, "找回密码"),
+          vue.createElementVNode("view", { class: "nav-placeholder" })
+        ]),
         vue.createElementVNode("view", { class: "container" }, [
-          vue.createElementVNode("view", { class: "logo" }, [
-            vue.createVNode(_component_u_avatar, {
-              src: "/static/logo2.png",
-              shape: "square",
-              size: "100"
-            })
-          ]),
-          vue.createElementVNode("view", { class: "title" }, [
+          vue.createElementVNode("view", { class: "steps" }, [
             vue.createElementVNode(
-              "h2",
+              "view",
+              {
+                class: vue.normalizeClass(["step", { active: $data.currentStep >= 1 }])
+              },
+              [
+                vue.createElementVNode("text", { class: "step-number" }, "1"),
+                vue.createElementVNode("text", { class: "step-label" }, "验证身份")
+              ],
+              2
+              /* CLASS */
+            ),
+            vue.createElementVNode(
+              "view",
+              {
+                class: vue.normalizeClass(["step-divider", { active: $data.currentStep >= 2 }])
+              },
               null,
-              vue.toDisplayString($data.title),
-              1
-              /* TEXT */
+              2
+              /* CLASS */
+            ),
+            vue.createElementVNode(
+              "view",
+              {
+                class: vue.normalizeClass(["step", { active: $data.currentStep >= 2 }])
+              },
+              [
+                vue.createElementVNode("text", { class: "step-number" }, "2"),
+                vue.createElementVNode("text", { class: "step-label" }, "重置密码")
+              ],
+              2
+              /* CLASS */
             )
           ]),
-          vue.createElementVNode("view", { class: "form" }, [
-            vue.createVNode(_component_u__form, {
-              labelPosition: "left",
-              model: $data.model,
-              rules: $data.rules,
-              ref: "registerForm",
-              labelWidth: "80"
-            }, {
-              default: vue.withCtx(() => [
-                vue.createVNode(_component_u_form_item, {
-                  label: "手机号",
-                  prop: "user.username",
-                  borderBottom: "",
-                  customStyle: "margin-bottom: 10px"
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createVNode(_component_u__input, {
-                      placeholder: "请输入手机号",
-                      modelValue: $data.model.user.username,
-                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.model.user.username = $event),
-                      border: "none"
-                    }, null, 8, ["modelValue"])
-                  ]),
-                  _: 1
-                  /* STABLE */
-                }),
-                vue.createVNode(_component_u_form_item, {
-                  label: "密码",
-                  prop: "user.password",
-                  borderBottom: "",
-                  customStyle: "margin: 10px 0"
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createVNode(_component_u__input, {
-                      placeholder: "请输入密码",
-                      modelValue: $data.model.user.password,
-                      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.model.user.password = $event),
-                      border: "none",
-                      password: "",
-                      clearable: ""
-                    }, null, 8, ["modelValue"])
-                  ]),
-                  _: 1
-                  /* STABLE */
-                }),
-                vue.createVNode(_component_u_form_item, {
-                  label: "确认密码",
-                  prop: "user.passwordVerify",
-                  borderBottom: "",
-                  customStyle: "margin: 10px 0"
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createVNode(_component_u__input, {
-                      placeholder: "请确认密码",
-                      modelValue: $data.model.user.passwordVerify,
-                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.model.user.passwordVerify = $event),
-                      border: "none",
-                      password: "",
-                      clearable: ""
-                    }, null, 8, ["modelValue"])
-                  ]),
-                  _: 1
-                  /* STABLE */
-                })
+          $data.currentStep === 1 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "step-content"
+          }, [
+            vue.createElementVNode("text", { class: "step-title" }, "验证您的身份"),
+            vue.createElementVNode("text", { class: "step-desc" }, "请输入注册时使用的手机号，我们将发送验证码到您的手机"),
+            vue.createElementVNode("view", { class: "form" }, [
+              vue.createVNode(_component_u__form, {
+                labelPosition: "left",
+                model: $data.verifyModel,
+                rules: $data.verifyRules,
+                ref: "verifyForm",
+                labelWidth: "70"
+              }, {
+                default: vue.withCtx(() => [
+                  vue.createVNode(_component_u_form_item, {
+                    label: "手机号",
+                    prop: "phone",
+                    borderBottom: "",
+                    customStyle: "margin-bottom: 25px"
+                  }, {
+                    default: vue.withCtx(() => [
+                      vue.createVNode(_component_u__input, {
+                        placeholder: "请输入注册手机号",
+                        modelValue: $data.verifyModel.phone,
+                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.verifyModel.phone = $event),
+                        border: "none",
+                        type: "number",
+                        prefixIcon: "phone"
+                      }, null, 8, ["modelValue"])
+                    ]),
+                    _: 1
+                    /* STABLE */
+                  }),
+                  vue.createVNode(_component_u_form_item, {
+                    label: "验证码",
+                    prop: "code",
+                    borderBottom: "",
+                    customStyle: "margin-bottom: 25px"
+                  }, {
+                    default: vue.withCtx(() => [
+                      vue.createElementVNode("view", { class: "code-input" }, [
+                        vue.createVNode(_component_u__input, {
+                          placeholder: "请输入验证码",
+                          modelValue: $data.verifyModel.code,
+                          "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.verifyModel.code = $event),
+                          border: "none",
+                          type: "number",
+                          style: { "flex": "1" }
+                        }, null, 8, ["modelValue"]),
+                        vue.createVNode(_component_u_button, {
+                          type: "info",
+                          size: "small",
+                          text: $options.codeButtonText,
+                          disabled: $data.codeCountdown > 0,
+                          onClick: $options.sendCode,
+                          customStyle: "min-width: 120rpx"
+                        }, null, 8, ["text", "disabled", "onClick"])
+                      ])
+                    ]),
+                    _: 1
+                    /* STABLE */
+                  })
+                ]),
+                _: 1
+                /* STABLE */
+              }, 8, ["model", "rules"]),
+              vue.createVNode(_component_u_button, {
+                type: "success",
+                text: "下一步",
+                loading: $data.isVerifying,
+                onClick: $options.verifyIdentity,
+                customStyle: "margin-top: 35px"
+              }, null, 8, ["loading", "onClick"])
+            ])
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.currentStep === 2 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 1,
+            class: "step-content"
+          }, [
+            vue.createElementVNode("text", { class: "step-title" }, "设置新密码"),
+            vue.createElementVNode("text", { class: "step-desc" }, "请输入您的新密码，密码需要6-16位"),
+            vue.createElementVNode("view", { class: "form" }, [
+              vue.createVNode(_component_u__form, {
+                labelPosition: "left",
+                model: $data.resetModel,
+                rules: $data.resetRules,
+                ref: "resetForm",
+                labelWidth: "70"
+              }, {
+                default: vue.withCtx(() => [
+                  vue.createVNode(_component_u_form_item, {
+                    label: "新密码",
+                    prop: "newPassword",
+                    borderBottom: "",
+                    customStyle: "margin-bottom: 25px"
+                  }, {
+                    default: vue.withCtx(() => [
+                      vue.createVNode(_component_u__input, {
+                        placeholder: "请输入6-16位新密码",
+                        modelValue: $data.resetModel.newPassword,
+                        "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => $data.resetModel.newPassword = $event),
+                        border: "none",
+                        password: "",
+                        clearable: "",
+                        prefixIcon: "lock"
+                      }, null, 8, ["modelValue"])
+                    ]),
+                    _: 1
+                    /* STABLE */
+                  }),
+                  vue.createVNode(_component_u_form_item, {
+                    label: "确认密码",
+                    prop: "confirmPassword",
+                    borderBottom: "",
+                    customStyle: "margin-bottom: 25px"
+                  }, {
+                    default: vue.withCtx(() => [
+                      vue.createVNode(_component_u__input, {
+                        placeholder: "请再次输入密码",
+                        modelValue: $data.resetModel.confirmPassword,
+                        "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => $data.resetModel.confirmPassword = $event),
+                        border: "none",
+                        password: "",
+                        clearable: "",
+                        prefixIcon: "lock"
+                      }, null, 8, ["modelValue"])
+                    ]),
+                    _: 1
+                    /* STABLE */
+                  })
+                ]),
+                _: 1
+                /* STABLE */
+              }, 8, ["model", "rules"]),
+              vue.createElementVNode("view", { class: "password-strength" }, [
+                vue.createElementVNode("text", { class: "strength-label" }, "密码强度："),
+                vue.createElementVNode("view", { class: "strength-bars" }, [
+                  (vue.openBlock(), vue.createElementBlock(
+                    vue.Fragment,
+                    null,
+                    vue.renderList(3, (i) => {
+                      return vue.createElementVNode(
+                        "view",
+                        {
+                          key: i,
+                          class: vue.normalizeClass([
+                            "strength-bar",
+                            $options.getPasswordStrength(i)
+                          ])
+                        },
+                        null,
+                        2
+                        /* CLASS */
+                      );
+                    }),
+                    64
+                    /* STABLE_FRAGMENT */
+                  ))
+                ]),
+                vue.createElementVNode(
+                  "text",
+                  { class: "strength-text" },
+                  vue.toDisplayString($options.strengthText),
+                  1
+                  /* TEXT */
+                )
               ]),
-              _: 1
-              /* STABLE */
-            }, 8, ["model", "rules"]),
+              vue.createElementVNode("view", { class: "password-requirements" }, [
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: vue.normalizeClass(["requirement", { met: $options.hasMinLength }])
+                  },
+                  [
+                    vue.createElementVNode("text", { class: "check-icon" }, "✓"),
+                    vue.createElementVNode("text", { class: "requirement-text" }, "6-16个字符")
+                  ],
+                  2
+                  /* CLASS */
+                ),
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: vue.normalizeClass(["requirement", { met: $options.hasLetters }])
+                  },
+                  [
+                    vue.createElementVNode("text", { class: "check-icon" }, "✓"),
+                    vue.createElementVNode("text", { class: "requirement-text" }, "包含字母")
+                  ],
+                  2
+                  /* CLASS */
+                ),
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: vue.normalizeClass(["requirement", { met: $options.hasNumbers }])
+                  },
+                  [
+                    vue.createElementVNode("text", { class: "check-icon" }, "✓"),
+                    vue.createElementVNode("text", { class: "requirement-text" }, "包含数字")
+                  ],
+                  2
+                  /* CLASS */
+                )
+              ]),
+              vue.createVNode(_component_u_button, {
+                type: "success",
+                text: "重置密码",
+                loading: $data.isResetting,
+                onClick: $options.resetPassword,
+                customStyle: "margin-top: 35px"
+              }, null, 8, ["loading", "onClick"])
+            ])
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.currentStep === 3 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 2,
+            class: "step-content success"
+          }, [
+            vue.createElementVNode("view", { class: "success-icon" }, "✓"),
+            vue.createElementVNode("text", { class: "success-title" }, "密码重置成功!"),
+            vue.createElementVNode("text", { class: "success-desc" }, "您的密码已成功重置，请使用新密码登录"),
             vue.createVNode(_component_u_button, {
-              type: "primary",
-              text: "注册",
-              customStyle: "margin-top: 50px",
-              shape: "circle",
-              onClick: $options.submit
+              type: "success",
+              text: "返回登录",
+              onClick: $options.goToLogin,
+              customStyle: "margin-top: 50px"
             }, null, 8, ["onClick"])
-          ]),
-          vue.createElementVNode("view", { class: "footer" }, [
-            vue.createElementVNode("text", {
-              class: "footer-text",
-              onClick: _cache[3] || (_cache[3] = (...args) => $options.hasAccount && $options.hasAccount(...args))
-            }, "已有账号")
-          ])
+          ])) : vue.createCommentVNode("v-if", true)
         ])
       ],
       2
       /* CLASS */
     );
   }
-  const PagesRegisterRegister = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/register/register.vue"]]);
+  const PagesLoginForgotPassword = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-962ceba2"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/login/forgot-password.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -2845,7 +3372,7 @@ if (uni.restoreGlobal) {
       [vue.vShow, $data.isShow]
     ]) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__file", "C:/Users/while/Desktop/Warm-Mate/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__file", "C:/Users/18354/Desktop/Warm-Mate/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
   const _sfc_main$i = {
     name: "uniPopup",
     components: {},
@@ -3242,7 +3769,7 @@ if (uni.restoreGlobal) {
       [vue.vShow, $data.showPopup]
     ]) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/while/Desktop/Warm-Mate/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
   const _sfc_main$h = {
     data() {
       return {
@@ -3547,7 +4074,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestIndex = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/index.vue"]]);
+  const PagesPhq7TestIndex = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/index.vue"]]);
   const _imports_0 = "/static/icons/check-circle.png";
   const _sfc_main$g = {
     data() {
@@ -4089,7 +4616,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestDoTest = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/do-test.vue"]]);
+  const PagesPhq7TestDoTest = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/do-test.vue"]]);
   const _sfc_main$f = {
     data() {
       return {
@@ -4508,7 +5035,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestHistory = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/history.vue"]]);
+  const PagesPhq7TestHistory = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/history.vue"]]);
   const _sfc_main$e = {
     data() {
       return {
@@ -5021,7 +5548,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestGad7 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/gad7.vue"]]);
+  const PagesPhq7TestGad7 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/gad7.vue"]]);
   const _sfc_main$d = {
     data() {
       return {
@@ -5620,7 +6147,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestCpss = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/cpss.vue"]]);
+  const PagesPhq7TestCpss = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/cpss.vue"]]);
   const _sfc_main$c = {
     data() {
       return {
@@ -6277,7 +6804,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestUcla = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/ucla.vue"]]);
+  const PagesPhq7TestUcla = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/ucla.vue"]]);
   const _sfc_main$b = {
     data() {
       return {
@@ -6790,7 +7317,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestPsqi = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/psqi.vue"]]);
+  const PagesPhq7TestPsqi = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/psqi.vue"]]);
   const _sfc_main$a = {
     data() {
       return {
@@ -7337,7 +7864,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPhq7TestSds = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/phq7-test/sds.vue"]]);
+  const PagesPhq7TestSds = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/phq7-test/sds.vue"]]);
   const _sfc_main$9 = {
     data() {
       return {
@@ -7838,7 +8365,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesHealthIndex = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/health/index.vue"]]);
+  const PagesHealthIndex = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/health/index.vue"]]);
   const _sfc_main$8 = {
     data() {
       return {
@@ -8612,7 +9139,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPsychologistIndex = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/psychologist/index.vue"]]);
+  const PagesPsychologistIndex = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/psychologist/index.vue"]]);
   const _sfc_main$7 = {
     data() {
       return {
@@ -9024,7 +9551,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPsychologistAppointment = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/psychologist/appointment.vue"]]);
+  const PagesPsychologistAppointment = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/psychologist/appointment.vue"]]);
   const _sfc_main$6 = {
     data() {
       return {
@@ -9405,7 +9932,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const PagesPsychologistRecord = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/psychologist/record.vue"]]);
+  const PagesPsychologistRecord = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/psychologist/record.vue"]]);
   const _sfc_main$5 = {
     data() {
       return {
@@ -9643,7 +10170,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesUserIndex = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-79e6a490"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/user/index.vue"]]);
+  const PagesUserIndex = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-79e6a490"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/user/index.vue"]]);
   const _sfc_main$4 = {
     data() {
       return {
@@ -9980,7 +10507,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesUserSettings = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__scopeId", "data-v-ce914230"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/user/settings.vue"]]);
+  const PagesUserSettings = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__scopeId", "data-v-ce914230"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/user/settings.vue"]]);
   const _sfc_main$3 = {
     methods: {
       goBack() {
@@ -10161,7 +10688,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesHelpIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__scopeId", "data-v-e6af2099"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/help/index.vue"]]);
+  const PagesHelpIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__scopeId", "data-v-e6af2099"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/help/index.vue"]]);
   const _sfc_main$2 = {
     data() {
       return {
@@ -10429,7 +10956,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesFeedbackIndex = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-2aa7bac2"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/feedback/index.vue"]]);
+  const PagesFeedbackIndex = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-2aa7bac2"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/feedback/index.vue"]]);
   const _sfc_main$1 = {
     data() {
       return {};
@@ -10500,11 +11027,12 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const PagesAboutIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__scopeId", "data-v-415a4f9d"], ["__file", "C:/Users/while/Desktop/Warm-Mate/pages/about/index.vue"]]);
+  const PagesAboutIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__scopeId", "data-v-415a4f9d"], ["__file", "C:/Users/18354/Desktop/Warm-Mate/pages/about/index.vue"]]);
   __definePage("pages/index/index", PagesIndexIndex);
   __definePage("pages/message/message", PagesMessageMessage);
   __definePage("pages/login/login", PagesLoginLogin);
   __definePage("pages/register/register", PagesRegisterRegister);
+  __definePage("pages/login/forgot-password", PagesLoginForgotPassword);
   __definePage("pages/phq7-test/index", PagesPhq7TestIndex);
   __definePage("pages/phq7-test/do-test", PagesPhq7TestDoTest);
   __definePage("pages/phq7-test/history", PagesPhq7TestHistory);
@@ -10539,7 +11067,7 @@ if (uni.restoreGlobal) {
       formatAppLog("log", "at App.vue:17", "App Hide");
     }
   };
-  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/while/Desktop/Warm-Mate/App.vue"]]);
+  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/18354/Desktop/Warm-Mate/App.vue"]]);
   function getDefaultExportFromCjs(x) {
     return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
   }
