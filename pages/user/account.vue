@@ -10,6 +10,26 @@
         <view class="account-section">
             <view class="section-title">基本信息</view>
 
+            <!-- 头像 -->
+            <view class="account-item avatar-item">
+                <view class="item-label">
+                    <text class="label-text">头像</text>
+                </view>
+                <view class="item-content avatar-content">
+                    <view v-if="accountInfo.avatar_url" class="avatar-image-wrapper" style="border-radius: 50%; overflow: hidden; width: 80rpx; height: 80rpx; border: 2rpx solid #ddd; display: flex; align-items: center; justify-content: center;">
+                        <image :src="accountInfo.avatar_url" mode="aspectFill" style="width: 100%; height: 100%; border-radius: 50%;" />
+                    </view>
+                    <view v-else class="avatar-placeholder">
+                        <text class="placeholder-text">无头像</text>
+                    </view>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="chooseAvatar">
+                        上传
+                    </button>
+                </view>
+            </view>
+
             <!-- 用户名 -->
             <view class="account-item">
                 <view class="item-label">
@@ -238,6 +258,9 @@
                 </view>
             </view>
         </view>
+
+        <!-- 隐藏的 canvas，用于图片转换 -->
+        <canvas id="temp-canvas" style="display: none; width: 200px; height: 200px;"></canvas>
     </view>
 </template>
 
@@ -249,6 +272,7 @@ export default {
                 username: "",
                 email: "",
                 phone: "",
+                avatar_url: "",
             },
             emailInput: "",
             phoneInput: "",
@@ -284,6 +308,7 @@ export default {
     },
     methods: {
         loadAccountInfo() {
+            // 先从缓存加载，然后从服务器同步最新数据
             try {
                 const userInfo = uni.getStorageSync("userInfo");
                 if (userInfo) {
@@ -291,11 +316,46 @@ export default {
                         username: userInfo.username || "",
                         email: userInfo.email || "",
                         phone: userInfo.phone || "",
+                        avatar_url: userInfo.avatar_url || "",
                     };
                 }
             } catch (e) {
                 console.error("加载账号信息失败", e);
             }
+            
+            // 从服务器同步最新的用户信息
+            this.syncUserInfoFromServer();
+        },
+        syncUserInfoFromServer() {
+            // 从服务器获取最新的用户信息
+            this.$api.account.getAccountInfo()
+                .then(res => {
+                    if (res && res.code === 200 && res.data) {
+                        // 更新本地信息
+                        this.accountInfo = {
+                            username: res.data.username || "",
+                            email: res.data.email || "",
+                            phone: res.data.phone || "",
+                            avatar_url: res.data.avatar_url || "",
+                        };
+                        
+                        // 更新缓存
+                        const userInfo = uni.getStorageSync("userInfo");
+                        if (userInfo) {
+                            userInfo.username = res.data.username;
+                            userInfo.email = res.data.email;
+                            userInfo.phone = res.data.phone;
+                            userInfo.avatar_url = res.data.avatar_url;
+                            uni.setStorageSync("userInfo", userInfo);
+                        }
+                        
+                        console.log("用户信息已从服务器同步");
+                    }
+                })
+                .catch(err => {
+                    console.error("同步用户信息失败", err);
+                    // 不显示错误提示，只在控制台记录
+                });
         },
         validateUsername() {
             if (!this.accountInfo.username.trim()) {
@@ -604,6 +664,239 @@ export default {
             if (err.statusText) return err.statusText;
             if (err.errMsg) return err.errMsg;
             return "操作失败";
+        },
+        chooseAvatar() {
+            console.log("chooseAvatar - 检测环境");
+            
+            // 检测是否是浏览器环境（H5）
+            const isH5 = process.env.VUE_APP_PLATFORM === 'h5' || 
+                        (typeof window !== 'undefined' && typeof document !== 'undefined' && !uni.getSystemInfoSync().platform);
+            
+            console.log("isH5:", isH5);
+            
+            if (isH5) {
+                console.log("使用 H5 file input");
+                this.chooseAvatarWeb();
+            } else {
+                console.log("使用 uni.chooseImage");
+                this.chooseAvatarNative();
+            }
+        },
+        chooseAvatarWeb() {
+            // 浏览器环境：使用 HTML5 file input
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    this.convertImageToBase64Web(file);
+                }
+            };
+            input.click();
+        },
+        chooseAvatarNative() {
+            // 原生 App 环境 + 小程序
+            uni.chooseImage({
+                count: 1,
+                sizeType: ['compressed'],
+                sourceType: ['album', 'camera'],
+                success: (res) => {
+                    const tempFilePath = res.tempFilePaths[0];
+                    console.log("选择图片成功:", tempFilePath);
+                    // 直接上传文件，不转换为 Base64
+                    this.uploadAvatarAsFile(tempFilePath);
+                },
+                fail: (err) => {
+                    console.error("选择图片失败", err);
+                }
+            });
+        },
+        uploadAvatarAsFile(filePath) {
+            // 直接上传文件到服务器
+            uni.showLoading({
+                title: "上传中...",
+            });
+            
+            console.log("开始上传文件:", filePath);
+            
+            // 获取 token
+            const token = uni.getStorageSync("Access-Token");
+            
+            // 获取完整的服务器 URL
+            const env = require('@/common/config/env.js').default;
+            const uploadUrl = env.baseUrl + '/user/avatar/file';
+            
+            console.log("上传地址:", uploadUrl);
+            
+            uni.uploadFile({
+                url: uploadUrl,
+                filePath: filePath,
+                name: 'avatar',
+                header: {
+                    'Access-Token': token
+                },
+                success: (res) => {
+                    uni.hideLoading();
+                    console.log("上传响应状态码:", res.statusCode);
+                    console.log("上传响应数据:", res.data);
+                    
+                    if (res.statusCode === 200) {
+                        const data = JSON.parse(res.data);
+                        if (data && data.code === 200) {
+                            // 显示返回的图片 URL（如果后端支持的话）
+                            // 或者直接显示本地文件
+                            this.accountInfo.avatar_url = data.data?.avatar_url || filePath;
+                            
+                            // 更新缓存
+                            const userInfo = uni.getStorageSync("userInfo");
+                            if (userInfo) {
+                                userInfo.avatar_url = data.data?.avatar_url || filePath;
+                                uni.setStorageSync("userInfo", userInfo);
+                            }
+                            
+                            uni.showToast({
+                                title: "头像上传成功",
+                                icon: "success",
+                            });
+                        } else {
+                            uni.showToast({
+                                title: data?.message || "上传失败",
+                                icon: "none",
+                            });
+                        }
+                    } else {
+                        console.error("HTTP 错误:", res.statusCode);
+                        uni.showToast({
+                            title: "上传失败，请重试",
+                            icon: "none",
+                        });
+                    }
+                },
+                fail: (err) => {
+                    uni.hideLoading();
+                    console.error("上传失败详情:", err);
+                    uni.showToast({
+                        title: "网络错误，请检查连接",
+                        icon: "none",
+                    });
+                }
+            });
+        },
+        convertImageToBase64Web(file) {
+            // 浏览器环境：使用 FileReader
+            uni.showLoading({
+                title: "处理中...",
+            });
+            
+            console.log("准备读取文件:", file.name);
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                console.log("读取成功");
+                uni.hideLoading();
+                const avatarDataUrl = e.target.result;
+                console.log("base64 URL已生成，长度:", avatarDataUrl.length);
+                this.uploadAvatarToServer(avatarDataUrl);
+            };
+            reader.onerror = (err) => {
+                console.error("读取文件失败:", err);
+                uni.hideLoading();
+                uni.showToast({
+                    title: "读取文件失败",
+                    icon: "none",
+                });
+            };
+            reader.readAsDataURL(file);
+        },
+        convertImageToBase64Native(filePath) {
+            // 原生 App 环境
+            uni.showLoading({
+                title: "处理中...",
+            });
+            
+            console.log("准备读取文件:", filePath);
+            
+            try {
+                const fileSystemManager = uni.getFileSystemManager();
+                console.log("获取文件系统管理器成功");
+                
+                fileSystemManager.readFile({
+                    filePath: filePath,
+                    encoding: 'base64',
+                    success: (res) => {
+                        console.log("readFile success, data length:", res.data.length);
+                        uni.hideLoading();
+                        const base64Data = res.data;
+                        // 获取文件类型
+                        const ext = filePath.split('.').pop().toLowerCase();
+                        let mimeType = 'image/jpeg';
+                        if (ext === 'png') {
+                            mimeType = 'image/png';
+                        } else if (ext === 'gif') {
+                            mimeType = 'image/gif';
+                        } else if (ext === 'webp') {
+                            mimeType = 'image/webp';
+                        }
+                        
+                        const avatarDataUrl = `data:${mimeType};base64,${base64Data}`;
+                        console.log("base64 URL已生成，长度:", avatarDataUrl.length);
+                        this.uploadAvatarToServer(avatarDataUrl);
+                    },
+                    fail: (err) => {
+                        console.error("readFile fail:", err);
+                        uni.hideLoading();
+                        uni.showToast({
+                            title: "读取文件失败",
+                            icon: "none",
+                        });
+                    }
+                });
+            } catch(e) {
+                console.error("获取文件系统管理器失败:", e);
+                uni.hideLoading();
+                uni.showToast({
+                    title: "系统不支持",
+                    icon: "none",
+                });
+            }
+        },
+        uploadAvatarToServer(avatarDataUrl) {
+            uni.showLoading({
+                title: "上传中...",
+            });
+            
+            this.$api.account.uploadAvatar(avatarDataUrl)
+                .then(res => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        // 更新本地显示
+                        this.accountInfo.avatar_url = avatarDataUrl;
+                        // 更新缓存中的用户信息
+                        const userInfo = uni.getStorageSync("userInfo");
+                        if (userInfo) {
+                            userInfo.avatar_url = res.data?.avatar_url || avatarDataUrl;
+                            uni.setStorageSync("userInfo", userInfo);
+                        }
+                        uni.showToast({
+                            title: "头像上传成功",
+                            icon: "success",
+                        });
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "上传失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch(err => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
+                    console.error("上传头像失败", err);
+                });
         }
     }
 };
@@ -788,6 +1081,72 @@ export default {
         .edit-btn {
             margin-top: 16rpx;
             align-self: flex-end;
+        }
+
+        &.avatar-item {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20rpx 0;
+
+            .item-label {
+                margin-bottom: 12rpx;
+            }
+
+            .avatar-content {
+                width: auto;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 16rpx;
+
+                .avatar-image-wrapper {
+                    width: 80rpx;
+                    height: 80rpx;
+                    border-radius: 50%;
+                    border: 2rpx solid #ddd;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .dark-mode & {
+                        border-color: #666;
+                    }
+
+                    .avatar-image {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+
+                .avatar-placeholder {
+                    width: 80rpx;
+                    height: 80rpx;
+                    border-radius: 50%;
+                    background-color: #f5f5f5;
+                    border: 2rpx solid #ddd;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    .dark-mode & {
+                        background-color: #333;
+                        border-color: #666;
+                    }
+
+                    .placeholder-text {
+                        font-size: 20rpx;
+                        color: #999;
+
+                        .dark-mode & {
+                            color: #aaa;
+                        }
+                    }
+                }
+            }
         }
     }
 

@@ -17386,7 +17386,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-                    [_vm._v("用户名")]
+                    [_vm._v("头像")]
                   ),
                 ],
                 1
@@ -17395,23 +17395,117 @@ var render = function () {
                 "uni-view",
                 { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
                 [
+                  _vm._$g(10, "i")
+                    ? _c(
+                        "uni-view",
+                        {
+                          staticClass: _vm._$g(10, "sc"),
+                          staticStyle: {
+                            "border-radius": "50%",
+                            overflow: "hidden",
+                            width: "80rpx",
+                            height: "80rpx",
+                            border: "2rpx solid #ddd",
+                            display: "flex",
+                            "align-items": "center",
+                            "justify-content": "center",
+                          },
+                          attrs: { _i: 10 },
+                        },
+                        [
+                          _c("v-uni-image", {
+                            staticStyle: {
+                              width: "100%",
+                              height: "100%",
+                              "border-radius": "50%",
+                            },
+                            attrs: {
+                              src: _vm._$g(11, "a-src"),
+                              mode: "aspectFill",
+                              _i: 11,
+                            },
+                          }),
+                        ],
+                        1
+                      )
+                    : _c(
+                        "uni-view",
+                        { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+                        [
+                          _c(
+                            "v-uni-text",
+                            {
+                              staticClass: _vm._$g(13, "sc"),
+                              attrs: { _i: 13 },
+                            },
+                            [_vm._v("无头像")]
+                          ),
+                        ],
+                        1
+                      ),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                [
+                  _c(
+                    "v-uni-button",
+                    {
+                      staticClass: _vm._$g(15, "sc"),
+                      attrs: { _i: 15 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event)
+                        },
+                      },
+                    },
+                    [_vm._v(" 上传 ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _c(
+            "uni-view",
+            { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+            [
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
+                [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
-                    [_vm._v(_vm._$g(10, "t0-0"))]
+                    { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+                    [_vm._v("用户名")]
                   ),
                 ],
                 1
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+                { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
+                [
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
+                    [_vm._v(_vm._$g(20, "t0-0"))]
+                  ),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
                 [
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(12, "sc"),
-                      attrs: { _i: 12 },
+                      staticClass: _vm._$g(22, "sc"),
+                      attrs: { _i: 22 },
                       on: {
                         click: function ($event) {
                           return _vm.$handleViewEvent($event)
@@ -17428,78 +17522,8 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+            { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
             [
-              _c(
-                "uni-view",
-                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
-                [
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
-                    [_vm._v("注册邮箱")]
-                  ),
-                ],
-                1
-              ),
-              _c(
-                "uni-view",
-                { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
-                [
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
-                    [_vm._v(_vm._$g(17, "t0-0"))]
-                  ),
-                  _vm._$g(18, "i")
-                    ? _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
-                        [_vm._v("✓ 已验证")]
-                      )
-                    : _vm._e(),
-                ],
-                1
-              ),
-              _c(
-                "uni-view",
-                { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-                [
-                  _c(
-                    "v-uni-button",
-                    {
-                      staticClass: _vm._$g(20, "sc"),
-                      attrs: { _i: 20 },
-                      on: {
-                        click: function ($event) {
-                          return _vm.$handleViewEvent($event)
-                        },
-                      },
-                    },
-                    [_vm._v(" " + _vm._$g(20, "t0-0") + " ")]
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
-            [
-              _c(
-                "uni-view",
-                { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
-                [
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
-                    [_vm._v("绑定手机")]
-                  ),
-                ],
-                1
-              ),
               _c(
                 "uni-view",
                 { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
@@ -17507,12 +17531,24 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
-                    [_vm._v(_vm._$g(25, "t0-0"))]
+                    [_vm._v("注册邮箱")]
                   ),
-                  _vm._$g(26, "i")
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                [
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+                    [_vm._v(_vm._$g(27, "t0-0"))]
+                  ),
+                  _vm._$g(28, "i")
                     ? _c(
                         "v-uni-text",
-                        { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                        { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
                         [_vm._v("✓ 已验证")]
                       )
                     : _vm._e(),
@@ -17521,38 +17557,26 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+                { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
                 [
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(28, "sc"),
-                      attrs: { _i: 28 },
+                      staticClass: _vm._$g(30, "sc"),
+                      attrs: { _i: 30 },
                       on: {
                         click: function ($event) {
                           return _vm.$handleViewEvent($event)
                         },
                       },
                     },
-                    [_vm._v(" " + _vm._$g(28, "t0-0") + " ")]
+                    [_vm._v(" " + _vm._$g(30, "t0-0") + " ")]
                   ),
                 ],
                 1
               ),
             ],
             1
-          ),
-        ],
-        1
-      ),
-      _c(
-        "uni-view",
-        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
-        [
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
-            [_vm._v("账号安全")]
           ),
           _c(
             "uni-view",
@@ -17565,7 +17589,7 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
-                    [_vm._v("修改密码")]
+                    [_vm._v("绑定手机")]
                   ),
                 ],
                 1
@@ -17577,6 +17601,76 @@ var render = function () {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
+                    [_vm._v(_vm._$g(35, "t0-0"))]
+                  ),
+                  _vm._$g(36, "i")
+                    ? _c(
+                        "v-uni-text",
+                        { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                        [_vm._v("✓ 已验证")]
+                      )
+                    : _vm._e(),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
+                [
+                  _c(
+                    "v-uni-button",
+                    {
+                      staticClass: _vm._$g(38, "sc"),
+                      attrs: { _i: 38 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event)
+                        },
+                      },
+                    },
+                    [_vm._v(" " + _vm._$g(38, "t0-0") + " ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _c(
+        "uni-view",
+        { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+        [
+          _c(
+            "uni-view",
+            { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
+            [_vm._v("账号安全")]
+          ),
+          _c(
+            "uni-view",
+            { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+            [
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
+                [
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+                    [_vm._v("修改密码")]
+                  ),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+                [
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
                     [_vm._v("定期更新密码保护账号安全")]
                   ),
                 ],
@@ -17584,13 +17678,13 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
                 [
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(37, "sc"),
-                      attrs: { _i: 37 },
+                      staticClass: _vm._$g(47, "sc"),
+                      attrs: { _i: 47 },
                       on: {
                         click: function ($event) {
                           return _vm.$handleViewEvent($event)
@@ -17607,15 +17701,15 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
+            { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
             [
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
+                    { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
                     [_vm._v("登录日志")]
                   ),
                 ],
@@ -17623,11 +17717,11 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+                { staticClass: _vm._$g(51, "sc"), attrs: { _i: 51 } },
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
+                    { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
                     [_vm._v("查看账号的登录历史记录")]
                   ),
                 ],
@@ -17635,13 +17729,13 @@ var render = function () {
               ),
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+                { staticClass: _vm._$g(53, "sc"), attrs: { _i: 53 } },
                 [
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(44, "sc"),
-                      attrs: { _i: 44 },
+                      staticClass: _vm._$g(54, "sc"),
+                      attrs: { _i: 54 },
                       on: {
                         click: function ($event) {
                           return _vm.$handleViewEvent($event)
@@ -17659,118 +17753,6 @@ var render = function () {
         ],
         1
       ),
-      _vm._$g(45, "i")
-        ? _c(
-            "uni-view",
-            {
-              staticClass: _vm._$g(45, "sc"),
-              attrs: { _i: 45 },
-              on: {
-                click: function ($event) {
-                  return _vm.$handleViewEvent($event)
-                },
-              },
-            },
-            [
-              _c(
-                "uni-view",
-                {
-                  staticClass: _vm._$g(46, "sc"),
-                  attrs: { _i: 46 },
-                  on: {
-                    click: function ($event) {
-                      return _vm.$handleViewEvent($event, { stop: true })
-                    },
-                  },
-                },
-                [
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
-                    [
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
-                        [_vm._v("修改用户名")]
-                      ),
-                      _c(
-                        "uni-view",
-                        {
-                          staticClass: _vm._$g(49, "sc"),
-                          attrs: { _i: 49 },
-                          on: {
-                            click: function ($event) {
-                              return _vm.$handleViewEvent($event)
-                            },
-                          },
-                        },
-                        [_vm._v("✕")]
-                      ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
-                    [
-                      _c("v-uni-input", {
-                        staticClass: _vm._$g(51, "sc"),
-                        attrs: {
-                          type: "text",
-                          placeholder: "请输入新用户名",
-                          _i: 51,
-                        },
-                        model: {
-                          value: _vm._$g(51, "v-model"),
-                          callback: function ($$v) {
-                            _vm.$handleVModelEvent(51, $$v)
-                          },
-                          expression: "usernameInput",
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
-                    [
-                      _c(
-                        "v-uni-button",
-                        {
-                          staticClass: _vm._$g(53, "sc"),
-                          attrs: { _i: 53 },
-                          on: {
-                            click: function ($event) {
-                              return _vm.$handleViewEvent($event)
-                            },
-                          },
-                        },
-                        [_vm._v(" 取消 ")]
-                      ),
-                      _c(
-                        "v-uni-button",
-                        {
-                          staticClass: _vm._$g(54, "sc"),
-                          attrs: { _i: 54 },
-                          on: {
-                            click: function ($event) {
-                              return _vm.$handleViewEvent($event)
-                            },
-                          },
-                        },
-                        [_vm._v(" 确认 ")]
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          )
-        : _vm._e(),
       _vm._$g(55, "i")
         ? _c(
             "uni-view",
@@ -17803,7 +17785,7 @@ var render = function () {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(58, "sc"), attrs: { _i: 58 } },
-                        [_vm._v("修改邮箱")]
+                        [_vm._v("修改用户名")]
                       ),
                       _c(
                         "uni-view",
@@ -17829,7 +17811,7 @@ var render = function () {
                         staticClass: _vm._$g(61, "sc"),
                         attrs: {
                           type: "text",
-                          placeholder: "请输入新邮箱地址",
+                          placeholder: "请输入新用户名",
                           _i: 61,
                         },
                         model: {
@@ -17837,7 +17819,7 @@ var render = function () {
                           callback: function ($$v) {
                             _vm.$handleVModelEvent(61, $$v)
                           },
-                          expression: "emailInput",
+                          expression: "usernameInput",
                         },
                       }),
                     ],
@@ -17915,7 +17897,7 @@ var render = function () {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(68, "sc"), attrs: { _i: 68 } },
-                        [_vm._v("修改手机号")]
+                        [_vm._v("修改邮箱")]
                       ),
                       _c(
                         "uni-view",
@@ -17928,7 +17910,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" ✕ ")]
+                        [_vm._v("✕")]
                       ),
                     ],
                     1
@@ -17940,8 +17922,8 @@ var render = function () {
                       _c("v-uni-input", {
                         staticClass: _vm._$g(71, "sc"),
                         attrs: {
-                          type: "number",
-                          placeholder: "请输入新手机号",
+                          type: "text",
+                          placeholder: "请输入新邮箱地址",
                           _i: 71,
                         },
                         model: {
@@ -17949,7 +17931,7 @@ var render = function () {
                           callback: function ($$v) {
                             _vm.$handleVModelEvent(71, $$v)
                           },
-                          expression: "phoneInput",
+                          expression: "emailInput",
                         },
                       }),
                     ],
@@ -18027,13 +18009,125 @@ var render = function () {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(78, "sc"), attrs: { _i: 78 } },
-                        [_vm._v("登录日志")]
+                        [_vm._v("修改手机号")]
                       ),
                       _c(
                         "uni-view",
                         {
                           staticClass: _vm._$g(79, "sc"),
                           attrs: { _i: 79 },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$handleViewEvent($event)
+                            },
+                          },
+                        },
+                        [_vm._v(" ✕ ")]
+                      ),
+                    ],
+                    1
+                  ),
+                  _c(
+                    "uni-view",
+                    { staticClass: _vm._$g(80, "sc"), attrs: { _i: 80 } },
+                    [
+                      _c("v-uni-input", {
+                        staticClass: _vm._$g(81, "sc"),
+                        attrs: {
+                          type: "number",
+                          placeholder: "请输入新手机号",
+                          _i: 81,
+                        },
+                        model: {
+                          value: _vm._$g(81, "v-model"),
+                          callback: function ($$v) {
+                            _vm.$handleVModelEvent(81, $$v)
+                          },
+                          expression: "phoneInput",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _c(
+                    "uni-view",
+                    { staticClass: _vm._$g(82, "sc"), attrs: { _i: 82 } },
+                    [
+                      _c(
+                        "v-uni-button",
+                        {
+                          staticClass: _vm._$g(83, "sc"),
+                          attrs: { _i: 83 },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$handleViewEvent($event)
+                            },
+                          },
+                        },
+                        [_vm._v(" 取消 ")]
+                      ),
+                      _c(
+                        "v-uni-button",
+                        {
+                          staticClass: _vm._$g(84, "sc"),
+                          attrs: { _i: 84 },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$handleViewEvent($event)
+                            },
+                          },
+                        },
+                        [_vm._v(" 确认 ")]
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._$g(85, "i")
+        ? _c(
+            "uni-view",
+            {
+              staticClass: _vm._$g(85, "sc"),
+              attrs: { _i: 85 },
+              on: {
+                click: function ($event) {
+                  return _vm.$handleViewEvent($event)
+                },
+              },
+            },
+            [
+              _c(
+                "uni-view",
+                {
+                  staticClass: _vm._$g(86, "sc"),
+                  attrs: { _i: 86 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$handleViewEvent($event, { stop: true })
+                    },
+                  },
+                },
+                [
+                  _c(
+                    "uni-view",
+                    { staticClass: _vm._$g(87, "sc"), attrs: { _i: 87 } },
+                    [
+                      _c(
+                        "v-uni-text",
+                        { staticClass: _vm._$g(88, "sc"), attrs: { _i: 88 } },
+                        [_vm._v("登录日志")]
+                      ),
+                      _c(
+                        "uni-view",
+                        {
+                          staticClass: _vm._$g(89, "sc"),
+                          attrs: { _i: 89 },
                           on: {
                             click: function ($event) {
                               return _vm.$handleViewEvent($event)
@@ -18047,14 +18141,14 @@ var render = function () {
                   ),
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(80, "sc"), attrs: { _i: 80 } },
+                    { staticClass: _vm._$g(90, "sc"), attrs: { _i: 90 } },
                     [
-                      _vm._$g(81, "i")
+                      _vm._$g(91, "i")
                         ? _c(
                             "v-uni-button",
                             {
-                              staticClass: _vm._$g(81, "sc"),
-                              attrs: { _i: 81 },
+                              staticClass: _vm._$g(91, "sc"),
+                              attrs: { _i: 91 },
                               on: {
                                 click: function ($event) {
                                   return _vm.$handleViewEvent($event)
@@ -18069,84 +18163,87 @@ var render = function () {
                   ),
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(82, "sc"), attrs: { _i: 82 } },
+                    { staticClass: _vm._$g(92, "sc"), attrs: { _i: 92 } },
                     [
-                      _vm._$g(83, "i")
+                      _vm._$g(93, "i")
                         ? _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(83, "sc"),
-                              attrs: { _i: 83 },
+                              staticClass: _vm._$g(93, "sc"),
+                              attrs: { _i: 93 },
                             },
                             [
-                              _c("v-uni-text", { attrs: { _i: 84 } }, [
+                              _c("v-uni-text", { attrs: { _i: 94 } }, [
                                 _vm._v("加载中..."),
                               ]),
                             ],
                             1
                           )
-                        : _vm._$g(85, "e")
+                        : _vm._$g(95, "e")
                         ? _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(85, "sc"),
-                              attrs: { _i: 85 },
+                              staticClass: _vm._$g(95, "sc"),
+                              attrs: { _i: 95 },
                             },
                             [
-                              _c("v-uni-text", { attrs: { _i: 86 } }, [
+                              _c("v-uni-text", { attrs: { _i: 96 } }, [
                                 _vm._v("暂无登录记录"),
                               ]),
                             ],
                             1
                           )
                         : _vm._e(),
-                      _vm._l(_vm._$g(87, "f"), function (log, $10, $20, $30) {
+                      _vm._l(_vm._$g(97, "f"), function (log, $10, $20, $30) {
                         return _c(
                           "uni-view",
                           {
                             key: log,
-                            staticClass: _vm._$g("87-" + $30, "sc"),
-                            attrs: { _i: "87-" + $30 },
+                            staticClass: _vm._$g("97-" + $30, "sc"),
+                            attrs: { _i: "97-" + $30 },
                           },
                           [
                             _c(
                               "uni-view",
                               {
-                                staticClass: _vm._$g("88-" + $30, "sc"),
-                                attrs: { _i: "88-" + $30 },
+                                staticClass: _vm._$g("98-" + $30, "sc"),
+                                attrs: { _i: "98-" + $30 },
                               },
                               [
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("89-" + $30, "sc"),
-                                    attrs: { _i: "89-" + $30 },
+                                    staticClass: _vm._$g("99-" + $30, "sc"),
+                                    attrs: { _i: "99-" + $30 },
                                   },
-                                  [_vm._v(_vm._$g("89-" + $30, "t0-0"))]
+                                  [_vm._v(_vm._$g("99-" + $30, "t0-0"))]
                                 ),
                                 _c(
                                   "uni-view",
                                   {
-                                    staticClass: _vm._$g("90-" + $30, "sc"),
-                                    attrs: { _i: "90-" + $30 },
+                                    staticClass: _vm._$g("100-" + $30, "sc"),
+                                    attrs: { _i: "100-" + $30 },
                                   },
                                   [
                                     _vm._v(
-                                      " " + _vm._$g("90-" + $30, "t0-0") + " "
+                                      " " + _vm._$g("100-" + $30, "t0-0") + " "
                                     ),
                                   ]
                                 ),
-                                _vm._$g("91-" + $30, "i")
+                                _vm._$g("101-" + $30, "i")
                                   ? _c(
                                       "uni-view",
                                       {
-                                        staticClass: _vm._$g("91-" + $30, "sc"),
-                                        attrs: { _i: "91-" + $30 },
+                                        staticClass: _vm._$g(
+                                          "101-" + $30,
+                                          "sc"
+                                        ),
+                                        attrs: { _i: "101-" + $30 },
                                       },
                                       [
                                         _vm._v(
                                           " IP: " +
-                                            _vm._$g("91-" + $30, "t0-0") +
+                                            _vm._$g("101-" + $30, "t0-0") +
                                             " "
                                         ),
                                       ]
@@ -18158,8 +18255,8 @@ var render = function () {
                             _c(
                               "v-uni-button",
                               {
-                                staticClass: _vm._$g("92-" + $30, "sc"),
-                                attrs: { _i: "92-" + $30 },
+                                staticClass: _vm._$g("102-" + $30, "sc"),
+                                attrs: { _i: "102-" + $30 },
                                 on: {
                                   click: function ($event) {
                                     return _vm.$handleViewEvent($event)
@@ -18182,6 +18279,10 @@ var render = function () {
             1
           )
         : _vm._e(),
+      _c("v-uni-canvas", {
+        staticStyle: { display: "none", width: "200px", height: "200px" },
+        attrs: { id: "temp-canvas", _i: 103 },
+      }),
     ],
     1
   )
@@ -18280,7 +18381,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/* uni.scss */\n.account-container[data-v-56ab7ab2] {\n  padding: 20rpx 0;\n  background-color: #f5f5f5;\n  min-height: 100vh;\n}\n.account-container.dark-mode[data-v-56ab7ab2] {\n  background-color: #1a1a1a;\n  color: #fff;\n}\n.page-header[data-v-56ab7ab2] {\n  padding: 40rpx 30rpx 20rpx;\n  text-align: center;\n}\n.page-header .page-title[data-v-56ab7ab2] {\n  display: block;\n  font-size: 36rpx;\n  font-weight: bold;\n  margin-bottom: 10rpx;\n  color: #333;\n}\n.dark-mode .page-header .page-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.page-header .page-desc[data-v-56ab7ab2] {\n  display: block;\n  font-size: 28rpx;\n  color: #999;\n}\n.dark-mode .page-header .page-desc[data-v-56ab7ab2] {\n  color: #ccc;\n}\n.account-section[data-v-56ab7ab2] {\n  margin: 20rpx;\n  background-color: #fff;\n  border-radius: 12rpx;\n  padding: 30rpx;\n}\n.dark-mode .account-section[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.account-section .section-title[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  font-weight: 600;\n  margin-bottom: 20rpx;\n  color: #333;\n}\n.dark-mode .account-section .section-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  padding: 20rpx 0;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .account-item[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.account-item[data-v-56ab7ab2]:last-child {\n  border-bottom: none;\n}\n.account-item .item-label[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  min-width: 120rpx;\n  color: #666;\n}\n.dark-mode .account-item .item-label[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.account-item .item-label .label-text[data-v-56ab7ab2] {\n  font-size: 28rpx;\n}\n.account-item .item-label .label-required[data-v-56ab7ab2] {\n  color: #f5576c;\n  margin-left: 4rpx;\n}\n.account-item .item-content[data-v-56ab7ab2] {\n  flex: 1;\n  margin-left: 20rpx;\n  display: flex;\n  align-items: center;\n}\n.account-item .item-content .account-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .account-item .item-content .account-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.account-item .item-content .email-text[data-v-56ab7ab2],\n.account-item .item-content .phone-text[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n}\n.dark-mode .account-item .item-content .email-text[data-v-56ab7ab2],\n.dark-mode .account-item .item-content .phone-text[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item .item-action[data-v-56ab7ab2] {\n  margin-left: auto;\n}\n.account-item .edit-btn[data-v-56ab7ab2] {\n  padding: 8rpx 20rpx;\n  background-color: #667eea;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.account-item .edit-btn[data-v-56ab7ab2]:active {\n  background-color: #5568d3;\n}\n.account-item.security-item[data-v-56ab7ab2] {\n  flex-direction: column;\n  align-items: flex-start;\n}\n.account-item.security-item .item-left[data-v-56ab7ab2] {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.account-item.security-item .item-left .item-label[data-v-56ab7ab2] {\n  min-width: auto;\n  margin-bottom: 8rpx;\n  color: #333;\n}\n.dark-mode .account-item.security-item .item-left .item-label[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item.security-item .item-left .item-desc[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .account-item.security-item .item-left .item-desc[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.account-item.security-item .edit-btn[data-v-56ab7ab2] {\n  margin-top: 16rpx;\n  align-self: flex-end;\n}\n.account-item .security-text[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .account-item .security-text[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.status-badge[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n  margin-left: 10rpx;\n}\n.status-badge.verified[data-v-56ab7ab2] {\n  background-color: #eef6f5;\n  color: #00a65a;\n}\n.dark-mode .status-badge.verified[data-v-56ab7ab2] {\n  background-color: #1a3a36;\n}\n.status-badge.unbound[data-v-56ab7ab2] {\n  background-color: #fef0f0;\n  color: #f5576c;\n}\n.dark-mode .status-badge.unbound[data-v-56ab7ab2] {\n  background-color: #3a1a1a;\n}\n.modal-overlay[data-v-56ab7ab2] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 999;\n}\n.modal-overlay .modal-content[data-v-56ab7ab2] {\n  background-color: #fff;\n  border-radius: 12rpx;\n  padding: 0;\n  max-width: 95%;\n  width: 500rpx;\n  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);\n}\n.dark-mode .modal-overlay .modal-content[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.modal-overlay .modal-content .modal-header[data-v-56ab7ab2] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 20rpx;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay .modal-content .modal-header[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.modal-overlay .modal-content .modal-header .modal-title[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #333;\n}\n.dark-mode .modal-overlay .modal-content .modal-header .modal-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-header .modal-close[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  color: #999;\n  cursor: pointer;\n}\n.modal-overlay .modal-content .modal-body[data-v-56ab7ab2] {\n  padding: 20rpx;\n}\n.modal-overlay .modal-content .modal-body .modal-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .modal-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-body .form-group[data-v-56ab7ab2] {\n  margin-bottom: 16rpx;\n}\n.modal-overlay .modal-content .modal-body .form-group .form-label[data-v-56ab7ab2] {\n  display: block;\n  font-size: 24rpx;\n  color: #666;\n  margin-bottom: 8rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .form-group .form-label[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.modal-overlay .modal-content .modal-body .form-group .form-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .form-group .form-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section[data-v-56ab7ab2] {\n  display: flex;\n  gap: 10rpx;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .verify-input[data-v-56ab7ab2] {\n  flex: 1;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2] {\n  padding: 12rpx 16rpx;\n  background-color: #667eea;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 22rpx;\n  border: none;\n  white-space: nowrap;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2]:disabled {\n  background-color: #ccc;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2]:active:not(:disabled) {\n  background-color: #5568d3;\n}\n.modal-overlay .modal-content .modal-footer[data-v-56ab7ab2] {\n  display: flex;\n  gap: 10rpx;\n  padding: 20rpx;\n  border-top: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay .modal-content .modal-footer[data-v-56ab7ab2] {\n  border-top-color: #444;\n}\n.modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2],\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2] {\n  flex: 1;\n  padding: 12rpx;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  border: none;\n}\n.modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2] {\n  background-color: #f5f5f5;\n  color: #333;\n}\n.dark-mode .modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2] {\n  background-color: #333;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2] {\n  background-color: #667eea;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2]:active {\n  background-color: #5568d3;\n}\n.modal-overlay-bottom[data-v-56ab7ab2] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  z-index: 999;\n}\n.modal-overlay-bottom .device-modal[data-v-56ab7ab2],\n.modal-overlay-bottom .history-modal[data-v-56ab7ab2] {\n  background-color: #fff;\n  border-radius: 12rpx 12rpx 0 0;\n  max-height: 500rpx;\n  display: flex;\n  flex-direction: column;\n}\n.dark-mode .modal-overlay-bottom .device-modal[data-v-56ab7ab2],\n.dark-mode .modal-overlay-bottom .history-modal[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.modal-overlay-bottom .modal-header[data-v-56ab7ab2] {\n  padding: 20rpx 30rpx;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay-bottom .modal-header[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.modal-overlay-bottom .modal-header .modal-title[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #333;\n}\n.dark-mode .modal-overlay-bottom .modal-header .modal-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.modal-overlay-bottom .device-list[data-v-56ab7ab2],\n.modal-overlay-bottom .history-list[data-v-56ab7ab2] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 20rpx 0;\n}\n.phone-modal-content[data-v-56ab7ab2] {\n  max-width: 95%;\n  width: 500rpx;\n  max-height: 80vh;\n  border-radius: 12rpx;\n  position: relative;\n}\n.device-item[data-v-56ab7ab2],\n.history-item[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  padding: 16rpx 30rpx;\n  border-bottom: 1rpx solid #f0f0f0;\n}\n.dark-mode .device-item[data-v-56ab7ab2],\n.dark-mode .history-item[data-v-56ab7ab2] {\n  border-bottom-color: #333;\n}\n.device-item .device-info[data-v-56ab7ab2],\n.device-item .history-info[data-v-56ab7ab2],\n.history-item .device-info[data-v-56ab7ab2],\n.history-item .history-info[data-v-56ab7ab2] {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.device-item .device-info .device-name[data-v-56ab7ab2],\n.device-item .device-info .history-device[data-v-56ab7ab2],\n.device-item .history-info .device-name[data-v-56ab7ab2],\n.device-item .history-info .history-device[data-v-56ab7ab2],\n.history-item .device-info .device-name[data-v-56ab7ab2],\n.history-item .device-info .history-device[data-v-56ab7ab2],\n.history-item .history-info .device-name[data-v-56ab7ab2],\n.history-item .history-info .history-device[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n  margin-bottom: 6rpx;\n}\n.dark-mode .device-item .device-info .device-name[data-v-56ab7ab2],\n.dark-mode .device-item .device-info .history-device[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .device-name[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-device[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .device-name[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-device[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .device-name[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-device[data-v-56ab7ab2] {\n  color: #fff;\n}\n.device-item .device-info .device-time[data-v-56ab7ab2],\n.device-item .device-info .history-time[data-v-56ab7ab2],\n.device-item .history-info .device-time[data-v-56ab7ab2],\n.device-item .history-info .history-time[data-v-56ab7ab2],\n.history-item .device-info .device-time[data-v-56ab7ab2],\n.history-item .device-info .history-time[data-v-56ab7ab2],\n.history-item .history-info .device-time[data-v-56ab7ab2],\n.history-item .history-info .history-time[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .device-item .device-info .device-time[data-v-56ab7ab2],\n.dark-mode .device-item .device-info .history-time[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .device-time[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-time[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .device-time[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-time[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .device-time[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-time[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.device-item .device-info .history-location[data-v-56ab7ab2],\n.device-item .history-info .history-location[data-v-56ab7ab2],\n.history-item .device-info .history-location[data-v-56ab7ab2],\n.history-item .history-info .history-location[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  color: #bbb;\n  margin-top: 4rpx;\n}\n.dark-mode .device-item .device-info .history-location[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-location[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-location[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-location[data-v-56ab7ab2] {\n  color: #888;\n}\n.device-item .logout-device-btn[data-v-56ab7ab2],\n.history-item .logout-device-btn[data-v-56ab7ab2] {\n  padding: 8rpx 20rpx;\n  background-color: #f5576c;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.device-item .logout-device-btn[data-v-56ab7ab2]:active,\n.history-item .logout-device-btn[data-v-56ab7ab2]:active {\n  opacity: 0.8;\n}\n.history-controls[data-v-56ab7ab2] {\n  padding: 16rpx 30rpx;\n  border-bottom: 1rpx solid #eee;\n  display: flex;\n  justify-content: flex-end;\n  gap: 10rpx;\n}\n.history-controls .btn-clear[data-v-56ab7ab2] {\n  padding: 8rpx 16rpx;\n  background-color: #f5576c;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.history-controls .btn-clear[data-v-56ab7ab2]:active {\n  opacity: 0.8;\n}\n.loading-tip[data-v-56ab7ab2],\n.empty-tip[data-v-56ab7ab2] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 40rpx 20rpx;\n  color: #999;\n  font-size: 28rpx;\n}\n.dark-mode .loading-tip[data-v-56ab7ab2],\n.dark-mode .empty-tip[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.history-item .history-info .history-device[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n  margin-bottom: 8rpx;\n  font-weight: 500;\n}\n.dark-mode .history-item .history-info .history-device[data-v-56ab7ab2] {\n  color: #fff;\n}\n.history-item .history-info .history-time[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n  margin-bottom: 4rpx;\n}\n.dark-mode .history-item .history-info .history-time[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.history-item .history-info .history-ip[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  color: #bbb;\n}\n.dark-mode .history-item .history-info .history-ip[data-v-56ab7ab2] {\n  color: #888;\n}\n.history-item .btn-delete[data-v-56ab7ab2] {\n  padding: 8rpx 16rpx;\n  background-color: #f0f0f0;\n  color: #999;\n  border-radius: 6rpx;\n  font-size: 22rpx;\n  border: none;\n  margin-left: 10rpx;\n}\n.dark-mode .history-item .btn-delete[data-v-56ab7ab2] {\n  background-color: #333;\n  color: #aaa;\n}\n.history-item .btn-delete[data-v-56ab7ab2]:active {\n  opacity: 0.7;\n}", ""]);
+exports.push([module.i, "/* uni.scss */\n.account-container[data-v-56ab7ab2] {\n  padding: 20rpx 0;\n  background-color: #f5f5f5;\n  min-height: 100vh;\n}\n.account-container.dark-mode[data-v-56ab7ab2] {\n  background-color: #1a1a1a;\n  color: #fff;\n}\n.page-header[data-v-56ab7ab2] {\n  padding: 40rpx 30rpx 20rpx;\n  text-align: center;\n}\n.page-header .page-title[data-v-56ab7ab2] {\n  display: block;\n  font-size: 36rpx;\n  font-weight: bold;\n  margin-bottom: 10rpx;\n  color: #333;\n}\n.dark-mode .page-header .page-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.page-header .page-desc[data-v-56ab7ab2] {\n  display: block;\n  font-size: 28rpx;\n  color: #999;\n}\n.dark-mode .page-header .page-desc[data-v-56ab7ab2] {\n  color: #ccc;\n}\n.account-section[data-v-56ab7ab2] {\n  margin: 20rpx;\n  background-color: #fff;\n  border-radius: 12rpx;\n  padding: 30rpx;\n}\n.dark-mode .account-section[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.account-section .section-title[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  font-weight: 600;\n  margin-bottom: 20rpx;\n  color: #333;\n}\n.dark-mode .account-section .section-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  padding: 20rpx 0;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .account-item[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.account-item[data-v-56ab7ab2]:last-child {\n  border-bottom: none;\n}\n.account-item .item-label[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  min-width: 120rpx;\n  color: #666;\n}\n.dark-mode .account-item .item-label[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.account-item .item-label .label-text[data-v-56ab7ab2] {\n  font-size: 28rpx;\n}\n.account-item .item-label .label-required[data-v-56ab7ab2] {\n  color: #f5576c;\n  margin-left: 4rpx;\n}\n.account-item .item-content[data-v-56ab7ab2] {\n  flex: 1;\n  margin-left: 20rpx;\n  display: flex;\n  align-items: center;\n}\n.account-item .item-content .account-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .account-item .item-content .account-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.account-item .item-content .email-text[data-v-56ab7ab2],\n.account-item .item-content .phone-text[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n}\n.dark-mode .account-item .item-content .email-text[data-v-56ab7ab2],\n.dark-mode .account-item .item-content .phone-text[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item .item-action[data-v-56ab7ab2] {\n  margin-left: auto;\n}\n.account-item .edit-btn[data-v-56ab7ab2] {\n  padding: 8rpx 20rpx;\n  background-color: #667eea;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.account-item .edit-btn[data-v-56ab7ab2]:active {\n  background-color: #5568d3;\n}\n.account-item.security-item[data-v-56ab7ab2] {\n  flex-direction: column;\n  align-items: flex-start;\n}\n.account-item.security-item .item-left[data-v-56ab7ab2] {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.account-item.security-item .item-left .item-label[data-v-56ab7ab2] {\n  min-width: auto;\n  margin-bottom: 8rpx;\n  color: #333;\n}\n.dark-mode .account-item.security-item .item-left .item-label[data-v-56ab7ab2] {\n  color: #fff;\n}\n.account-item.security-item .item-left .item-desc[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .account-item.security-item .item-left .item-desc[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.account-item.security-item .edit-btn[data-v-56ab7ab2] {\n  margin-top: 16rpx;\n  align-self: flex-end;\n}\n.account-item.security-item.avatar-item[data-v-56ab7ab2] {\n  flex-direction: column;\n  align-items: flex-start;\n  padding: 20rpx 0;\n}\n.account-item.security-item.avatar-item .item-label[data-v-56ab7ab2] {\n  margin-bottom: 12rpx;\n}\n.account-item.security-item.avatar-item .avatar-content[data-v-56ab7ab2] {\n  width: auto;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 16rpx;\n}\n.account-item.security-item.avatar-item .avatar-content .avatar-image-wrapper[data-v-56ab7ab2] {\n  width: 80rpx;\n  height: 80rpx;\n  border-radius: 50%;\n  border: 2rpx solid #ddd;\n  overflow: hidden;\n  flex-shrink: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.dark-mode .account-item.security-item.avatar-item .avatar-content .avatar-image-wrapper[data-v-56ab7ab2] {\n  border-color: #666;\n}\n.account-item.security-item.avatar-item .avatar-content .avatar-image-wrapper .avatar-image[data-v-56ab7ab2] {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n}\n.account-item.security-item.avatar-item .avatar-content .avatar-placeholder[data-v-56ab7ab2] {\n  width: 80rpx;\n  height: 80rpx;\n  border-radius: 50%;\n  background-color: #f5f5f5;\n  border: 2rpx solid #ddd;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-shrink: 0;\n}\n.dark-mode .account-item.security-item.avatar-item .avatar-content .avatar-placeholder[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #666;\n}\n.account-item.security-item.avatar-item .avatar-content .avatar-placeholder .placeholder-text[data-v-56ab7ab2] {\n  font-size: 20rpx;\n  color: #999;\n}\n.dark-mode .account-item.security-item.avatar-item .avatar-content .avatar-placeholder .placeholder-text[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.account-item .security-text[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .account-item .security-text[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.status-badge[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  padding: 4rpx 12rpx;\n  border-radius: 12rpx;\n  margin-left: 10rpx;\n}\n.status-badge.verified[data-v-56ab7ab2] {\n  background-color: #eef6f5;\n  color: #00a65a;\n}\n.dark-mode .status-badge.verified[data-v-56ab7ab2] {\n  background-color: #1a3a36;\n}\n.status-badge.unbound[data-v-56ab7ab2] {\n  background-color: #fef0f0;\n  color: #f5576c;\n}\n.dark-mode .status-badge.unbound[data-v-56ab7ab2] {\n  background-color: #3a1a1a;\n}\n.modal-overlay[data-v-56ab7ab2] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 999;\n}\n.modal-overlay .modal-content[data-v-56ab7ab2] {\n  background-color: #fff;\n  border-radius: 12rpx;\n  padding: 0;\n  max-width: 95%;\n  width: 500rpx;\n  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);\n}\n.dark-mode .modal-overlay .modal-content[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.modal-overlay .modal-content .modal-header[data-v-56ab7ab2] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 20rpx;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay .modal-content .modal-header[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.modal-overlay .modal-content .modal-header .modal-title[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #333;\n}\n.dark-mode .modal-overlay .modal-content .modal-header .modal-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-header .modal-close[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  color: #999;\n  cursor: pointer;\n}\n.modal-overlay .modal-content .modal-body[data-v-56ab7ab2] {\n  padding: 20rpx;\n}\n.modal-overlay .modal-content .modal-body .modal-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .modal-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-body .form-group[data-v-56ab7ab2] {\n  margin-bottom: 16rpx;\n}\n.modal-overlay .modal-content .modal-body .form-group .form-label[data-v-56ab7ab2] {\n  display: block;\n  font-size: 24rpx;\n  color: #666;\n  margin-bottom: 8rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .form-group .form-label[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.modal-overlay .modal-content .modal-body .form-group .form-input[data-v-56ab7ab2] {\n  width: 100%;\n  padding: 12rpx;\n  border: 1rpx solid #ddd;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  height: 80rpx;\n}\n.dark-mode .modal-overlay .modal-content .modal-body .form-group .form-input[data-v-56ab7ab2] {\n  background-color: #333;\n  border-color: #555;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section[data-v-56ab7ab2] {\n  display: flex;\n  gap: 10rpx;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .verify-input[data-v-56ab7ab2] {\n  flex: 1;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2] {\n  padding: 12rpx 16rpx;\n  background-color: #667eea;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 22rpx;\n  border: none;\n  white-space: nowrap;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2]:disabled {\n  background-color: #ccc;\n}\n.modal-overlay .modal-content .modal-body .form-group .verify-section .send-code-btn[data-v-56ab7ab2]:active:not(:disabled) {\n  background-color: #5568d3;\n}\n.modal-overlay .modal-content .modal-footer[data-v-56ab7ab2] {\n  display: flex;\n  gap: 10rpx;\n  padding: 20rpx;\n  border-top: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay .modal-content .modal-footer[data-v-56ab7ab2] {\n  border-top-color: #444;\n}\n.modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2],\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2] {\n  flex: 1;\n  padding: 12rpx;\n  border-radius: 6rpx;\n  font-size: 28rpx;\n  border: none;\n}\n.modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2] {\n  background-color: #f5f5f5;\n  color: #333;\n}\n.dark-mode .modal-overlay .modal-content .modal-footer .btn-cancel[data-v-56ab7ab2] {\n  background-color: #333;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2] {\n  background-color: #667eea;\n  color: #fff;\n}\n.modal-overlay .modal-content .modal-footer .btn-confirm[data-v-56ab7ab2]:active {\n  background-color: #5568d3;\n}\n.modal-overlay-bottom[data-v-56ab7ab2] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  z-index: 999;\n}\n.modal-overlay-bottom .device-modal[data-v-56ab7ab2],\n.modal-overlay-bottom .history-modal[data-v-56ab7ab2] {\n  background-color: #fff;\n  border-radius: 12rpx 12rpx 0 0;\n  max-height: 500rpx;\n  display: flex;\n  flex-direction: column;\n}\n.dark-mode .modal-overlay-bottom .device-modal[data-v-56ab7ab2],\n.dark-mode .modal-overlay-bottom .history-modal[data-v-56ab7ab2] {\n  background-color: #2a2a2a;\n}\n.modal-overlay-bottom .modal-header[data-v-56ab7ab2] {\n  padding: 20rpx 30rpx;\n  border-bottom: 1rpx solid #eee;\n}\n.dark-mode .modal-overlay-bottom .modal-header[data-v-56ab7ab2] {\n  border-bottom-color: #444;\n}\n.modal-overlay-bottom .modal-header .modal-title[data-v-56ab7ab2] {\n  font-size: 32rpx;\n  font-weight: 600;\n  color: #333;\n}\n.dark-mode .modal-overlay-bottom .modal-header .modal-title[data-v-56ab7ab2] {\n  color: #fff;\n}\n.modal-overlay-bottom .device-list[data-v-56ab7ab2],\n.modal-overlay-bottom .history-list[data-v-56ab7ab2] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 20rpx 0;\n}\n.phone-modal-content[data-v-56ab7ab2] {\n  max-width: 95%;\n  width: 500rpx;\n  max-height: 80vh;\n  border-radius: 12rpx;\n  position: relative;\n}\n.device-item[data-v-56ab7ab2],\n.history-item[data-v-56ab7ab2] {\n  display: flex;\n  align-items: center;\n  padding: 16rpx 30rpx;\n  border-bottom: 1rpx solid #f0f0f0;\n}\n.dark-mode .device-item[data-v-56ab7ab2],\n.dark-mode .history-item[data-v-56ab7ab2] {\n  border-bottom-color: #333;\n}\n.device-item .device-info[data-v-56ab7ab2],\n.device-item .history-info[data-v-56ab7ab2],\n.history-item .device-info[data-v-56ab7ab2],\n.history-item .history-info[data-v-56ab7ab2] {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.device-item .device-info .device-name[data-v-56ab7ab2],\n.device-item .device-info .history-device[data-v-56ab7ab2],\n.device-item .history-info .device-name[data-v-56ab7ab2],\n.device-item .history-info .history-device[data-v-56ab7ab2],\n.history-item .device-info .device-name[data-v-56ab7ab2],\n.history-item .device-info .history-device[data-v-56ab7ab2],\n.history-item .history-info .device-name[data-v-56ab7ab2],\n.history-item .history-info .history-device[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n  margin-bottom: 6rpx;\n}\n.dark-mode .device-item .device-info .device-name[data-v-56ab7ab2],\n.dark-mode .device-item .device-info .history-device[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .device-name[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-device[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .device-name[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-device[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .device-name[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-device[data-v-56ab7ab2] {\n  color: #fff;\n}\n.device-item .device-info .device-time[data-v-56ab7ab2],\n.device-item .device-info .history-time[data-v-56ab7ab2],\n.device-item .history-info .device-time[data-v-56ab7ab2],\n.device-item .history-info .history-time[data-v-56ab7ab2],\n.history-item .device-info .device-time[data-v-56ab7ab2],\n.history-item .device-info .history-time[data-v-56ab7ab2],\n.history-item .history-info .device-time[data-v-56ab7ab2],\n.history-item .history-info .history-time[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n}\n.dark-mode .device-item .device-info .device-time[data-v-56ab7ab2],\n.dark-mode .device-item .device-info .history-time[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .device-time[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-time[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .device-time[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-time[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .device-time[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-time[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.device-item .device-info .history-location[data-v-56ab7ab2],\n.device-item .history-info .history-location[data-v-56ab7ab2],\n.history-item .device-info .history-location[data-v-56ab7ab2],\n.history-item .history-info .history-location[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  color: #bbb;\n  margin-top: 4rpx;\n}\n.dark-mode .device-item .device-info .history-location[data-v-56ab7ab2],\n.dark-mode .device-item .history-info .history-location[data-v-56ab7ab2],\n.dark-mode .history-item .device-info .history-location[data-v-56ab7ab2],\n.dark-mode .history-item .history-info .history-location[data-v-56ab7ab2] {\n  color: #888;\n}\n.device-item .logout-device-btn[data-v-56ab7ab2],\n.history-item .logout-device-btn[data-v-56ab7ab2] {\n  padding: 8rpx 20rpx;\n  background-color: #f5576c;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.device-item .logout-device-btn[data-v-56ab7ab2]:active,\n.history-item .logout-device-btn[data-v-56ab7ab2]:active {\n  opacity: 0.8;\n}\n.history-controls[data-v-56ab7ab2] {\n  padding: 16rpx 30rpx;\n  border-bottom: 1rpx solid #eee;\n  display: flex;\n  justify-content: flex-end;\n  gap: 10rpx;\n}\n.history-controls .btn-clear[data-v-56ab7ab2] {\n  padding: 8rpx 16rpx;\n  background-color: #f5576c;\n  color: #fff;\n  border-radius: 6rpx;\n  font-size: 24rpx;\n  border: none;\n}\n.history-controls .btn-clear[data-v-56ab7ab2]:active {\n  opacity: 0.8;\n}\n.loading-tip[data-v-56ab7ab2],\n.empty-tip[data-v-56ab7ab2] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 40rpx 20rpx;\n  color: #999;\n  font-size: 28rpx;\n}\n.dark-mode .loading-tip[data-v-56ab7ab2],\n.dark-mode .empty-tip[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.history-item .history-info .history-device[data-v-56ab7ab2] {\n  font-size: 28rpx;\n  color: #333;\n  margin-bottom: 8rpx;\n  font-weight: 500;\n}\n.dark-mode .history-item .history-info .history-device[data-v-56ab7ab2] {\n  color: #fff;\n}\n.history-item .history-info .history-time[data-v-56ab7ab2] {\n  font-size: 24rpx;\n  color: #999;\n  margin-bottom: 4rpx;\n}\n.dark-mode .history-item .history-info .history-time[data-v-56ab7ab2] {\n  color: #aaa;\n}\n.history-item .history-info .history-ip[data-v-56ab7ab2] {\n  font-size: 22rpx;\n  color: #bbb;\n}\n.dark-mode .history-item .history-info .history-ip[data-v-56ab7ab2] {\n  color: #888;\n}\n.history-item .btn-delete[data-v-56ab7ab2] {\n  padding: 8rpx 16rpx;\n  background-color: #f0f0f0;\n  color: #999;\n  border-radius: 6rpx;\n  font-size: 22rpx;\n  border: none;\n  margin-left: 10rpx;\n}\n.dark-mode .history-item .btn-delete[data-v-56ab7ab2] {\n  background-color: #333;\n  color: #aaa;\n}\n.history-item .btn-delete[data-v-56ab7ab2]:active {\n  opacity: 0.7;\n}", ""]);
 // Exports
 module.exports = exports;
 

@@ -4,7 +4,7 @@
         <view class="user-info-card">
             <view class="avatar-container">
                 <image
-                    :src="userInfo.avatar || '/static/default-avatar.png'"
+                    :src="userInfo.avatar_url || '/static/default-avatar.png'"
                     class="avatar"
                     mode="aspectFill"
                 />
@@ -88,7 +88,7 @@ export default {
                 username: "",
                 id: "",
                 uid: "",
-                avatar: "",
+                avatar_url: "",
                 phone: "",
                 email: "",
             },
@@ -112,7 +112,7 @@ export default {
                         username: userInfo.username || "用户",
                         id: userInfo.id || userInfo.userId || "暂未获取",
                         uid: userInfo.uid || (userInfo.id ? 100000000 + parseInt(userInfo.id) : "暂未获取"),
-                        avatar: userInfo.avatar || "",
+                        avatar_url: userInfo.avatar_url || "",
                         phone: userInfo.phone || "未绑定手机",
                         email: userInfo.email || "",
                     };
@@ -122,7 +122,7 @@ export default {
                         username: "",
                         id: "",
                         uid: "",
-                        avatar: "",
+                        avatar_url: "",
                         phone: "",
                         email: "",
                     };
@@ -142,7 +142,7 @@ export default {
                         username: data.username || "用户",
                         id: data.id || "暂未获取",
                         uid: data.uid || (100000000 + data.id) || "暂未获取",
-                        avatar: data.avatar || "",
+                        avatar_url: data.avatar_url || "",
                         phone: data.phone || "未绑定手机",
                         email: data.email || "",
                     };

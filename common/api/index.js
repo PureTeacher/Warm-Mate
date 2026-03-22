@@ -241,6 +241,11 @@ const api = {
         clearLoginLogs() {
             return http.post("/user/login-logs/clear");
         },
+
+        // 上传头像
+        uploadAvatar(avatar) {
+            return http.post("/user/avatar", { avatar });
+        },
     },
 };
 
