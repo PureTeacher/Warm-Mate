@@ -131,18 +131,30 @@ export default {
             }
         },
         navigateTo(page) {
+            console.log("点击导航:", page);
             const pageRoutes = {
-                account: "/pages/user/settings",
-                password: "/pages/user/settings",
+                account: "/pages/user/account",
+                password: "/pages/user/change-password",
                 settings: "/pages/user/settings",
                 feedback: "/pages/feedback/index",
                 about: "/pages/about/index",
             };
 
             const route = pageRoutes[page];
+            console.log("导航目标:", route);
             if (route) {
                 uni.navigateTo({
                     url: route,
+                    success: () => {
+                        console.log("导航成功");
+                    },
+                    fail: (err) => {
+                        console.error("导航失败:", err);
+                        uni.showToast({
+                            title: "页面加载失败",
+                            icon: "none",
+                        });
+                    },
                 });
             } else {
                 uni.showToast({

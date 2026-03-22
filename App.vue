@@ -290,4 +290,21 @@ page.theme-auto,
         font-size: 30upx !important;
     }
 }
+
+/* TabBar字体大小调整 */
+.uni-tabbar {
+    --tabbar-item-title-font-size: 80upx;
+}
+
+::v-deep .uni-tabbar__item-title {
+    font-size: 80upx !important;
+}
+
+::v-deep .uni-tabbar__item {
+    font-size: 80upx !important;
+}
+
+::v-deep .uni-tabbar__label {
+    font-size: 80upx !important;
+}
 </style>

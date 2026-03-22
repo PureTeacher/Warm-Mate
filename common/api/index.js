@@ -117,6 +117,96 @@ const api = {
             return http.get("/appointment/count", { params });
         },
     },
+
+    /**
+     * 账户管理相关API
+     */
+    account: {
+        // 获取账户信息
+        getAccountInfo() {
+            return http.get("/user/account");
+        },
+
+        // 更新账户基本信息
+        updateAccountInfo(data) {
+            return http.put("/user/account", data);
+        },
+
+        // 更新邮箱
+        updateEmail(data) {
+            return http.put("/user/email", data);
+        },
+
+        // 发送邮箱验证码
+        sendEmailCode(email) {
+            return http.post("/user/email/code", { email });
+        },
+
+        // 验证邮箱
+        verifyEmail(data) {
+            return http.post("/user/email/verify", data);
+        },
+
+        // 更新手机号
+        updatePhone(data) {
+            return http.put("/user/phone", data);
+        },
+
+        // 发送手机验证码
+        sendPhoneCode(phone) {
+            return http.post("/user/phone/code", { phone });
+        },
+
+        // 验证手机号
+        verifyPhone(data) {
+            return http.post("/user/phone/verify", data);
+        },
+
+        // 修改密码
+        changePassword(data) {
+            return http.post("/user/password/change", data);
+        },
+
+        // 获取登录设备列表
+        getDeviceList() {
+            return http.get("/user/devices");
+        },
+
+        // 设备登出
+        logoutDevice(deviceId) {
+            return http.post(`/user/devices/${deviceId}/logout`);
+        },
+
+        // 获取登录历史
+        getLoginHistory(params) {
+            return http.get("/user/login-history", { params });
+        },
+
+        // 绑定微信
+        bindWechat(data) {
+            return http.post("/user/wechat/bind", data);
+        },
+
+        // 解绑微信
+        unbindWechat() {
+            return http.post("/user/wechat/unbind");
+        },
+
+        // 绑定QQ
+        bindQQ(data) {
+            return http.post("/user/qq/bind", data);
+        },
+
+        // 解绑QQ
+        unbindQQ() {
+            return http.post("/user/qq/unbind");
+        },
+
+        // 获取账户安全状态
+        getSecurityStatus() {
+            return http.get("/user/security-status");
+        },
+    },
 };
 
 export default api;
