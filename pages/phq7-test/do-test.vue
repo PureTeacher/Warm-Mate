@@ -402,6 +402,10 @@ hexToRgba(hex, opacity) {
 },
 closeResult() {
   this.showResult = false
+  // 返回上一页
+  uni.navigateBack({
+    delta: 1
+  })
 },
 restartTest() {
   this.showResult = false
@@ -422,9 +426,14 @@ getLevelClass(level) {
 async saveTestResultToDatabase() {
   const requestData = {
     questionnaireName: 'PHQ-9抑郁筛查量表',
+    questionnaireType: 'mood',
+    score: this.resultData.totalScore,
     depressionLevel: this.resultData.depressionLevel,
     levelDescription: this.resultData.levelDescription,
-    suggestion: this.resultData.suggestion
+    resultData: {
+      answers: this.answers,
+      suggestion: this.resultData.suggestion
+    }
   }
   
   console.log('准备保存测试结果:', requestData)
@@ -433,20 +442,20 @@ async saveTestResultToDatabase() {
     // 调用后端接口保存数据
     const result = await this.$api.questionnaire.saveResult(requestData)
     
-    if (result.success) {
-      // console.log('保存测试结果成功:', result)
-      // uni.showToast({
-      //   title: '测试结果已保存',
-      //   icon: 'success',
-      //   duration: 2000
-      // })
+    if (result.code === 200) {
+      console.log('保存测试结果成功:', result)
+      uni.showToast({
+        title: '测试结果已保存',
+        icon: 'success',
+        duration: 2000
+      })
     } else {
-      // console.error('保存失败:', result.message)
-      // uni.showToast({
-      //   title: result.message || '保存失败，请重试',
-      //   icon: 'error',
-      //   duration: 2000
-      // })
+      console.error('保存失败:', result.message)
+      uni.showToast({
+        title: result.message || '保存失败，请重试',
+        icon: 'error',
+        duration: 2000
+      })
     }
   } catch (error) {
     console.error('保存测试结果失败:', error)

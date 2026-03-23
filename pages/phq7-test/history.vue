@@ -172,55 +172,71 @@
      async loadHistoryData() {
        try {
          this.loading = true
-         const result = await this.$api.questionnaire.getUserResults(uni.getStorageSync('userId') || 1)
-         
-         if (result.success) {
-           this.results = result.data || []
-           this.totalCount = result.data ? result.data.length : 0
-         } else {
-           // uni.showToast({
-           //   title: result.message || '加载失败，请重试',
-           //   icon: 'error'
-           // })
-         }
-       } catch (error) {
-         console.error('加载历史记录失败:', error)
-         uni.showToast({
-           title: '网络错误，请检查网络连接',
-           icon: 'error'
-         })
-       } finally {
-         this.loading = false
-       }
-     },
+        const userId = uni.getStorageSync('userId')
+        
+        if (!userId) {
+          uni.showToast({
+            title: '用户信息丢失，请重新登录',
+            icon: 'error'
+          })
+          return
+        }
+        
+        const result = await this.$api.questionnaire.getUserResults(userId)
+        
+        console.log('获取历史记录结果:', result)
+        
+        if (result.code === 200 && result.data) {
+          this.results = result.data
+          this.totalCount = result.data.length
+          console.log('历史记录加载成功:', this.results)
+        } else {
+          uni.showToast({
+            title: result.message || '加载失败，请重试',
+            icon: 'error'
+          })
+        }
+      } catch (error) {
+        console.error('加载历史记录失败:', error)
+        uni.showToast({
+          title: '网络错误，请检查网络连接',
+          icon: 'error'
+        })
+      } finally {
+        this.loading = false
+      }
+    },
     
     filterByType(type) {
       this.currentFilter = type
+    },
+    
+    getTestName(testName) {
+      const nameMap = {
+        'PHQ-9抑郁筛查量表': '抑郁评估',
+        'GAD-7焦虑筛查量表': '焦虑评估',
+        'CPSS创伤后应激量表': '创伤评估',
+        'UCLA孤独感量表': '孤独感评估',
+        'ITS人际信任量表': '人际信任量表',
+        'PSQI匹兹堡睡眠质量指数': '匹兹堡睡眠质量指数',
+        'SDS睡眠障碍量表': '睡眠障碍量表'
+      }
+      return nameMap[testName] || testName
+    },
+    
+    getTestDisplayName(testName) {
+      return this.getTestName(testName)
     },
     
     getTestEmoji(testName) {
       const name = testName.toLowerCase()
       if (name.includes('抑郁') || name.includes('phq')) return '😔'
       if (name.includes('焦虑') || name.includes('gad')) return '😰'
-      if (name.includes('压力') || name.includes('cpss')) return '😫'
+      if (name.includes('创伤') || name.includes('cpss')) return '😨'
       if (name.includes('孤独') || name.includes('ucla')) return '😔'
-      if (name.includes('信任') || name.includes('its')) return '🤝'
-      if (name.includes('睡眠') || name.includes('psqi')) return '😴'
-      if (name.includes('睡眠障碍') || name.includes('sds')) return '😵'
+      if (name.includes('人际') || name.includes('its')) return '🤝'
+      if (name.includes('睡眠') || name.includes('psqi') || name.includes('sds')) return '😴'
       return '📊'
-    },
-    
-    getTestDisplayName(testName) {
-      const nameMap = {
-        'PHQ-9抑郁筛查量表': '抑郁症状筛查',
-        'GAD-7广泛性焦虑障碍量表': '焦虑症状筛查',
-        'CPSS感知压力量表': '感知压力量表',
-        'UCLA孤独感量表': 'UCLA孤独感量表',
-        'ITS人际信任量表': '人际信任量表',
-        'PSQI匹兹堡睡眠质量指数': '匹兹堡睡眠质量指数',
-        'SDS睡眠障碍量表': '睡眠障碍量表'
-      }
-      return nameMap[testName] || testName
     },
     
     formatDate(dateStr) {
@@ -283,8 +299,8 @@
   
   onShow() {
     this.loadHistoryData()
-		}
-	}
+  }
+}
 </script>
 
 <style lang="scss">

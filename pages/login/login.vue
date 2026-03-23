@@ -150,6 +150,13 @@ export default {
                     // 5. 存储Token（和登出的Key保持一致）
                     uni.setStorageSync("Access-Token", accessToken);
                     console.log("Token存储成功：", accessToken);
+                    
+                    // 6. 存储用户 ID
+                    const userId = result.data?.id || result.id;
+                    if (userId) {
+                        uni.setStorageSync("userId", userId);
+                        console.log("用户ID存储成功：", userId);
+                    }
 
                     // ！！关键修复：用reLaunch清空页面栈，和登出保持一致
                     uni.reLaunch({
