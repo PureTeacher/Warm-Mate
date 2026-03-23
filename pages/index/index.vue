@@ -20,7 +20,7 @@
             <!-- 卡片容器：flex双列布局 -->
             <view class="content-wrapper">
                 <view class="greeting-section">
-                    <text class="greeting-text">選擇你需要的服務</text>
+                    <text class="greeting-text">选择你需要的服务</text>
                     <view class="greeting-line"></view>
                 </view>
                 <view class="card-container">

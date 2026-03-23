@@ -331,7 +331,20 @@ export default {
     computed: {
         containerClasses() {
             const isDark = uni.getStorageSync("darkMode");
-            return isDark ? "dark-mode" : "";
+            const fontSize = this.$themeManager.getFontSize();
+            const classes = [];
+
+            if (isDark) {
+                classes.push("dark-mode");
+            }
+
+            if (fontSize === "small") {
+                classes.push("font-small");
+            } else if (fontSize === "large") {
+                classes.push("font-large");
+            }
+
+            return classes.join(" ");
         },
         maskedPhone() {
             const phone = this.accountInfo.phone;
@@ -972,10 +985,19 @@ export default {
         #fff5f0 100%
     );
     min-height: 100vh;
+    font-size: 28rpx;
 
     &.dark-mode {
         background-color: #1a1a1a;
         color: #fff;
+    }
+
+    &.font-small {
+        font-size: 24rpx;
+    }
+
+    &.font-large {
+        font-size: 32rpx;
     }
 }
 
