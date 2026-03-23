@@ -209,7 +209,12 @@ export default {
 
 <style lang="scss" scoped>
 .feedback-page {
-    background: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
     padding-bottom: 30rpx;
 
@@ -270,9 +275,10 @@ export default {
 
 /* 选项卡 */
 .tab-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     display: flex;
-    border-bottom: 2rpx solid #f0f0f0;
+    border-bottom: none;
+    box-shadow: 0 4rpx 12rpx rgba(224, 120, 86, 0.1);
 
     .dark-mode & {
         background: #2a2a2a;
@@ -288,18 +294,19 @@ export default {
     color: #999;
     border-bottom: 4rpx solid transparent;
     transition: all 0.3s ease;
+    font-weight: 600;
 
     .dark-mode & {
         color: #999;
     }
 
     &.active {
-        color: #667eea;
-        border-bottom-color: #667eea;
-        font-weight: bold;
+        color: #e07856;
+        border-bottom-color: #e07856;
+        font-weight: 700;
 
         .dark-mode & {
-            color: #667eea;
+            color: #e07856;
         }
     }
 }
@@ -310,11 +317,12 @@ export default {
 }
 
 .form-group {
-    background: white;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 25rpx 20rpx;
     margin-bottom: 20rpx;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .dark-mode & {
         background: #2a2a2a;
@@ -325,7 +333,7 @@ export default {
     display: block;
     font-size: 26rpx;
     color: #333;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 15rpx;
 
     .dark-mode & {
@@ -341,9 +349,9 @@ export default {
 
 .type-option {
     padding: 15rpx;
-    background: #f5f5f5;
-    border: 2rpx solid transparent;
-    border-radius: 8rpx;
+    background: rgba(224, 120, 86, 0.05);
+    border: 2rpx solid rgba(224, 120, 86, 0.2);
+    border-radius: 16rpx;
     text-align: center;
     font-size: 24rpx;
     cursor: pointer;
@@ -354,10 +362,11 @@ export default {
     }
 
     &.selected {
-        background: #667eea;
+        background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
         color: white;
-        border-color: #667eea;
-        font-weight: bold;
+        border-color: #d4744e;
+        font-weight: 700;
+        box-shadow: 0 6rpx 16rpx rgba(224, 120, 86, 0.25);
     }
 
     &:active {
@@ -369,11 +378,11 @@ export default {
     width: 100%;
     height: 80rpx;
     padding: 15rpx;
-    border: 1rpx solid #e0e0e0;
-    border-radius: 8rpx;
+    border: 1rpx solid rgba(224, 120, 86, 0.2);
+    border-radius: 16rpx;
     font-size: 26rpx;
     box-sizing: border-box;
-    background: #fafafa;
+    background: rgba(224, 120, 86, 0.03);
     color: #333;
 
     .dark-mode & {
@@ -391,11 +400,11 @@ export default {
     width: 100%;
     min-height: 200rpx;
     padding: 15rpx;
-    border: 1rpx solid #e0e0e0;
-    border-radius: 8rpx;
+    border: 1rpx solid rgba(224, 120, 86, 0.2);
+    border-radius: 16rpx;
     font-size: 26rpx;
     box-sizing: border-box;
-    background: #fafafa;
+    background: rgba(224, 120, 86, 0.03);
     resize: vertical;
 
     .dark-mode & {
@@ -420,25 +429,28 @@ export default {
 .submit-btn {
     width: 100%;
     padding: 18rpx;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
     color: white;
     border: none;
-    border-radius: 8rpx;
+    border-radius: 24rpx;
     font-size: 28rpx;
-    font-weight: bold;
+    font-weight: 700;
     margin: 20rpx 0;
     transition: all 0.3s ease;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
 
     &:active {
-        opacity: 0.8;
+        transform: scale(0.98);
+        opacity: 0.9;
     }
 }
 
 .footer-tips {
     display: block;
     text-align: center;
-    color: #999;
+    color: #d4744e;
     font-size: 22rpx;
+    font-weight: 600;
 }
 
 /* 常见问题 */
@@ -447,11 +459,12 @@ export default {
 }
 
 .faq-item {
-    background: white;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     margin-bottom: 15rpx;
     overflow: hidden;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .dark-mode & {
         background: #2a2a2a;
@@ -467,7 +480,7 @@ export default {
     transition: all 0.3s ease;
 
     &:active {
-        background: #f5f5f5;
+        background: rgba(224, 120, 86, 0.05);
 
         .dark-mode & {
             background: #333;
@@ -479,7 +492,7 @@ export default {
     flex: 1;
     font-size: 26rpx;
     color: #333;
-    font-weight: 500;
+    font-weight: 600;
 
     .dark-mode & {
         color: #fff;
@@ -488,9 +501,10 @@ export default {
 
 .faq-icon {
     font-size: 20rpx;
-    color: #667eea;
+    color: #e07856;
     transition: transform 0.3s ease;
     margin-left: 10rpx;
+    font-weight: 700;
 
     &.expanded {
         transform: rotate(180deg);

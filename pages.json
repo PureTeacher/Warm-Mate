@@ -13,8 +13,8 @@
         {
             "path": "pages/message/message",
             "style": {
-                "navigationBarTitleText": "AI助手",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
@@ -35,152 +35,152 @@
         {
             "path": "pages/phq7-test/index",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/do-test",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/history",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/gad7",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/cpss",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/ucla",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/psqi",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/phq7-test/sds",
             "style": {
-                "navigationBarTitleText": "心理体检",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/health/index",
             "style": {
-                "navigationBarTitleText": "健康科普",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/psychologist/index",
             "style": {
-                "navigationBarTitleText": "心理医生",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/psychologist/appointment",
             "style": {
-                "navigationBarTitleText": "预约",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/psychologist/record",
             "style": {
-                "navigationBarTitleText": "预约记录",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/user/index",
             "style": {
-                "navigationBarTitleText": "个人中心",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/user/settings",
             "style": {
-                "navigationBarTitleText": "设置",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/user/account",
             "style": {
-                "navigationBarTitleText": "账号管理",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/user/change-password",
             "style": {
-                "navigationBarTitleText": "修改密码",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/help/index",
             "style": {
-                "navigationBarTitleText": "帮助中心",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/feedback/index",
             "style": {
-                "navigationBarTitleText": "帮助与反馈",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         },
         {
             "path": "pages/about/index",
             "style": {
-                "navigationBarTitleText": "关于我们",
-                "navigationBarBackgroundColor": "#667eea",
+                "navigationBarTitleText": "",
+                "navigationBarBackgroundColor": "#E8825B",
                 "navigationBarTextStyle": "white"
             }
         }

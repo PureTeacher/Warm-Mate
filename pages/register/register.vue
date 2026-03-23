@@ -172,47 +172,55 @@ export default {
                 uni.$u.toast("请填写完整的表单信息");
                 return;
             }
-            
-            validateRes.then((res) => {
-                if (!res) {
-                    uni.$u.toast("请填写完整的表单信息");
-                    return;
-                }
-                
-                let param = {
-                    username: this.model.user.username,
-                    password: this.model.user.password,
-                    phone: this.model.user.phone,
-                    email: this.model.user.email || undefined,
-                };
-                this.$api.register(param).then((res) => {
-                    // 检查后端返回的code是否为200
-                    if (res.code === 200) {
-                        uni.$u.toast("注册成功");
-                        setTimeout(() => {
-                            uni.$u.route("/pages/login/login");
-                        }, 1000);
-                    } else {
-                        // 根据不同的错误码显示相应的错误信息
-                        let errMsg = "注册失败";
-                        if (res.code === 409) {
-                            errMsg = "用户名已存在，请更换用户名";
-                        } else if (res.code === 400) {
-                            errMsg = res.message || "填写信息不完整或格式错误";
-                        } else {
-                            errMsg = res.message || "注册失败，请重试";
-                        }
-                        uni.$u.toast(errMsg);
+
+            validateRes
+                .then((res) => {
+                    if (!res) {
+                        uni.$u.toast("请填写完整的表单信息");
+                        return;
                     }
-                }).catch((err) => {
-                    const errMsg = err.message || "网络错误，请检查连接后重试";
-                    uni.$u.toast(errMsg);
+
+                    let param = {
+                        username: this.model.user.username,
+                        password: this.model.user.password,
+                        phone: this.model.user.phone,
+                        email: this.model.user.email || undefined,
+                    };
+                    this.$api
+                        .register(param)
+                        .then((res) => {
+                            // 检查后端返回的code是否为200
+                            if (res.code === 200) {
+                                uni.$u.toast("注册成功");
+                                setTimeout(() => {
+                                    uni.$u.route("/pages/login/login");
+                                }, 1000);
+                            } else {
+                                // 根据不同的错误码显示相应的错误信息
+                                let errMsg = "注册失败";
+                                if (res.code === 409) {
+                                    errMsg = "用户名已存在，请更换用户名";
+                                } else if (res.code === 400) {
+                                    errMsg =
+                                        res.message ||
+                                        "填写信息不完整或格式错误";
+                                } else {
+                                    errMsg = res.message || "注册失败，请重试";
+                                }
+                                uni.$u.toast(errMsg);
+                            }
+                        })
+                        .catch((err) => {
+                            const errMsg =
+                                err.message || "网络错误，请检查连接后重试";
+                            uni.$u.toast(errMsg);
+                        });
+                })
+                .catch((err) => {
+                    // 表单验证失败
+                    console.error("表单验证失败：", err);
+                    uni.$u.toast("请填写完整的表单信息");
                 });
-            }).catch((err) => {
-                // 表单验证失败
-                console.error("表单验证失败：", err);
-                uni.$u.toast("请填写完整的表单信息");
-            });
         },
         // 已有账号
         hasAccount() {
@@ -225,7 +233,12 @@ export default {
 <style lang="scss">
 .register {
     .container {
-        background: #fff;
+        background: linear-gradient(
+            to bottom,
+            #fff8f3 0%,
+            #ffe8d6 50%,
+            #fff5f0 100%
+        );
         width: 100vw;
         padding-top: 10vh;
         // #ifndef H5
@@ -236,16 +249,44 @@ export default {
             justify-content: center;
             align-items: flex-end;
             width: 100vw;
+            filter: drop-shadow(0 4rpx 12rpx rgba(224, 120, 86, 0.15));
         }
 
         .title {
             text-align: center;
             margin-top: 20px;
+            font-size: 40px;
+            font-weight: 700;
+            color: #d4744e;
+            letter-spacing: 2rpx;
         }
 
         .form {
             padding: 0 30px;
             margin-top: 40px;
+
+            ::v-deep .u-form-item {
+                margin-bottom: 24px;
+            }
+
+            ::v-deep .u--input {
+                font-size: 16px;
+            }
+
+            ::v-deep .u-btn {
+                background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
+                color: white;
+                font-weight: 700;
+                font-size: 18px;
+                border-radius: 24px;
+                box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
+                border: none;
+
+                &:active {
+                    transform: scale(0.98);
+                    box-shadow: 0 12rpx 28rpx rgba(224, 120, 86, 0.3);
+                }
+            }
         }
 
         .footer {
@@ -257,8 +298,14 @@ export default {
 
             .footer-text {
                 font-size: 14px;
-                color: #296db5;
+                color: #d4744e;
                 padding: 15px;
+                font-weight: 600;
+                transition: all 0.3s;
+
+                &:active {
+                    opacity: 0.7;
+                }
             }
         }
     }

@@ -13,7 +13,7 @@
                 <switch
                     :checked="settings.showPsychData"
                     @change="toggleSetting('showPsychData')"
-                    color="#667eea"
+                    color="#e07856"
                 />
             </view>
             <view class="settings-item">
@@ -24,7 +24,7 @@
                 <switch
                     :checked="settings.allowLocation"
                     @change="toggleSetting('allowLocation')"
-                    color="#667eea"
+                    color="#e07856"
                 />
             </view>
         </view>
@@ -40,7 +40,7 @@
                 <switch
                     :checked="settings.testReminder"
                     @change="toggleSetting('testReminder')"
-                    color="#667eea"
+                    color="#e07856"
                 />
             </view>
             <view class="settings-item">
@@ -51,7 +51,7 @@
                 <switch
                     :checked="settings.appointmentReminder"
                     @change="toggleSetting('appointmentReminder')"
-                    color="#667eea"
+                    color="#e07856"
                 />
             </view>
             <view class="settings-item">
@@ -62,7 +62,7 @@
                 <switch
                     :checked="settings.messageReminder"
                     @change="toggleSetting('messageReminder')"
-                    color="#667eea"
+                    color="#e07856"
                 />
             </view>
         </view>
@@ -301,7 +301,12 @@ export default {
 
 <style scoped lang="scss">
 .settings-container {
-    background-color: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
     padding-bottom: 20upx;
 
@@ -380,10 +385,12 @@ export default {
 
             &.selected {
                 background-color: #1a2d4d;
+                border-color: #e07856;
             }
 
             .font-check {
                 background-color: #444444;
+                color: #e07856;
             }
         }
     }
@@ -398,16 +405,18 @@ export default {
 }
 
 .settings-section {
-    background-color: white;
-    margin: 20upx 0;
-    border-radius: 8upx;
+    background: rgba(255, 255, 255, 0.95);
+    margin: 20upx 30upx;
+    border-radius: 24upx;
     overflow: hidden;
+    box-shadow: 0 8upx 24upx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20upx);
 
     .section-title {
         padding: 20upx 30upx;
         font-size: 28upx;
         font-weight: bold;
-        color: #333333;
+        color: #d4744e;
         border-bottom: 1upx solid #f0f0f0;
     }
 }
@@ -504,8 +513,8 @@ export default {
     transition: all 0.3s;
 
     &.selected {
-        border-color: #667eea;
-        background-color: #f0f0ff;
+        border-color: #e07856;
+        background-color: #fff0e8;
     }
 
     .font-preview {
@@ -537,7 +546,7 @@ export default {
         top: 8upx;
         right: 8upx;
         font-size: 20upx;
-        color: #667eea;
+        color: #e07856;
         background-color: white;
         border-radius: 50%;
         width: 28upx;

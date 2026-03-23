@@ -116,7 +116,7 @@ export default {
                     uni.$u.toast("请检查填写的信息是否正确");
                     return;
                 }
-                
+
                 console.log("表单验证结果：", validateRes);
                 if (!validateRes) {
                     console.log("表单验证失败，终止登录");
@@ -172,7 +172,8 @@ export default {
                     } else if (result.code === 404) {
                         errMsg = "用户不存在";
                     } else {
-                        errMsg = result.message || result.msg || "登录失败，请重试";
+                        errMsg =
+                            result.message || result.msg || "登录失败，请重试";
                     }
                     console.log("登录接口返回失败：", errMsg);
                     uni.$u.toast(errMsg);
@@ -194,7 +195,12 @@ export default {
 <style lang="scss">
 .login {
     .container {
-        background: #fff;
+        background: linear-gradient(
+            to bottom,
+            #fff8f3 0%,
+            #ffe8d6 50%,
+            #fff5f0 100%
+        );
         width: 100vw;
         padding-top: 10vh;
         // #ifndef H5
@@ -206,20 +212,47 @@ export default {
             justify-content: center;
             align-items: flex-end;
             width: 100vw;
+            filter: drop-shadow(0 4rpx 12rpx rgba(224, 120, 86, 0.15));
         }
 
         .title {
             text-align: center;
             margin-top: 20px;
+            font-size: 40px;
+            font-weight: 700;
+            color: #d4744e;
+            letter-spacing: 2rpx;
         }
 
         .form {
             padding: 0 30px;
             margin-top: 40px;
+
+            ::v-deep .u-form-item {
+                margin-bottom: 24px;
+            }
+
+            ::v-deep .u--input {
+                font-size: 16px;
+            }
+
+            ::v-deep .u-btn {
+                background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
+                color: white;
+                font-weight: 700;
+                font-size: 18px;
+                border-radius: 24px;
+                box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
+                border: none;
+
+                &:active {
+                    transform: scale(0.98);
+                    box-shadow: 0 12rpx 28rpx rgba(224, 120, 86, 0.3);
+                }
+            }
         }
 
         .footer {
-            // 修正：添加display:flex，否则flex布局属性无效
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -229,8 +262,14 @@ export default {
 
             .footer-text {
                 font-size: 14px;
-                color: #296db5;
+                color: #d4744e;
                 padding: 15px;
+                font-weight: 600;
+                transition: all 0.3s;
+
+                &:active {
+                    opacity: 0.7;
+                }
             }
         }
     }

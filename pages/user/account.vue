@@ -16,17 +16,36 @@
                     <text class="label-text">头像</text>
                 </view>
                 <view class="item-content avatar-content">
-                    <view v-if="accountInfo.avatar_url" class="avatar-image-wrapper" style="border-radius: 50%; overflow: hidden; width: 80rpx; height: 80rpx; border: 2rpx solid #ddd; display: flex; align-items: center; justify-content: center;">
-                        <image :src="accountInfo.avatar_url" mode="aspectFill" style="width: 100%; height: 100%; border-radius: 50%;" />
+                    <view
+                        v-if="accountInfo.avatar_url"
+                        class="avatar-image-wrapper"
+                        style="
+                            border-radius: 50%;
+                            overflow: hidden;
+                            width: 80rpx;
+                            height: 80rpx;
+                            border: 2rpx solid #ddd;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        "
+                    >
+                        <image
+                            :src="accountInfo.avatar_url"
+                            mode="aspectFill"
+                            style="
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            "
+                        />
                     </view>
                     <view v-else class="avatar-placeholder">
                         <text class="placeholder-text">无头像</text>
                     </view>
                 </view>
                 <view class="item-action">
-                    <button class="edit-btn" @click="chooseAvatar">
-                        上传
-                    </button>
+                    <button class="edit-btn" @click="chooseAvatar">上传</button>
                 </view>
             </view>
 
@@ -36,7 +55,9 @@
                     <text class="label-text">用户名</text>
                 </view>
                 <view class="item-content">
-                    <text class="username-text">{{ accountInfo.username }}</text>
+                    <text class="username-text">{{
+                        accountInfo.username
+                    }}</text>
                 </view>
                 <view class="item-action">
                     <button class="edit-btn" @click="openUsernameModal">
@@ -110,7 +131,9 @@
                     <text class="security-text">查看账号的登录历史记录</text>
                 </view>
                 <view class="item-action">
-                    <button class="edit-btn" @click="showLoginHistory">查看</button>
+                    <button class="edit-btn" @click="showLoginHistory">
+                        查看
+                    </button>
                 </view>
             </view>
         </view>
@@ -137,7 +160,10 @@
                     />
                 </view>
                 <view class="modal-footer">
-                    <button class="btn-cancel" @click="showUsernameModal = false">
+                    <button
+                        class="btn-cancel"
+                        @click="showUsernameModal = false"
+                    >
                         取消
                     </button>
                     <button class="btn-confirm" @click="updateUsername">
@@ -220,10 +246,16 @@
             <view class="history-modal" @click.stop>
                 <view class="modal-header">
                     <text class="modal-title">登录日志</text>
-                    <view class="modal-close" @click="showHistoryModal = false">✕</view>
+                    <view class="modal-close" @click="showHistoryModal = false"
+                        >✕</view
+                    >
                 </view>
                 <view class="history-controls">
-                    <button class="btn-clear" @click="clearAllLogs" v-if="loginHistory.length > 0">
+                    <button
+                        class="btn-clear"
+                        @click="clearAllLogs"
+                        v-if="loginHistory.length > 0"
+                    >
                         清空所有
                     </button>
                 </view>
@@ -231,7 +263,10 @@
                     <view v-if="loginLoading" class="loading-tip">
                         <text>加载中...</text>
                     </view>
-                    <view v-else-if="loginHistory.length === 0" class="empty-tip">
+                    <view
+                        v-else-if="loginHistory.length === 0"
+                        class="empty-tip"
+                    >
                         <text>暂无登录记录</text>
                     </view>
                     <view
@@ -240,7 +275,9 @@
                         class="history-item"
                     >
                         <view class="history-info">
-                            <view class="history-device">{{ log.device_info }}</view>
+                            <view class="history-device">{{
+                                log.device_info
+                            }}</view>
                             <view class="history-time">
                                 {{ formatTime(log.login_time) }}
                             </view>
@@ -248,7 +285,7 @@
                                 IP: {{ log.ip_address }}
                             </view>
                         </view>
-                        <button 
+                        <button
                             class="btn-delete"
                             @click="deleteLoginLog(log.id)"
                         >
@@ -260,7 +297,10 @@
         </view>
 
         <!-- 隐藏的 canvas，用于图片转换 -->
-        <canvas id="temp-canvas" style="display: none; width: 200px; height: 200px;"></canvas>
+        <canvas
+            id="temp-canvas"
+            style="display: none; width: 200px; height: 200px"
+        ></canvas>
     </view>
 </template>
 
@@ -322,14 +362,15 @@ export default {
             } catch (e) {
                 console.error("加载账号信息失败", e);
             }
-            
+
             // 从服务器同步最新的用户信息
             this.syncUserInfoFromServer();
         },
         syncUserInfoFromServer() {
             // 从服务器获取最新的用户信息
-            this.$api.account.getAccountInfo()
-                .then(res => {
+            this.$api.account
+                .getAccountInfo()
+                .then((res) => {
                     if (res && res.code === 200 && res.data) {
                         // 更新本地信息
                         this.accountInfo = {
@@ -338,7 +379,7 @@ export default {
                             phone: res.data.phone || "",
                             avatar_url: res.data.avatar_url || "",
                         };
-                        
+
                         // 更新缓存
                         const userInfo = uni.getStorageSync("userInfo");
                         if (userInfo) {
@@ -348,11 +389,11 @@ export default {
                             userInfo.avatar_url = res.data.avatar_url;
                             uni.setStorageSync("userInfo", userInfo);
                         }
-                        
+
                         console.log("用户信息已从服务器同步");
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error("同步用户信息失败", err);
                     // 不显示错误提示，只在控制台记录
                 });
@@ -420,10 +461,11 @@ export default {
                 title: "更新中...",
             });
 
-            this.$api.account.updateAccountInfo({ 
-                username: this.usernameInput
-            })
-                .then(res => {
+            this.$api.account
+                .updateAccountInfo({
+                    username: this.usernameInput,
+                })
+                .then((res) => {
                     uni.hideLoading();
                     if (res && res.code === 200) {
                         this.accountInfo.username = this.usernameInput;
@@ -439,7 +481,7 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     uni.hideLoading();
                     uni.showToast({
                         title: this.getErrorMessage(err),
@@ -456,10 +498,11 @@ export default {
                 title: "更新中...",
             });
 
-            this.$api.account.updateAccountInfo({ 
-                email: this.emailInput
-            })
-                .then(res => {
+            this.$api.account
+                .updateAccountInfo({
+                    email: this.emailInput,
+                })
+                .then((res) => {
                     uni.hideLoading();
                     if (res && res.code === 200) {
                         this.accountInfo.email = this.emailInput;
@@ -475,7 +518,7 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     uni.hideLoading();
                     uni.showToast({
                         title: this.getErrorMessage(err),
@@ -496,10 +539,11 @@ export default {
                 title: "更新中...",
             });
 
-            this.$api.account.updateAccountInfo({ 
-                phone: this.phoneInput
-            })
-                .then(res => {
+            this.$api.account
+                .updateAccountInfo({
+                    phone: this.phoneInput,
+                })
+                .then((res) => {
                     uni.hideLoading();
                     if (res && res.code === 200) {
                         this.accountInfo.phone = this.phoneInput;
@@ -515,7 +559,7 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     uni.hideLoading();
                     uni.showToast({
                         title: this.getErrorMessage(err),
@@ -535,8 +579,9 @@ export default {
         },
         loadLoginHistory() {
             this.loginLoading = true;
-            this.$api.account.getLatestLoginLogs({ limit: 20 })
-                .then(res => {
+            this.$api.account
+                .getLatestLoginLogs({ limit: 20 })
+                .then((res) => {
                     this.loginLoading = false;
                     if (res && res.code === 200) {
                         this.loginHistory = res.data || [];
@@ -547,7 +592,7 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.loginLoading = false;
                     uni.showToast({
                         title: this.getErrorMessage(err),
@@ -563,8 +608,9 @@ export default {
                 cancelText: "取消",
                 success: (res) => {
                     if (res.confirm) {
-                        this.$api.account.deleteLoginLog(logId)
-                            .then(response => {
+                        this.$api.account
+                            .deleteLoginLog(logId)
+                            .then((response) => {
                                 if (response && response.code === 200) {
                                     uni.showToast({
                                         title: "删除成功",
@@ -578,14 +624,14 @@ export default {
                                     });
                                 }
                             })
-                            .catch(err => {
+                            .catch((err) => {
                                 uni.showToast({
                                     title: this.getErrorMessage(err),
                                     icon: "none",
                                 });
                             });
                     }
-                }
+                },
             });
         },
         clearAllLogs() {
@@ -597,8 +643,9 @@ export default {
                 confirmColor: "#f5576c",
                 success: (res) => {
                     if (res.confirm) {
-                        this.$api.account.clearLoginLogs()
-                            .then(response => {
+                        this.$api.account
+                            .clearLoginLogs()
+                            .then((response) => {
                                 if (response && response.code === 200) {
                                     uni.showToast({
                                         title: "清空成功",
@@ -612,21 +659,21 @@ export default {
                                     });
                                 }
                             })
-                            .catch(err => {
+                            .catch((err) => {
                                 uni.showToast({
                                     title: this.getErrorMessage(err),
                                     icon: "none",
                                 });
                             });
                     }
-                }
+                },
             });
         },
         formatTime(timestamp) {
             // 处理 MySQL 返回的时间戳格式 (YYYY-MM-DD HH:MM:SS)
             let date;
-            if (typeof timestamp === 'string') {
-                date = new Date(timestamp.replace(' ', 'T'));
+            if (typeof timestamp === "string") {
+                date = new Date(timestamp.replace(" ", "T"));
             } else {
                 date = new Date(timestamp);
             }
@@ -647,11 +694,11 @@ export default {
                     return `${days}天前`;
                 } else {
                     // 返回具体时间
-                    return date.toLocaleString('zh-CN', {
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                    return date.toLocaleString("zh-CN", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
                     });
                 }
             }
@@ -659,7 +706,7 @@ export default {
         getErrorMessage(err) {
             // 统一处理错误信息
             if (!err) return "操作失败";
-            if (typeof err === 'string') return err;
+            if (typeof err === "string") return err;
             if (err.message) return err.message;
             if (err.statusText) return err.statusText;
             if (err.errMsg) return err.errMsg;
@@ -667,13 +714,16 @@ export default {
         },
         chooseAvatar() {
             console.log("chooseAvatar - 检测环境");
-            
+
             // 检测是否是浏览器环境（H5）
-            const isH5 = process.env.VUE_APP_PLATFORM === 'h5' || 
-                        (typeof window !== 'undefined' && typeof document !== 'undefined' && !uni.getSystemInfoSync().platform);
-            
+            const isH5 =
+                process.env.VUE_APP_PLATFORM === "h5" ||
+                (typeof window !== "undefined" &&
+                    typeof document !== "undefined" &&
+                    !uni.getSystemInfoSync().platform);
+
             console.log("isH5:", isH5);
-            
+
             if (isH5) {
                 console.log("使用 H5 file input");
                 this.chooseAvatarWeb();
@@ -684,9 +734,9 @@ export default {
         },
         chooseAvatarWeb() {
             // 浏览器环境：使用 HTML5 file input
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
             input.onchange = (e) => {
                 const file = e.target.files[0];
                 if (file) {
@@ -699,8 +749,8 @@ export default {
             // 原生 App 环境 + 小程序
             uni.chooseImage({
                 count: 1,
-                sizeType: ['compressed'],
-                sourceType: ['album', 'camera'],
+                sizeType: ["compressed"],
+                sourceType: ["album", "camera"],
                 success: (res) => {
                     const tempFilePath = res.tempFilePaths[0];
                     console.log("选择图片成功:", tempFilePath);
@@ -709,7 +759,7 @@ export default {
                 },
                 fail: (err) => {
                     console.error("选择图片失败", err);
-                }
+                },
             });
         },
         uploadAvatarAsFile(filePath) {
@@ -717,44 +767,46 @@ export default {
             uni.showLoading({
                 title: "上传中...",
             });
-            
+
             console.log("开始上传文件:", filePath);
-            
+
             // 获取 token
             const token = uni.getStorageSync("Access-Token");
-            
+
             // 获取完整的服务器 URL
-            const env = require('@/common/config/env.js').default;
-            const uploadUrl = env.baseUrl + '/user/avatar/file';
-            
+            const env = require("@/common/config/env.js").default;
+            const uploadUrl = env.baseUrl + "/user/avatar/file";
+
             console.log("上传地址:", uploadUrl);
-            
+
             uni.uploadFile({
                 url: uploadUrl,
                 filePath: filePath,
-                name: 'avatar',
+                name: "avatar",
                 header: {
-                    'Access-Token': token
+                    "Access-Token": token,
                 },
                 success: (res) => {
                     uni.hideLoading();
                     console.log("上传响应状态码:", res.statusCode);
                     console.log("上传响应数据:", res.data);
-                    
+
                     if (res.statusCode === 200) {
                         const data = JSON.parse(res.data);
                         if (data && data.code === 200) {
                             // 显示返回的图片 URL（如果后端支持的话）
                             // 或者直接显示本地文件
-                            this.accountInfo.avatar_url = data.data?.avatar_url || filePath;
-                            
+                            this.accountInfo.avatar_url =
+                                data.data?.avatar_url || filePath;
+
                             // 更新缓存
                             const userInfo = uni.getStorageSync("userInfo");
                             if (userInfo) {
-                                userInfo.avatar_url = data.data?.avatar_url || filePath;
+                                userInfo.avatar_url =
+                                    data.data?.avatar_url || filePath;
                                 uni.setStorageSync("userInfo", userInfo);
                             }
-                            
+
                             uni.showToast({
                                 title: "头像上传成功",
                                 icon: "success",
@@ -780,7 +832,7 @@ export default {
                         title: "网络错误，请检查连接",
                         icon: "none",
                     });
-                }
+                },
             });
         },
         convertImageToBase64Web(file) {
@@ -788,9 +840,9 @@ export default {
             uni.showLoading({
                 title: "处理中...",
             });
-            
+
             console.log("准备读取文件:", file.name);
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 console.log("读取成功");
@@ -814,33 +866,39 @@ export default {
             uni.showLoading({
                 title: "处理中...",
             });
-            
+
             console.log("准备读取文件:", filePath);
-            
+
             try {
                 const fileSystemManager = uni.getFileSystemManager();
                 console.log("获取文件系统管理器成功");
-                
+
                 fileSystemManager.readFile({
                     filePath: filePath,
-                    encoding: 'base64',
+                    encoding: "base64",
                     success: (res) => {
-                        console.log("readFile success, data length:", res.data.length);
+                        console.log(
+                            "readFile success, data length:",
+                            res.data.length,
+                        );
                         uni.hideLoading();
                         const base64Data = res.data;
                         // 获取文件类型
-                        const ext = filePath.split('.').pop().toLowerCase();
-                        let mimeType = 'image/jpeg';
-                        if (ext === 'png') {
-                            mimeType = 'image/png';
-                        } else if (ext === 'gif') {
-                            mimeType = 'image/gif';
-                        } else if (ext === 'webp') {
-                            mimeType = 'image/webp';
+                        const ext = filePath.split(".").pop().toLowerCase();
+                        let mimeType = "image/jpeg";
+                        if (ext === "png") {
+                            mimeType = "image/png";
+                        } else if (ext === "gif") {
+                            mimeType = "image/gif";
+                        } else if (ext === "webp") {
+                            mimeType = "image/webp";
                         }
-                        
+
                         const avatarDataUrl = `data:${mimeType};base64,${base64Data}`;
-                        console.log("base64 URL已生成，长度:", avatarDataUrl.length);
+                        console.log(
+                            "base64 URL已生成，长度:",
+                            avatarDataUrl.length,
+                        );
                         this.uploadAvatarToServer(avatarDataUrl);
                     },
                     fail: (err) => {
@@ -850,9 +908,9 @@ export default {
                             title: "读取文件失败",
                             icon: "none",
                         });
-                    }
+                    },
                 });
-            } catch(e) {
+            } catch (e) {
                 console.error("获取文件系统管理器失败:", e);
                 uni.hideLoading();
                 uni.showToast({
@@ -865,9 +923,10 @@ export default {
             uni.showLoading({
                 title: "上传中...",
             });
-            
-            this.$api.account.uploadAvatar(avatarDataUrl)
-                .then(res => {
+
+            this.$api.account
+                .uploadAvatar(avatarDataUrl)
+                .then((res) => {
                     uni.hideLoading();
                     if (res && res.code === 200) {
                         // 更新本地显示
@@ -875,7 +934,8 @@ export default {
                         // 更新缓存中的用户信息
                         const userInfo = uni.getStorageSync("userInfo");
                         if (userInfo) {
-                            userInfo.avatar_url = res.data?.avatar_url || avatarDataUrl;
+                            userInfo.avatar_url =
+                                res.data?.avatar_url || avatarDataUrl;
                             uni.setStorageSync("userInfo", userInfo);
                         }
                         uni.showToast({
@@ -889,7 +949,7 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     uni.hideLoading();
                     uni.showToast({
                         title: this.getErrorMessage(err),
@@ -897,15 +957,20 @@ export default {
                     });
                     console.error("上传头像失败", err);
                 });
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .account-container {
     padding: 20rpx 0;
-    background-color: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
 
     &.dark-mode {
@@ -921,9 +986,9 @@ export default {
     .page-title {
         display: block;
         font-size: 36rpx;
-        font-weight: bold;
+        font-weight: 700;
         margin-bottom: 10rpx;
-        color: #333;
+        color: #d4744e;
 
         .dark-mode & {
             color: #fff;
@@ -943,9 +1008,10 @@ export default {
 
 .account-section {
     margin: 20rpx;
-    background-color: #fff;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 30rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
 
     .dark-mode & {
         background-color: #2a2a2a;
@@ -955,7 +1021,7 @@ export default {
         font-size: 28rpx;
         font-weight: 600;
         margin-bottom: 20rpx;
-        color: #333;
+        color: #d4744e;
 
         .dark-mode & {
             color: #fff;
@@ -1038,14 +1104,14 @@ export default {
 
     .edit-btn {
         padding: 8rpx 20rpx;
-        background-color: #667eea;
+        background-color: #e07856;
         color: #fff;
         border-radius: 6rpx;
         font-size: 24rpx;
         border: none;
 
         &:active {
-            background-color: #5568d3;
+            background-color: #d4744e;
         }
     }
 
@@ -1573,5 +1639,4 @@ export default {
         }
     }
 }
-
 </style>

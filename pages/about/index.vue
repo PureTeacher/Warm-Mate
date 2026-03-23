@@ -43,7 +43,9 @@
             </view>
 
             <view class="footer">
-                <text class="footer-text">© 2026 Warm-Mate. All rights reserved.</text>
+                <text class="footer-text"
+                    >© 2026 Warm-Mate. All rights reserved.</text
+                >
             </view>
         </view>
     </view>
@@ -73,7 +75,12 @@ export default {
 
 <style scoped lang="scss">
 .about-page {
-    background-color: #f8f8f8;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
 }
 
@@ -83,17 +90,18 @@ export default {
 
 .section {
     margin-bottom: 25rpx;
-    background-color: white;
-    border-radius: 15rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 25rpx;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 }
 
 .section-title {
     display: block;
     font-size: 28rpx;
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: #d4744e;
     margin-bottom: 20rpx;
 }
 
@@ -110,7 +118,7 @@ export default {
 
 .label {
     font-size: 22rpx;
-    color: #667eea;
+    color: #e8825b;
     font-weight: 500;
     margin-bottom: 5rpx;
 }

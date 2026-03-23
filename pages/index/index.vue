@@ -2,7 +2,14 @@
     <view :class="['page-container', containerClasses]">
         <!-- 顶部导航栏 -->
         <view class="header">
-            <text class="sunshine-title">暖愈心伴</text>
+            <view class="header-content">
+                <view class="header-top">
+                    <text class="sunshine-title">暖愈心伴</text>
+                    <view class="deco-dot"></view>
+                </view>
+                <text class="header-subtitle">用心倾听每一个心声</text>
+                <view class="header-decoration"></view>
+            </view>
         </view>
 
         <!-- 卡片列表区域（禁止滚动） -->
@@ -12,6 +19,10 @@
         >
             <!-- 卡片容器：flex双列布局 -->
             <view class="content-wrapper">
+                <view class="greeting-section">
+                    <text class="greeting-text">選擇你需要的服務</text>
+                    <view class="greeting-line"></view>
+                </view>
                 <view class="card-container">
                     <!-- 循环生成卡片 -->
                     <view
@@ -21,6 +32,7 @@
                         :style="{ background: item.gradient }"
                         @click="navigateTo(item.path)"
                     >
+                        <view class="card-shine"></view>
                         <view class="card-header">
                             <view class="emoji-container">
                                 <image
@@ -34,6 +46,9 @@
                         <view class="card-content">
                             <text class="card-title">{{ item.title }}</text>
                             <text class="card-desc">{{ item.desc }}</text>
+                        </view>
+                        <view class="card-footer">
+                            <text class="card-arrow">→</text>
                         </view>
                     </view>
                 </view>
@@ -128,8 +143,14 @@ export default {
 </script>
 
 <style lang="scss">
+/* 页面容器 - 温暖背景渐变 */
 .page-container {
-    background: white;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
     height: 100vh;
     width: 100%;
@@ -138,10 +159,11 @@ export default {
 }
 
 .content {
-    height: calc(100vh - 120rpx);
+    height: calc(100vh - 140rpx);
     overflow: hidden;
     border-bottom: none !important;
     box-shadow: none !important;
+    background: transparent;
 }
 
 /* 全局去除下划线和边框 */
@@ -149,7 +171,6 @@ export default {
 .page-container * {
     border: none !important;
     border-bottom: none !important;
-    box-shadow: none !important;
     text-decoration: none !important;
     outline: none !important;
 }
@@ -157,7 +178,7 @@ export default {
 /* 卡片头部样式 */
 .card-header {
     position: relative;
-    height: 200rpx;
+    height: 180rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,41 +192,55 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10rpx);
 }
 
 .card-emoji {
-    width: 130rpx;
-    height: 130rpx;
+    width: 120rpx;
+    height: 120rpx;
     border-radius: 50%;
     object-fit: contain;
-    filter: drop-shadow(0 4rpx 8rpx rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 2rpx 6rpx rgba(0, 0, 0, 0.08));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0rpx);
+    }
+    50% {
+        transform: translateY(-8rpx);
+    }
 }
 
 .card-tag {
     position: absolute;
-    top: 20rpx;
-    right: 20rpx;
-    background: rgba(255, 255, 255, 0.9);
-    color: #666;
+    top: 16rpx;
+    right: 16rpx;
+    background: rgba(255, 255, 255, 0.95);
+    color: #d4854f;
     font-size: 20rpx;
     padding: 8rpx 16rpx;
     border-radius: 20rpx;
-    font-weight: 500;
+    font-weight: 600;
     backdrop-filter: blur(10rpx);
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 
+/* Header 样式 - 更温馨的渐变 */
 .header {
-    height: 120rpx;
+    height: 140rpx;
     padding-top: var(--status-bar-height);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e07856 0%, #d4744e 50%, #c85a3a 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 10;
-    box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
+    overflow: hidden;
 
     &::before {
         content: "";
@@ -214,29 +249,123 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(10rpx);
     }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -1rpx;
+        left: 0;
+        right: 0;
+        height: 1rpx;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+    }
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12rpx;
+}
+
+.deco-dot {
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.header-subtitle {
+    display: block;
+    font-size: 22rpx;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 8rpx;
+    font-weight: 500;
+    letter-spacing: 0.5rpx;
+}
+
+.header-decoration {
+    width: 60rpx;
+    height: 2rpx;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+    margin-top: 8rpx;
+}
+
+/* 问候语部分 */
+.greeting-section {
+    padding: 32rpx 24rpx 20rpx;
+    position: relative;
+}
+
+.greeting-text {
+    display: block;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #d4744e;
+    margin-bottom: 12rpx;
+    letter-spacing: 0.5rpx;
+}
+
+.greeting-line {
+    width: 60rpx;
+    height: 3rpx;
+    background: linear-gradient(90deg, #e07856, #d4744e);
+    border-radius: 2rpx;
 }
 
 /* 卡片容器样式 */
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 30rpx;
+    padding: 8rpx 24rpx 40rpx;
     justify-content: space-between;
-    gap: 0;
+    gap: 20rpx;
 }
 
 .card {
-    width: calc(50% - 15rpx);
-    margin-bottom: 30rpx;
-    border-radius: 20rpx;
+    width: calc(50% - 10rpx);
+    border-radius: 24rpx;
     overflow: hidden;
-    box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
-    min-height: 320rpx;
+    box-shadow:
+        0 8rpx 24rpx rgba(224, 120, 86, 0.12),
+        0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    min-height: 310rpx;
     position: relative;
+    display: flex;
+    flex-direction: column;
 
     &::before {
         content: "";
@@ -246,82 +375,125 @@ export default {
         right: 0;
         bottom: 0;
         background: rgba(255, 255, 255, 0.1);
-        border-radius: 20rpx;
+        border-radius: 24rpx;
         z-index: 1;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-8rpx);
+        box-shadow:
+            0 16rpx 32rpx rgba(224, 120, 86, 0.18),
+            0 4rpx 12rpx rgba(0, 0, 0, 0.12);
     }
 
     &:active {
-        transform: translateY(-4rpx) scale(0.98);
-        box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.15);
+        transform: translateY(-4rpx) scale(0.99);
+        box-shadow: 0 12rpx 28rpx rgba(224, 120, 86, 0.15);
     }
 }
 
+.card-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1rpx;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    z-index: 2;
+}
+
 .card-content {
-    padding: 30rpx;
-    background: rgba(255, 255, 255, 0.95);
+    padding: 24rpx;
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(20rpx);
     position: relative;
     z-index: 2;
-    min-height: 120rpx;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .card-title {
     display: block;
-    font-size: 32rpx;
+    font-size: 30rpx;
     font-weight: 700;
-    color: #333;
-    margin-bottom: 12rpx;
-    text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+    color: #2c2c2c;
+    margin-bottom: 10rpx;
 }
 
 .card-desc {
     display: block;
-    font-size: 24rpx;
+    font-size: 22rpx;
     color: #666;
-    line-height: 1.5;
-    opacity: 0.9;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 0;
+}
+
+.card-footer {
+    padding: 0 24rpx 20rpx;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20rpx);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-arrow {
+    font-size: 28rpx;
+    color: #d4744e;
+    font-weight: 600;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(4rpx);
 }
 
 .content {
     flex: 1;
-    background: white;
+    background: transparent;
     padding: 20rpx 0;
     min-height: 750rpx;
     position: relative;
 }
 
 .content-wrapper {
-    min-height: 1000rpx;
+    min-height: auto;
     max-width: 750rpx;
-    background: white;
-    border-radius: 24rpx;
-    box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.08);
+    background: transparent;
     margin: 0 auto;
     padding: 0;
     position: relative;
     z-index: 1;
-    // border: 1rpx solid rgba(0, 0, 0, 0.1);
 }
 
 .sunshine-title {
-    font-weight: 700;
+    font-weight: 800;
     color: #ffffff;
-    text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
-    font-size: 36rpx;
+    text-shadow: 0 3rpx 10rpx rgba(0, 0, 0, 0.25);
+    font-size: 40rpx;
     position: relative;
     display: inline-block;
     z-index: 2;
-    letter-spacing: 1rpx;
+    letter-spacing: 2rpx;
 }
 
 .sunshine-title::before {
     position: absolute;
-    left: -45rpx;
-    top: -5rpx;
-    font-size: 36rpx;
+    left: -50rpx;
+    top: -8rpx;
+    font-size: 40rpx;
     filter: drop-shadow(0 2rpx 6rpx rgba(0, 0, 0, 0.2));
 }
 </style>

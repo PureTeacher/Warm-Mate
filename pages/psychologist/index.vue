@@ -733,7 +733,12 @@ export default {
 <style lang="scss">
 .psychologist-container {
     min-height: 100vh;
-    background: #f8fafc;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     padding-bottom: 40rpx;
 }
 
@@ -741,8 +746,9 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 40rpx 30rpx 20rpx;
-    background: white;
-    border-bottom: 1rpx solid #e2e8f0;
+    background: linear-gradient(135deg, #e07856 0%, #d4744e 50%, #c85a3a 100%);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
+    border: none;
 
     .header-left {
         display: flex;
@@ -753,40 +759,41 @@ export default {
     .back-arrow {
         font-size: 40rpx;
         margin-right: 20rpx;
-        color: #64748b;
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .header-title {
         font-size: 36rpx;
-        font-weight: 600;
-        color: #1e293b;
+        font-weight: 700;
+        color: #ffffff;
     }
 
     .header-right {
         .appointment-record {
             display: flex;
             align-items: center;
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.2);
             padding: 12rpx 20rpx;
             border-radius: 20rpx;
             transition: all 0.3s;
-            border: 1rpx solid #e2e8f0;
+            border: 1rpx solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10rpx);
 
             &:active {
                 transform: scale(0.95);
-                background: #e2e8f0;
+                background: rgba(255, 255, 255, 0.3);
             }
 
             .record-icon {
                 font-size: 24rpx;
                 margin-right: 8rpx;
-                opacity: 0.8;
+                color: rgba(255, 255, 255, 0.9);
             }
 
             .record-text {
                 font-size: 24rpx;
-                color: #64748b;
-                font-weight: 500;
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 600;
             }
         }
     }
@@ -803,20 +810,22 @@ export default {
 
 .search-section {
     padding: 20rpx 30rpx;
-    background: white;
+    background: transparent;
 
     .search-bar {
         display: flex;
         align-items: center;
-        background: #f8fafc;
-        border-radius: 16rpx;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 24rpx;
         padding: 20rpx 30rpx;
-        border: 1rpx solid #e2e8f0;
+        border: none;
+        box-shadow: 0 4rpx 16rpx rgba(224, 120, 86, 0.1);
+        backdrop-filter: blur(10rpx);
 
         .search-icon {
             font-size: 32rpx;
             margin-right: 15rpx;
-            color: #94a3b8;
+            color: #d4744e;
         }
 
         .search-input {
@@ -861,17 +870,23 @@ export default {
 }
 
 .doctor-card {
-    background: white;
-    border-radius: 16rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 32rpx;
-    margin-bottom: 16rpx;
-    box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);
-    border: 1rpx solid #e2e8f0;
-    transition: all 0.3s;
+    margin-bottom: 20rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    border: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(20rpx);
+
+    &:hover {
+        transform: translateY(-8rpx);
+        box-shadow: 0 16rpx 32rpx rgba(224, 120, 86, 0.18);
+    }
 
     &:active {
-        transform: scale(0.98);
-        box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+        transform: translateY(-4rpx) scale(0.99);
+        box-shadow: 0 12rpx 28rpx rgba(224, 120, 86, 0.15);
     }
 
     .card-header {

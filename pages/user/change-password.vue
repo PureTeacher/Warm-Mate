@@ -85,16 +85,26 @@
                         <text :class="['requirement-icon', { met: lengthMet }]">
                             {{ lengthMet ? "✓" : "○" }}
                         </text>
-                        <text class="requirement-text">
-                            6-16 个字符
-                        </text>
+                        <text class="requirement-text"> 6-16 个字符 </text>
                     </view>
 
                     <view class="requirement-item">
                         <text
-                            :class="['requirement-icon', { met: digitMet || upperCaseMet || lowerCaseMet }]"
+                            :class="[
+                                'requirement-icon',
+                                {
+                                    met:
+                                        digitMet ||
+                                        upperCaseMet ||
+                                        lowerCaseMet,
+                                },
+                            ]"
                         >
-                            {{ (digitMet || upperCaseMet || lowerCaseMet) ? "✓" : "○" }}
+                            {{
+                                digitMet || upperCaseMet || lowerCaseMet
+                                    ? "✓"
+                                    : "○"
+                            }}
                         </text>
                         <text class="requirement-text">
                             包含字母、数字或符号（至少一种）
@@ -195,18 +205,23 @@ export default {
             // 简化的强度检查：只需要长度正确且包含允许的字符
             if (!this.newPassword) return "weak";
             if (!this.lengthMet) return "weak";
-            
+
             // 检查是否只包含允许的字符
-            const validCharsRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
+            const validCharsRegex =
+                /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
             if (!validCharsRegex.test(this.newPassword)) return "weak";
-            
+
             // 根据字符多样性判断强度
             const hasLetters = /[a-zA-Z]/.test(this.newPassword);
             const hasDigits = /\d/.test(this.newPassword);
-            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(this.newPassword);
-            
-            const diversityCount = [hasLetters, hasDigits, hasSpecial].filter(Boolean).length;
-            
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(
+                this.newPassword,
+            );
+
+            const diversityCount = [hasLetters, hasDigits, hasSpecial].filter(
+                Boolean,
+            ).length;
+
             if (diversityCount <= 1) return "weak";
             if (diversityCount === 2) return "medium";
             return "strong";
@@ -286,7 +301,8 @@ export default {
                 return false;
             }
             // 检查密码是否只包含字母、数字或符号
-            const validCharsRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
+            const validCharsRegex =
+                /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]+$/;
             if (!validCharsRegex.test(this.newPassword)) {
                 this.newPasswordError = "密码只能包含字母、数字或符号";
                 return false;
@@ -323,11 +339,12 @@ export default {
             });
 
             // 调用修改密码 API
-            this.$api.account.changePassword({
-                oldPassword: this.currentPassword,
-                newPassword: this.newPassword
-            })
-                .then(res => {
+            this.$api.account
+                .changePassword({
+                    oldPassword: this.currentPassword,
+                    newPassword: this.newPassword,
+                })
+                .then((res) => {
                     uni.hideLoading();
                     this.submitLoading = false;
 
@@ -359,13 +376,13 @@ export default {
                         });
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     uni.hideLoading();
                     this.submitLoading = false;
 
                     // 改进错误提示
                     let errorMsg = "修改失败";
-                    if (err && typeof err === 'object') {
+                    if (err && typeof err === "object") {
                         if (err.message) {
                             errorMsg = err.message;
                         } else if (err.statusText) {
@@ -373,7 +390,7 @@ export default {
                         } else if (err.errMsg) {
                             errorMsg = err.errMsg;
                         }
-                    } else if (typeof err === 'string') {
+                    } else if (typeof err === "string") {
                         errorMsg = err;
                     }
 
@@ -395,7 +412,12 @@ export default {
 <style lang="scss" scoped>
 .password-container {
     padding: 20rpx 0;
-    background-color: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
 
     &.dark-mode {
@@ -413,7 +435,7 @@ export default {
         font-size: 36rpx;
         font-weight: bold;
         margin-bottom: 10rpx;
-        color: #333;
+        color: #d4744e;
 
         .dark-mode & {
             color: #fff;
@@ -433,9 +455,10 @@ export default {
 
 .form-section {
     margin: 20rpx;
-    background-color: #fff;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 30rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
 
     .dark-mode & {
         background-color: #2a2a2a;
@@ -497,12 +520,12 @@ export default {
             position: absolute;
             right: 16rpx;
             font-size: 22rpx;
-            color: #667eea;
+            color: #e07856;
             padding: 8rpx 12rpx;
             cursor: pointer;
 
             .dark-mode & {
-                color: #8da0ff;
+                color: #ff9d7a;
             }
         }
     }
@@ -590,11 +613,11 @@ export default {
         padding: 16rpx;
         background-color: #f9f9f9;
         border-radius: 8rpx;
-        border-left: 4rpx solid #667eea;
+        border-left: 4rpx solid #e07856;
 
         .dark-mode & {
             background-color: #333;
-            border-left-color: #8da0ff;
+            border-left-color: #ff9d7a;
         }
 
         .requirements-title {
@@ -704,7 +727,7 @@ export default {
     }
 
     .submit-btn {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
         color: #fff;
 
         &:active:not(.disabled) {
