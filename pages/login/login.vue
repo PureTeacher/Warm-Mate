@@ -60,6 +60,8 @@
             <!-- 脚注功能 -->
             <view class="footer">
                 <text class="footer-text" @click="register">账号注册</text>
+                <text class="footer-divider">·</text>
+                <text class="footer-text" @click="forgetPassword">忘记密码</text>
             </view>
         </view>
     </view>
@@ -195,6 +197,9 @@ export default {
         register() {
             uni.$u.route("/pages/register/register");
         },
+        forgetPassword() {
+            uni.$u.route("/pages/login/forget-password");
+        },
     },
 };
 </script>
@@ -277,6 +282,13 @@ export default {
                 &:active {
                     opacity: 0.7;
                 }
+            }
+
+            .footer-divider {
+                font-size: 14px;
+                color: #d4744e;
+                margin: 0 5px;
+                opacity: 0.5;
             }
         }
     }

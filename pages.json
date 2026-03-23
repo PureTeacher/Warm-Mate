@@ -33,6 +33,13 @@
             }
         },
         {
+            "path": "pages/login/forget-password",
+            "style": {
+                "navigationBarTitleText": "找回密码",
+                "navigationStyle": "custom"
+            }
+        },
+        {
             "path": "pages/phq7-test/index",
             "style": {
                 "navigationBarTitleText": "",

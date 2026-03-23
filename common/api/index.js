@@ -242,6 +242,16 @@ const api = {
             return http.post("/user/login-logs/clear");
         },
 
+        // 发送找回密码验证码（不需要认证）
+        sendResetPasswordCode(data) {
+            return http.post("/user/password/reset-code", data, { custom: { auth: false, catch: true, toast: false } });
+        },
+
+        // 重置密码（不需要认证）
+        resetPassword(data) {
+            return http.post("/user/password/reset", data, { custom: { auth: false, catch: true, toast: false } });
+        },
+
         // 上传头像
         uploadAvatar(avatar) {
             return http.post("/user/avatar", { avatar });
