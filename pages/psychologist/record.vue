@@ -180,14 +180,14 @@ export default {
           size: 100
         })
         
-        if (result.success) {
-          this.records = result.data.records || []
-          this.totalCount = result.data.total || 0
+        if (result.code === 200) {
+          this.records = result.data || []
+          this.totalCount = this.records.length || 0
         } else {
-          // uni.showToast({
-          //   title: result.message || '加载失败，请重试',
-          //   icon: 'error'
-          // })
+          uni.showToast({
+            title: result.message || '加载失败，请重试',
+            icon: 'error'
+          })
         }
       } catch (error) {
         console.error('加载预约记录失败:', error)

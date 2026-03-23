@@ -36,7 +36,7 @@
         <!-- 医生列表 -->
         <view class="doctor-list" v-if="!loading">
             <view v-if="filteredDoctors.length === 0" class="empty-state">
-                <text class="empty-emoji">👩‍⚕️</text>
+                <text class="empty-emoji">🏥</text>
                 <text class="empty-text">暂无匹配的医生</text>
                 <text class="empty-desc">请尝试其他筛选条件</text>
             </view>

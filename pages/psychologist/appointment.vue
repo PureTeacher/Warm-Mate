@@ -300,20 +300,20 @@ export default {
         // 调用后端接口保存数据
         const result = await this.$api.appointment.saveAppointment(appointmentData)
         
-        if (result.success) {
-          // console.log('保存预约申请成功:', result)
-          // uni.showToast({
-          //   title: '预约申请已提交',
-          //   icon: 'success',
-          //   duration: 2000
-          // })
+        if (result.code === 200) {
+          console.log('保存预约申请成功:', result)
+          uni.showToast({
+            title: '预约申请已提交',
+            icon: 'success',
+            duration: 2000
+          })
         } else {
-          // console.error('保存失败:', result.message)
-          // uni.showToast({
-          //   title: result.message || '保存失败，请重试',
-          //   icon: 'error',
-          //   duration: 2000
-          // })
+          console.error('保存失败:', result.message)
+          uni.showToast({
+            title: result.message || '保存失败，请重试',
+            icon: 'error',
+            duration: 2000
+          })
         }
       } catch (error) {
         console.error('保存预约申请失败:', error)
