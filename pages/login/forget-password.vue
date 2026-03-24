@@ -517,8 +517,8 @@ export default {
         cursor: pointer;
         color: white;
         font-weight: bold;
-        padding: 8px;
-        border-radius: 50%;
+        padding: 8px 12px;
+        border-radius: 8px;
         background: rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
 
