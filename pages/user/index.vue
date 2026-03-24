@@ -79,11 +79,19 @@
         <view class="logout-section">
             <button class="logout-btn" @click="confirmLogout">退出登录</button>
         </view>
+
+        <!-- 底部导航栏 -->
+        <custom-bottom-nav currentPage="user" />
     </view>
 </template>
 
 <script>
+import customBottomNav from "@/components/customBottomNav/customBottomNav.vue";
+
 export default {
+    components: {
+        customBottomNav,
+    },
     data() {
         return {
             userInfo: {
@@ -98,6 +106,8 @@ export default {
     },
     onLoad() {
         console.log("[user/index] onLoad 被调用");
+        // 隐藏底部导航栏
+        uni.hideTabBar();
         this.loadUserInfo();
     },
     onShow() {
@@ -264,7 +274,7 @@ export default {
         #fff5f0 100%
     );
     min-height: 100vh;
-    padding-bottom: 120rpx;
+    padding-bottom: 220rpx;
 }
 
 /* 用户信息卡片 */

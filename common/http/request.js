@@ -6,14 +6,18 @@ module.exports = (vm) => {
         /* config 为默认全局配置*/
         config.baseURL = env.baseUrl; /* 根域名 */
         config.custom = { catch: true, auth: true }
+        config.timeout = 30000; // 30秒超时
         return config
     })
 
     // 请求拦截
     uni.$u.http.interceptors.request.use((config) => { // 可使用async await 做异步操作
-        uni.showLoading({
-            title: '加载中'
-        });
+        // 仅在自定义参数中明确指定 showLoading: true 时才显示加载提示
+        if (config?.custom?.showLoading === true) {
+            uni.showLoading({
+                title: '加载中'
+            });
+        }
         // 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
         config.data = config.data || {}
         // 根据custom参数中配置的是否需要token，添加对应的请求头

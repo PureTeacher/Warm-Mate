@@ -1,271 +1,341 @@
 <template>
     <view :class="['message', containerClasses]">
         <!-- 顶部导航 -->
+        <view class="header">
+            <view class="header-left">
+                <text class="back-arrow" @click="goBack">←</text>
+                <text class="header-title">{{ conversationTitle }}</text>
+            </view>
+            <view class="header-right">
+                <text class="header-btn" @click="startNewConversation">新对话</text>
+                <text class="header-divider">|</text>
+                <text class="header-btn" @click="viewConversationHistory">历史</text>
+            </view>
+        </view>
 
-        <!-- 需配置bottom的偏移量, 用于底部留白 -->
-        <mescroll-body
-            :fixed="true"
-            :top="10"
-            height="auto"
-            bottom="0"
-            id="mescroll"
-            class="mescroll"
-            ref="mescrollRef"
-            @init="mescrollInit"
-            :down="downOption"
-            @down="downEvent"
-            :up="upOption"
-        >
-            <div class="msgList">
-                <!-- 无更多消息 -->
-                <view v-if="isEnd" class="msg-end">无更多消息</view>
-                <msg
-                    :position="item.fromUserId != 0 ? 'right' : 'left'"
-                    :avatar="item.fromUserId != 0 ? myAvatar : friendAvatar"
-                    :content="item.msgContent"
-                    :id="'msg_' + item.id"
-                    :msgType="item.msgType"
-                    :time="item.time"
-                    v-for="item in msgList"
-                    :msgId="item.id + ''"
-                    :key="item.id"
-                    @msgHandle="msgHandle"
-                ></msg>
-            </div>
-        </mescroll-body>
-        <inputBox @sendMsg="sendMsg"></inputBox>
+        <!-- 消息列表 -->
+        <scroll-view scroll-y class="messages-container" :scroll-top="scrollTop">
+            <view v-if="msgList.length === 0" class="empty-state">
+                <text class="empty-text">开始聊天</text>
+            </view>
+
+            <view v-for="item in msgList" :key="item.id" :class="['message-item', item.fromUserId !== 0 ? 'message-right' : 'message-left']">
+                <view :class="['message-bubble', item.fromUserId !== 0 ? 'msg-right' : 'msg-left']">
+                    <text :class="['message-text', item.isThinking ? 'thinking-animation' : '']">{{ item.msgContent }}</text>
+                </view>
+            </view>
+        </scroll-view>
+
+        <!-- 输入框 -->
+        <view class="input-container">
+            <input 
+                v-model="inputContent" 
+                type="text" 
+                class="message-input" 
+                placeholder="输入消息..."
+                @confirm="sendMsg"
+            />
+            <button class="send-btn" @click="sendMsg">发送</button>
+        </view>
     </view>
 </template>
 
 <script>
-import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
-import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue";
 export default {
-    mixins: [MescrollMixin], // 使用mixin
-    components: {
-        MescrollBody,
-    },
     data() {
         return {
-            // mescroll对象
-            mescroll: {},
-            // 加载框状态
-            status: "loading ",
             // 消息列表
             msgList: [],
-            // 好友Id
-            friendId: "",
             // 用户Id
             userId: "",
-            // 昵称
-            nickname: "",
+            // 对话ID
+            conversationId: "",
+            // 对话标题
+            conversationTitle: "心理咨询",
             // 我的头像
             myAvatar: "/static/logo3.png",
             // 朋友头像
             friendAvatar: "/static/logo2.png",
-            // 是否最后
-            downOption: {
-                // 显示下拉刷新的进度条
-                autoShowLoading: true,
-                // 增大触发下拉刷新的角度,
-                minAngle: 45,
-                // 是否在初始化完毕之后自动执行一次上拉加载的回调
-                auto: false,
-                // 是否到顶部才触发
-                mustToTop: true,
-            },
-            upOption: {
-                // 禁止上拉
-                use: false,
-                // 是否在初始化完毕之后自动执行一次上拉加载的回调
-                auto: false,
-                toTop: {
-                    // 不显示回到顶部按钮
-                    src: "",
-                },
-                isBounce: true,
-            },
             // 页码
             pageNum: 1,
             // 页长
             pageSize: 20,
             // 是否无消息
             isEnd: false,
-            // 频次，用于实现打字机效果
-            times: 0,
-            // 目标消息，用于实现打字机效果
-            targetMsg: {},
-            // 目标内容，用于实现打字机效果
-            targetContent: "",
-            // 定时器
-            interval: {},
+            // 输入框内容
+            inputContent: '',
+            // scroll位置
+            scrollTop: 0
         };
+    },
+    onLoad(options) {
+        // 从历史页面返回时会传入 conversationId
+        if (options && options.conversationId) {
+            this.conversationId = options.conversationId;
+            this.conversationTitle = decodeURIComponent(options.title || '对话');
+        }
+    },
+    onShow() {
+        // 页面显示时初始化
+        if (!this.conversationId) {
+            this.init();
+        } else {
+            // 加载已选中的对话
+            this.loadExistingConversation();
+        }
+        
+        // 监听来自历史页面的事件
+        uni.$on('switchConversation', (data) => {
+            this.conversationId = data.conversationId;
+            this.conversationTitle = data.title;
+            this.loadExistingConversation();
+        });
+    },
+    onHide() {
+        // 页面隐藏时移除监听
+        uni.$off('switchConversation');
     },
     methods: {
         async init() {
-            // 初始化消息
-            await this.msgPage(true);
-        },
-        // 滚动初始化
-        async mescrollInit(mescroll) {
-            await this.init();
-            this.$nextTick(function () {
-                this.mescroll = mescroll;
-                this.mescroll.scrollTo(99999, 300);
-            });
-        },
-        // 转化文字
-        covertText(msg) {
-            const baseParam = uni.$u.deepClone(this.baseParam);
-            let endMsg = {
-                ...baseParam,
-                ...msg,
-            };
-            return endMsg;
-        },
-        // 发送消息
-        async sendMsg(msg) {
-            console.log("msg", JSON.stringify(msg));
-            // 初始化最终返回值
-            let endMsg = this.covertText(msg);
-            // 更新页面
-            endMsg.position = "right";
-            this.pushMsg(endMsg);
-            // 消息发送
-            const result = await this.$api.message(endMsg);
-            if (result.success) {
-                const { data } = result;
-                // id回填
-                endMsg.id = data.id;
-                data.position = "left";
-                this.pushMsg(data);
-            }
-        },
-        // 塞入消息数组
-        pushMsg(msg) {
-            if (msg.position == "left") {
-                this.targetMsg = {};
-                this.times = 0;
-                this.targetMsg = uni.$u.deepClone(msg);
-                this.targetContent = uni.$u.deepClone(
-                    this.targetMsg.msgContent,
-                );
-                msg.msgContent = "";
-                this.msgList.push(msg);
-                this.interval = setInterval(this.intervalFunc, 50);
-            } else {
-                this.msgList.push(msg);
-            }
-            this.$nextTick(function () {
-                this.mescroll.scrollTo(99999, 0);
-            });
-        },
-        // interval
-        intervalFunc() {
-            // 深拷贝内容
-            let content = uni.$u.deepClone(this.targetContent);
-            // 记录次数
-            this.times++;
-            if (this.times == content.length) {
-                clearInterval(this.interval);
-            }
-            this.targetMsg.msgContent = content.substring(0, this.times);
-            this.$set(this.msgList, this.msgList.length - 1, this.targetMsg);
-            this.$nextTick(function () {
-                this.mescroll.scrollTo(99999, 0);
-            });
-        },
-        // 下拉回调
-        downEvent() {
-            this.msgPage();
-        },
-        // 滚动到顶部触发
-        async msgPage(flag) {
-            let _this = this;
-            // 参数
-            const params = {
-                current: this.pageNum,
-                size: this.pageSize,
-            };
-            const result = await this.$api.messagePage(params);
-            if (!result.success) {
-                uni.$u.toast(result.message);
+            // 从本地存储获取用户ID
+            this.userId = uni.getStorageSync('userId');
+            
+            // 创建新对话会话
+            try {
+                const createRes = await this.$api.createConversation({ title: '新对话' });
+                if (createRes.code === 200) {
+                    this.conversationId = createRes.data.id;
+                    this.conversationTitle = createRes.data.title;
+                } else {
+                    uni.$u.toast(createRes.message || '创建对话失败');
+                    return;
+                }
+            } catch (error) {
+                console.error('创建对话失败:', error);
+                uni.$u.toast('创建对话失败');
                 return;
             }
-            // 需自行维护页码
-            this.pageNum++;
-            // 先隐藏下拉刷新的状态
-            this.mescroll.endSuccess(this.pageSize);
-            const data = result.data;
-            const { records } = data;
-            // 不满一页,说明已经无更多消息
-            if (records.length < this.pageSize) {
-                // 标记已无更多消息
-                this.isEnd = true;
-                this.mescroll.lockDownScroll(true); // 锁定下拉
+            
+            // 初始化消息
+            this.loadMessages(true);
+        },
+        async loadExistingConversation() {
+            // 加载已有对话的消息
+            this.userId = uni.getStorageSync('userId');
+            this.msgList = [];
+            this.pageNum = 1;
+            this.isEnd = false;
+            this.loadMessages(true);
+        },
+        async loadMessages(isInit = false) {
+            try {
+                const params = {
+                    userId: this.userId,
+                    conversationId: this.conversationId,
+                    current: 1,
+                    size: 50,
+                };
+                const result = await this.$api.messagePage(params);
+                if (result.code !== 200) {
+                    uni.$u.toast(result.message || '加载失败');
+                    return;
+                }
+
+                const data = result.data;
+                this.msgList = (data.records || []).reverse();
+
+                if (data.records.length < 50) {
+                    this.isEnd = true;
+                }
+
+                // 滚动到底部
+                if (isInit && this.msgList.length > 0) {
+                    this.$nextTick(() => {
+                        this.scrollTop = 99999;
+                    });
+                }
+            } catch (error) {
+                console.error('加载消息失败:', error);
+                uni.$u.toast('加载失败');
             }
-            const msgList = uni.$u.deepClone(this.msgList);
-            const topMsg = msgList[0];
-            const filterMsgList = this.msgFilter(records);
-            this.msgList = filterMsgList.concat(msgList);
+        },
+        async sendMsg() {
+            if (!this.inputContent.trim()) {
+                uni.$u.toast('消息不能为空');
+                return;
+            }
+
+            // 立刻添加用户消息
+            const userMsgContent = this.inputContent;
+            this.msgList.push({
+                id: Date.now() + Math.random(),
+                msgContent: userMsgContent,
+                fromUserId: this.userId,
+                time: new Date().toISOString(),
+                msgType: 'text'
+            });
+
+            // 立刻清空输入框
+            this.inputContent = '';
+
+            // 立刻滚动到底部
             this.$nextTick(() => {
-                if (this.pageNum <= 2) {
-                    // 第一页直接滚动到底部 ( this.pageNum已在前面加1 )
-                    _this.mescroll.scrollTo(99999, 0);
-                } else if (topMsg) {
-                    // 保持顶部消息的位置
-                    let view = uni
-                        .createSelectorQuery()
-                        .select("#msg_" + topMsg.id);
-                    view.boundingClientRect((v) => {
-                        console.log("节点离页面顶部的距离=" + v.top);
-                        _this.mescroll.scrollTo(v.top - 100, 0); // 减去上偏移量100
-                    }).exec();
+                this.scrollTop = 99999;
+            });
+
+            // 异步获取 AI 回复，不阻塞UI
+            this.getAIResponse(userMsgContent);
+        },
+        async getAIResponse(userContent) {
+            try {
+                // 创建占位符 AI 消息 - 显示思考中的动画
+                const aiMsgId = Date.now() + Math.random();
+                this.msgList.push({
+                    id: aiMsgId,
+                    msgContent: '思考中',  // 初始显示"思考中"
+                    fromUserId: 0,
+                    time: new Date().toISOString(),
+                    msgType: 'text',
+                    isThinking: true  // 标记为思考中状态
+                });
+
+                // 找到 AI 消息在列表中的索引
+                const aiMsgIndex = this.msgList.findIndex(m => m.id === aiMsgId);
+                
+                // 调用 API 获取 AI 回复（完整响应）
+                const result = await this.$api.message({
+                    msgContent: userContent,
+                    msgType: 'text',
+                    conversationId: this.conversationId
+                });
+
+                if (result && result.data && result.data.aiMessage) {
+                    const aiMsg = result.data.aiMessage;
+                    const fullContent = aiMsg.msgContent || '';
+                    
+                    // 清除思考中标记
+                    if (aiMsgIndex !== -1 && this.msgList[aiMsgIndex]) {
+                        this.msgList[aiMsgIndex].isThinking = false;
+                        this.msgList[aiMsgIndex].msgContent = '';
+                    }
+                    
+                    // 更新消息 ID 和时间
+                    if (aiMsgIndex !== -1) {
+                        this.msgList[aiMsgIndex].id = aiMsg.id;
+                        this.msgList[aiMsgIndex].time = aiMsg.time;
+                    }
+                    
+                    // 逐字显示内容（逐50ms显示一个字，模拟流式效果）
+                    let displayContent = '';
+                    for (let i = 0; i < fullContent.length; i++) {
+                        displayContent += fullContent[i];
+                        
+                        // 每50ms更新一次显示
+                        await new Promise(resolve => setTimeout(resolve, 50));
+                        
+                        if (aiMsgIndex !== -1 && this.msgList[aiMsgIndex]) {
+                            this.msgList[aiMsgIndex].msgContent = displayContent;
+                            
+                            // 实时滚动到底部
+                            this.$nextTick(() => {
+                                this.scrollTop = 99999;
+                            });
+                        }
+                    }
+                    
+                    console.log('✓ AI 回复完成');
+                    
+                    // 如果是第一条对话（只有2条消息：用户+AI），则生成标题
+                    if (this.msgList.length === 2) {
+                        this.generateConversationTitle();
+                    }
+                } else {
+                    throw new Error('API 返回数据格式错误');
                 }
-                if (Boolean(flag)) {
-                    // 第一页直接滚动到底部 ( this.pageNum已在前面加1 )
-                    _this.mescroll.scrollTo(
-                        "msg_" + this.msgList[this.msgList.length - 1].id,
-                        300,
-                    );
+                
+            } catch (error) {
+                console.error('❌ 获取AI回复失败:', error);
+                
+                // 如果消息为空则移除
+                const aiMsgIndex = this.msgList.findIndex(m => m.fromUserId === 0 && m.msgContent === '');
+                if (aiMsgIndex !== -1 && !this.msgList[aiMsgIndex].msgContent) {
+                    this.msgList.splice(aiMsgIndex, 1);
                 }
+                
+                uni.$u.toast('获取回复失败');
+            }
+        },
+        formatTime(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
             });
         },
-        // 消息过滤
-        msgFilter(msgList) {
-            const len = msgList.length;
-            const endMsgList = [];
-            for (let i = len - 1; i >= 0; i--) {
-                endMsgList.push(msgList[i]);
-            }
-            return endMsgList;
-        },
-        // 返回上一页
         goBack() {
             uni.navigateBack({
-                delta: 1,
+                delta: 1
             });
         },
+        startNewConversation() {
+            // 检查是否已经是新对话
+            if (this.conversationTitle === '新对话' && this.msgList.length === 0) {
+                uni.$u.toast('已处于新对话');
+                return;
+            }
+            
+            uni.showModal({
+                title: '开启新对话',
+                content: '确定要开启新对话吗？',
+                confirmText: '确定',
+                cancelText: '取消',
+                success: (res) => {
+                    if (res.confirm) {
+                        this.init();
+                        uni.$u.toast('已开启新对话');
+                    }
+                },
+            });
+        },
+        viewConversationHistory() {
+            uni.navigateTo({
+                url: '/pages/message/conversation-list'
+            });
+        },
+        
+        async generateConversationTitle() {
+            try {
+                const result = await this.$api.generateConversationTitle(this.conversationId);
+                if (result && result.code === 200) {
+                    const newTitle = result.data.title || '新对话';
+                    this.conversationTitle = newTitle;
+                    console.log('✓ 对话标题已生成:', newTitle);
+                } else {
+                    console.warn('生成标题失败:', result?.message || '未知错误');
+                }
+            } catch (error) {
+                console.error('生成标题异常:', error);
+                // 不影响用户体验，静默失败
+            }
+        }
     },
 };
 </script>
 
 <style lang="scss" scoped>
-page {
-    background: #f8fafc;
-}
-
 .message {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     background: #f8fafc;
 }
 
 /* 顶部导航栏 */
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
     background: white;
     border-bottom: 1rpx solid #e2e8f0;
@@ -274,12 +344,20 @@ page {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 80rpx;
 }
 
 .header-left {
     display: flex;
     align-items: center;
     gap: 20rpx;
+    flex: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15rpx;
 }
 
 .back-arrow {
@@ -287,6 +365,7 @@ page {
     color: #3b82f6;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: 10rpx;
 }
 
 .back-arrow:active {
@@ -301,91 +380,214 @@ page {
     letter-spacing: 1rpx;
 }
 
-.header-subtitle {
-    margin-top: 8rpx;
+.header-btn {
+    font-size: 28rpx;
+    color: #3b82f6;
+    padding: 10rpx 15rpx;
+    border-radius: 6rpx;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
-.subtitle-text {
+.header-btn:active {
+    background-color: #dbeafe;
+    transform: scale(0.95);
+}
+
+.header-divider {
+    color: #cbd5e1;
     font-size: 24rpx;
-    color: #64748b;
-    font-weight: 400;
+    opacity: 0.5;
 }
 
-/* 无更多消息 */
-.msg-end {
-    padding: 30rpx 0;
-    font-size: 24rpx;
-    text-align: center;
-    color: #94a3b8;
-    background: #f1f5f9;
-    margin: 20rpx 30rpx;
-    border-radius: 12rpx;
-    border: 1rpx solid #e2e8f0;
-}
-
-.msgList {
-    padding: 120rpx 30rpx 120rpx;
+/* 消息容器 */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
     background: #f8fafc;
+    padding: 20rpx 0;
 }
 
-/* 消息容器优化 */
-.mescroll {
-    background: #f8fafc;
-}
-
-/* 输入框容器优化 */
-.input-box-container {
-    background: white;
-    border-top: 1rpx solid #e2e8f0;
-    box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.05);
-}
-
-/* 消息气泡样式优化 */
-.msg-bubble {
-    border-radius: 16rpx;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
-    border: 1rpx solid rgba(0, 0, 0, 0.05);
-}
-
-/* 时间戳样式优化 */
-.msg-time {
-    color: #94a3b8;
-    font-size: 22rpx;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 8rpx 16rpx;
-    border-radius: 20rpx;
-    backdrop-filter: blur(10rpx);
-}
-
-/* 头像样式优化 */
-.msg-avatar {
-    border: 2rpx solid #e2e8f0;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
-}
-
-/* 加载状态优化 */
-.loading-container {
+.empty-state {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30rpx;
-    color: #64748b;
-    font-size: 24rpx;
+    height: 100%;
+    color: #94a3b8;
+    font-size: 28rpx;
 }
 
-/* 滚动条样式优化 */
+.empty-state-text {
+    color: #94a3b8;
+    font-size: 28rpx;
+}
+
+/* 消息项目 */
+.message-item {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20rpx;
+    animation: slideIn 0.3s ease;
+    box-sizing: border-box;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10rpx);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* AI消息 - 左侧 */
+.message-item.message-left {
+    justify-content: flex-start;
+    padding-left: 30rpx;
+    padding-right: 80rpx;
+}
+
+/* 用户消息 - 右侧 */
+.message-item.message-right {
+    justify-content: flex-end;
+    padding-right: 20rpx;
+    padding-left: 80rpx;
+}
+
+/* 消息气泡 */
+.message-bubble {
+    word-wrap: break-word;
+    word-break: break-all;
+    line-height: 1.6;
+}
+
+/* AI消息气泡 - 无背景 */
+.message-bubble.msg-left {
+    background: transparent;
+    color: #1e293b;
+    padding: 8rpx 0;
+    box-shadow: none;
+    max-width: 100%;
+}
+
+/* 用户消息气泡 - 浅蓝 */
+.message-bubble.msg-right {
+    background: #dbeafe;
+    color: #1e293b;
+    padding: 16rpx 20rpx;
+    border-radius: 16rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+    max-width: 100%;
+}
+
+/* 消息文本 */
+.message-text {
+    font-size: 28rpx;
+    display: block;
+    margin-bottom: 8rpx;
+}
+
+/* AI思考中动画 */
+.message-text.thinking-animation {
+    animation: breathing 1.5s ease-in-out infinite;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+@keyframes breathing {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* 消息时间 */
+.message-time {
+    font-size: 20rpx;
+    opacity: 0.6;
+    margin-top: 8rpx;
+    color: #64748b;
+}
+
+/* 输入框容器 */
+.input-container {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1rpx solid #e2e8f0;
+    padding: 16rpx 20rpx;
+    display: flex;
+    gap: 12rpx;
+    align-items: flex-end;
+    box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.message-input {
+    flex: 1;
+    padding: 12rpx 16rpx;
+    border: 1rpx solid #e2e8f0;
+    border-radius: 20rpx;
+    font-size: 28rpx;
+    color: #1e293b;
+    background: #f8fafc;
+    max-height: 150rpx;
+    min-height: 44rpx;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.message-input:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 3rpx rgba(59, 130, 246, 0.1);
+}
+
+.message-input::placeholder {
+    color: #cbd5e1;
+}
+
+.send-btn {
+    padding: 12rpx 24rpx;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 20rpx;
+    font-size: 26rpx;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 80rpx;
+    text-align: center;
+}
+
+.send-btn:active {
+    background: #2563eb;
+    transform: scale(0.95);
+}
+
+.send-btn:disabled {
+    background: #cbd5e1;
+    opacity: 0.6;
+    transform: none;
+}
+
+/* 滚动条美化 */
 ::-webkit-scrollbar {
-    width: 6rpx;
+    width: 8rpx;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 3rpx;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 3rpx;
+    border-radius: 4rpx;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -394,13 +596,33 @@ page {
 
 /* 响应式优化 */
 @media screen and (max-width: 750rpx) {
-    .msgList {
-        padding: 15rpx 20rpx 100rpx;
+    .message-item.message-left {
+        padding-left: 20rpx;
+        padding-right: 60rpx;
     }
 
-    .msg-end {
-        margin: 15rpx 20rpx;
-        padding: 25rpx 0;
+    .message-item.message-right {
+        padding-right: 16rpx;
+        padding-left: 60rpx;
+    }
+
+    .message-input {
+        font-size: 26rpx;
+        padding: 10rpx 14rpx;
+    }
+
+    .send-btn {
+        padding: 10rpx 20rpx;
+        font-size: 24rpx;
+        min-width: 70rpx;
+    }
+
+    .header {
+        padding: 16rpx 20rpx;
+    }
+
+    .header-title {
+        font-size: 28rpx;
     }
 }
 </style>

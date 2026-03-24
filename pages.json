@@ -19,6 +19,13 @@
             }
         },
         {
+            "path": "pages/message/conversation-list",
+            "style": {
+                "navigationBarTitleText": "对话历史",
+                "navigationStyle": "custom"
+            }
+        },
+        {
             "path": "pages/login/login",
             "style": {
                 "navigationBarTitleText": "我的收藏",

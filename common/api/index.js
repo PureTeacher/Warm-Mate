@@ -29,6 +29,48 @@ const api = {
     },
 
     /**
+     * 创建新对话
+     */
+    createConversation(data) {
+        return http.post("/conversation", data, { custom: { auth: true } });
+    },
+
+    /**
+     * 获取对话列表
+     */
+    getConversationList(params) {
+        return http.get("/conversation", { params });
+    },
+
+    /**
+     * 获取对话详情
+     */
+    getConversationDetail(id, params) {
+        return http.get(`/conversation/${id}`, { params });
+    },
+
+    /**
+     * 删除对话
+     */
+    deleteConversation(id) {
+        return http.delete(`/conversation/${id}`, { custom: { auth: true } });
+    },
+
+    /**
+     * 更新对话标题
+     */
+    updateConversation(id, data) {
+        return http.put(`/conversation/${id}`, data, { custom: { auth: true } });
+    },
+
+    /**
+     * 生成对话标题
+     */
+    generateConversationTitle(id) {
+        return http.post(`/conversation/${id}/generate-title`, {}, { custom: { auth: true } });
+    },
+
+    /**
      * 问卷结果相关API
      */
     questionnaire: {

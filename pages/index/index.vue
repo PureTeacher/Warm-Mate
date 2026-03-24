@@ -54,11 +54,19 @@
                 </view>
             </view>
         </view>
+
+        <!-- 底部导航栏 -->
+        <custom-bottom-nav currentPage="home" />
     </view>
 </template>
 
 <script>
+import customBottomNav from "@/components/customBottomNav/customBottomNav.vue";
+
 export default {
+    components: {
+        customBottomNav,
+    },
     data() {
         return {
             screenMinHeight: 1500, // 默认值（单位：rpx）
@@ -112,6 +120,8 @@ export default {
         };
     },
     onLoad() {
+        // 隐藏底部导航栏
+        uni.hideTabBar();
         // uni.removeStorageSync("Access-Token");
         const accessToken = uni.getStorageSync("Access-Token");
         // console.log("accessToken")
@@ -159,7 +169,7 @@ export default {
 }
 
 .content {
-    height: calc(100vh - 140rpx);
+    height: calc(100vh - 140rpx - 100rpx);
     overflow: hidden;
     border-bottom: none !important;
     box-shadow: none !important;
