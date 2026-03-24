@@ -3,7 +3,6 @@
         <!-- 顶部导航 -->
         <view class="header">
             <view class="header-left">
-                <text class="back-arrow" @click="goBack">←</text>
                 <text class="header-title">{{ conversationTitle }}</text>
             </view>
             <view class="header-right">
@@ -14,12 +13,12 @@
         </view>
 
         <!-- 消息列表 -->
-        <scroll-view scroll-y class="messages-container" :scroll-top="scrollTop">
+        <scroll-view ref="scrollView" scroll-y class="messages-container" :scroll-top="scrollTop" enable-flex>
             <view v-if="msgList.length === 0" class="empty-state">
                 <text class="empty-text">开始聊天</text>
             </view>
 
-            <view v-for="item in msgList" :key="item.id" :class="['message-item', item.fromUserId !== 0 ? 'message-right' : 'message-left']">
+            <view v-for="(item, index) in msgList" :key="item.id" :class="['message-item', item.fromUserId !== 0 ? 'message-right' : 'message-left']">
                 <view :class="['message-bubble', item.fromUserId !== 0 ? 'msg-right' : 'msg-left']">
                     <text :class="['message-text', item.isThinking ? 'thinking-animation' : '']">{{ item.msgContent }}</text>
                 </view>
@@ -86,8 +85,12 @@ export default {
         
         // 监听来自历史页面的事件
         uni.$on('switchConversation', (data) => {
+            // 立即清空消息列表，避免闪烁显示旧消息
+            this.msgList = [];
             this.conversationId = data.conversationId;
             this.conversationTitle = data.title;
+            this.scrollTop = 0;
+            // 然后加载新对话的消息
             this.loadExistingConversation();
         });
     },
@@ -99,6 +102,7 @@ export default {
         async init() {
             // 从本地存储获取用户ID
             this.userId = uni.getStorageSync('userId');
+            this.scrollTop = 0;  // 重置滚动位置
             
             // 创建新对话会话
             try {
@@ -123,6 +127,7 @@ export default {
             // 加载已有对话的消息
             this.userId = uni.getStorageSync('userId');
             this.msgList = [];
+            this.scrollTop = 0;  // 重置滚动位置
             this.pageNum = 1;
             this.isEnd = false;
             this.loadMessages(true);
@@ -150,8 +155,11 @@ export default {
 
                 // 滚动到底部
                 if (isInit && this.msgList.length > 0) {
+                    // 使用两次 nextTick 确保 DOM 完全渲染
                     this.$nextTick(() => {
-                        this.scrollTop = 99999;
+                        this.$nextTick(() => {
+                            this.scrollToBottom();
+                        });
                     });
                 }
             } catch (error) {
@@ -180,7 +188,7 @@ export default {
 
             // 立刻滚动到底部
             this.$nextTick(() => {
-                this.scrollTop = 99999;
+                this.scrollToBottom();
             });
 
             // 异步获取 AI 回复，不阻塞UI
@@ -225,6 +233,18 @@ export default {
                         this.msgList[aiMsgIndex].time = aiMsg.time;
                     }
                     
+                    // 启用自动滚动定时器（每30ms滚动一次）
+                    let isScrolling = false;
+                    const autoScrollTimer = setInterval(() => {
+                        if (!isScrolling) {
+                            isScrolling = true;
+                            this.scrollToBottom();
+                            setTimeout(() => {
+                                isScrolling = false;
+                            }, 50);
+                        }
+                    }, 30);
+                    
                     // 逐字显示内容（逐50ms显示一个字，模拟流式效果）
                     let displayContent = '';
                     for (let i = 0; i < fullContent.length; i++) {
@@ -235,13 +255,16 @@ export default {
                         
                         if (aiMsgIndex !== -1 && this.msgList[aiMsgIndex]) {
                             this.msgList[aiMsgIndex].msgContent = displayContent;
-                            
-                            // 实时滚动到底部
-                            this.$nextTick(() => {
-                                this.scrollTop = 99999;
-                            });
                         }
                     }
+                    
+                    // 停止自动滚动计时器
+                    clearInterval(autoScrollTimer);
+                    
+                    // 最后滚动一次确保到底部
+                    this.$nextTick(() => {
+                        this.scrollToBottom();
+                    });
                     
                     console.log('✓ AI 回复完成');
                     
@@ -303,6 +326,16 @@ export default {
             uni.navigateTo({
                 url: '/pages/message/conversation-list'
             });
+        },
+        
+        scrollToBottom() {
+            // 使用 setTimeout 延迟设置滚动位置，确保 DOM 已更新
+            setTimeout(() => {
+                this.scrollTop++;  // 先增加，再设置大值，触发重新渲染
+                this.$nextTick(() => {
+                    this.scrollTop = 99999;
+                });
+            }, 0);
         },
         
         async generateConversationTitle() {
