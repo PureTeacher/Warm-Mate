@@ -20,7 +20,7 @@
 
             <view v-for="(item, index) in msgList" :key="item.id" :class="['message-item', item.fromUserId !== 0 ? 'message-right' : 'message-left']">
                 <view :class="['message-bubble', item.fromUserId !== 0 ? 'msg-right' : 'msg-left']">
-                    <text :class="['message-text', item.isThinking ? 'thinking-animation' : '']">{{ item.msgContent }}</text>
+                    <text :class="['message-text', item.isThinking ? 'thinking-animation' : '']">{{ parseMarkdown(item.msgContent) }}</text>
                 </view>
             </view>
         </scroll-view>
@@ -336,6 +336,42 @@ export default {
                     this.scrollTop = 99999;
                 });
             }, 0);
+        },
+        
+        parseMarkdown(text) {
+            // 简化处理：只去掉 markdown 格式符号，保留原始换行
+            if (!text) return text;
+            
+            // 分割线：--- 或 *** 或 ___ 转为一条线
+            text = text.replace(/^(-{3,}|\*{3,}|_{3,})$/gm, '──────────────────────');
+            
+            // 代码块：```...``` 转为普通文本（去掉三个反引号）
+            text = text.replace(/```([\s\S]*?)```/g, (match, code) => {
+                return code.trim();
+            });
+            
+            // 标题：去掉 # 前缀
+            text = text.replace(/^(#{1,3})\s+/gm, '');
+            
+            // 列表：- 转为 🔸（粉红菱形）
+            text = text.replace(/^-\s+/gm, '🔸 ');
+            
+            // 代码块：去掉反引号
+            text = text.replace(/`([^`]+)`/g, '$1');
+            
+            // 加粗：**文本** 或 __文本__ 转为 文本
+            text = text.replace(/\*\*(.+?)\*\*|__(.+?)__/g, '$1$2');
+            
+            // 斜体：*文本* 或 _文本_ 转为 文本
+            text = text.replace(/\*(.+?)\*|_(.+?)_/g, '$1$2');
+            
+            // 链接：[文本](url) 转为 文本
+            text = text.replace(/\[(.+?)\]\((.+?)\)/g, '$1');
+            
+            // 引用块：> 前缀去掉
+            text = text.replace(/^>\s+/gm, '  ');
+            
+            return text;
         },
         
         async generateConversationTitle() {
