@@ -4,7 +4,7 @@
             <!-- logo -->
             <view class="logo">
                 <u-avatar
-                    src="/static/logo2.png"
+                    src="/static/logo4.png"
                     shape="square"
                     size="100"
                 ></u-avatar>
@@ -61,7 +61,9 @@
             <view class="footer">
                 <text class="footer-text" @click="register">账号注册</text>
                 <text class="footer-divider">·</text>
-                <text class="footer-text" @click="forgetPassword">忘记密码</text>
+                <text class="footer-text" @click="forgetPassword"
+                    >忘记密码</text
+                >
             </view>
         </view>
     </view>
@@ -152,7 +154,7 @@ export default {
                     // 5. 存储Token（和登出的Key保持一致）
                     uni.setStorageSync("Access-Token", accessToken);
                     console.log("Token存储成功：", accessToken);
-                    
+
                     // 6. 存储用户 ID
                     const userId = result.data?.id || result.id;
                     if (userId) {
