@@ -218,22 +218,22 @@ export default {
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 @keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px) scale(0.98);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -250,10 +250,10 @@ export default {
 @keyframes float {
     0%,
     100% {
-        transform: translateY(0px);
+        transform: translateY(0px) rotateZ(0deg);
     }
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-12px) rotateZ(2deg);
     }
 }
 
@@ -277,15 +277,17 @@ export default {
     }
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(224, 120, 86, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 12px rgba(224, 120, 86, 0);
-    }
+@keyframes glow {
+    0%,
     100% {
-        box-shadow: 0 0 0 0 rgba(224, 120, 86, 0);
+        box-shadow:
+            0 0 0 0 rgba(224, 120, 86, 0.3),
+            0 0 20px rgba(224, 120, 86, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 0 8px rgba(224, 120, 86, 0),
+            0 0 30px rgba(224, 120, 86, 0.2);
     }
 }
 
@@ -307,16 +309,25 @@ export default {
     }
 }
 
-@keyframes wiggle {
-    0%,
-    100% {
-        transform: translateX(0);
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
     }
-    25% {
-        transform: translateX(-2px);
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
-    75% {
-        transform: translateX(2px);
+}
+
+@keyframes fadeInSpin {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-45deg);
+    }
+    to {
+        opacity: 0.1;
+        transform: scale(1) rotate(0deg);
     }
 }
 
@@ -333,7 +344,9 @@ export default {
             top: -100px;
             right: -100px;
             background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
-            animation: rotateBg 20s infinite linear;
+            animation:
+                fadeInSpin 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                rotateBg 20s infinite linear 1.2s;
         }
 
         &-2 {
@@ -342,7 +355,9 @@ export default {
             bottom: -80px;
             left: -80px;
             background: linear-gradient(135deg, #d4744e 0%, #e07856 100%);
-            animation: rotateBgReverse 15s infinite linear;
+            animation:
+                fadeInSpin 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
+                rotateBgReverse 15s infinite linear 1.4s;
         }
     }
 
@@ -360,7 +375,7 @@ export default {
         // #ifndef H5
         height: 90vh;
         // endif
-        animation: fadeInDown 0.8s ease-out;
+        animation: fadeInDown 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         .logo {
             display: flex;
@@ -368,17 +383,19 @@ export default {
             align-items: flex-end;
             width: 100vw;
             filter: drop-shadow(0 4rpx 12rpx rgba(224, 120, 86, 0.15));
-            animation: slideInUp 0.8s ease-out 0.1s backwards;
+            animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s
+                backwards;
 
             .logo-avatar {
-                animation: float 3s ease-in-out infinite;
+                animation: float 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
             }
         }
 
         .title {
             text-align: center;
             margin-top: 20px;
-            animation: slideInUp 0.8s ease-out 0.2s backwards;
+            animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s
+                backwards;
         }
 
         .title-image {
@@ -399,7 +416,8 @@ export default {
         .form {
             padding: 0 80px;
             margin-top: 15px;
-            animation: slideInUp 0.8s ease-out 0.3s backwards;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s
+                backwards;
 
             ::v-deep .u-form-item {
                 margin-bottom: 24px;
@@ -473,7 +491,8 @@ export default {
             text-align: center;
             align-items: center;
             margin-top: 40px;
-            animation: slideInUp 0.8s ease-out 0.4s backwards;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s
+                backwards;
 
             .footer-text {
                 font-size: 14px;
@@ -497,7 +516,8 @@ export default {
                 }
 
                 &:hover {
-                    animation: wiggle 0.4s ease-in-out;
+                    transform: translateY(-3px);
+                    color: #c85a3a;
 
                     &::after {
                         width: 70%;
