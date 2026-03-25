@@ -37,7 +37,7 @@
                         customStyle="margin-bottom: 10px"
                     >
                         <u--input
-                            placeholder="请输入用户名或手机号"
+                            placeholder="请输入手机号"
                             v-model="model.user.username"
                             border="none"
                         />
@@ -97,7 +97,7 @@ export default {
                 "user.username": [
                     {
                         required: true,
-                        message: "请输入用户名",
+                        message: "请输入手机号或用户名",
                         trigger: ["change", "blur"],
                     },
                 ],

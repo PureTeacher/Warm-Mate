@@ -357,15 +357,14 @@ export default {
 
 /* 卡片容器样式 */
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     padding: 8rpx 24rpx 40rpx;
-    justify-content: space-between;
     gap: 20rpx;
 }
 
 .card {
-    width: calc(50% - 10rpx);
+    width: 100%;
     border-radius: 24rpx;
     overflow: hidden;
     box-shadow:
@@ -473,9 +472,10 @@ export default {
 .content {
     flex: 1;
     background: transparent;
-    padding: 20rpx 0;
-    min-height: 750rpx;
+    padding: 0;
+    min-height: auto;
     position: relative;
+    overflow-y: auto;
 }
 
 .content-wrapper {
