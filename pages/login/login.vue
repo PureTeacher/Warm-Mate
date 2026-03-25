@@ -13,9 +13,13 @@
                     class="logo-avatar"
                 ></u-avatar>
             </view>
-            <!-- title -->
+            <!-- 标题图片 -->
             <view class="title">
-                <h2 class="title-text">{{ title }}</h2>
+                <image
+                    src="/static/标题.png"
+                    class="title-image"
+                    mode="aspectFit"
+                ></image>
             </view>
             <!-- 用户名密码表单 -->
             <view class="form">
@@ -54,9 +58,9 @@
                     </u-form-item>
                 </u--form>
                 <u-button
-                    type="success"
+                    type="primary"
                     text="登录"
-                    customStyle="margin-top: 50px"
+                    customStyle="margin-top: 50px; background: linear-gradient(135deg, #e07856 0%, #d4744e 100%)"
                     shape="circle"
                     @click="submit"
                 />
@@ -374,20 +378,27 @@ export default {
         .title {
             text-align: center;
             margin-top: 20px;
+            animation: slideInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .title-image {
+            width: 480rpx;
+            height: 180rpx;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .title-text {
             font-size: 40px;
             font-weight: 700;
             color: #d4744e;
             letter-spacing: 2rpx;
-            animation: slideInUp 0.8s ease-out 0.2s backwards;
-
-            .title-text {
-                animation: subtleShimmer 3s ease-in-out infinite;
-            }
+            animation: subtleShimmer 3s ease-in-out infinite;
         }
 
         .form {
-            padding: 0 30px;
-            margin-top: 40px;
+            padding: 0 80px;
+            margin-top: 15px;
             animation: slideInUp 0.8s ease-out 0.3s backwards;
 
             ::v-deep .u-form-item {
