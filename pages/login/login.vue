@@ -16,7 +16,7 @@
             <!-- 标题图片 -->
             <view class="title">
                 <image
-                    src="/static/标题.png"
+                    src="/static/title.png"
                     class="title-image"
                     mode="aspectFit"
                 ></image>
