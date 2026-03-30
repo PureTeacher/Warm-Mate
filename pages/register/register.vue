@@ -1,17 +1,25 @@
 <template>
     <view :class="['register', containerClasses]">
+        <!-- 背景装饰元素 -->
+        <view class="bg-decoration bg-decoration-1"></view>
+        <view class="bg-decoration bg-decoration-2"></view>
         <view class="container">
             <!-- logo -->
             <view class="logo">
                 <u-avatar
-                    src="/static/logo2.png"
+                    src="/static/logo4.png"
                     shape="square"
                     size="100"
+                    class="logo-avatar"
                 ></u-avatar>
             </view>
             <!-- title -->
             <view class="title">
-                <h2>{{ title }}</h2>
+                <image
+                    src="/static/title.png"
+                    mode="widthFix"
+                    style="width: 85%; max-width: 450px"
+                ></image>
             </view>
             <!-- 用户名密码表单 -->
             <view class="form">
@@ -78,9 +86,8 @@
                     </u-form-item>
                 </u--form>
                 <u-button
-                    type="primary"
                     text="注册"
-                    customStyle="margin-top: 50px"
+                    customStyle="margin-top: 50px; background: #e07856; color: white; font-weight: 700;"
                     shape="circle"
                     @click="submit"
                 >
@@ -231,7 +238,107 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px) rotateZ(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotateZ(2deg);
+    }
+}
+
+@keyframes rotateBg {
+    from {
+        transform: rotate(0deg) translateX(150px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(150px) rotate(-360deg);
+    }
+}
+
+@keyframes rotateBgReverse {
+    from {
+        transform: rotate(0deg) translateX(-150px) rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg) translateX(-150px) rotate(360deg);
+    }
+}
+
+@keyframes fadeInSpin {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-45deg);
+    }
+    to {
+        opacity: 0.1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 .register {
+    .bg-decoration {
+        position: fixed;
+        border-radius: 50%;
+        opacity: 0.1;
+        pointer-events: none;
+
+        &-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+            background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
+            animation:
+                fadeInSpin 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                rotateBg 20s infinite linear 1.2s;
+        }
+
+        &-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -80px;
+            left: -80px;
+            background: linear-gradient(135deg, #d4744e 0%, #e07856 100%);
+            animation:
+                fadeInSpin 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
+                rotateBgReverse 15s infinite linear 1.4s;
+        }
+    }
+
     .container {
         background: linear-gradient(
             to bottom,
@@ -241,6 +348,9 @@ export default {
         );
         width: 100vw;
         padding-top: 10vh;
+        position: relative;
+        z-index: 1;
+        animation: fadeInDown 1s cubic-bezier(0.34, 1.56, 0.64, 1);
         // #ifndef H5
         height: 90vh;
         // endif
@@ -250,40 +360,89 @@ export default {
             align-items: flex-end;
             width: 100vw;
             filter: drop-shadow(0 4rpx 12rpx rgba(224, 120, 86, 0.15));
+            animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s
+                backwards;
+
+            .logo-avatar {
+                animation: float 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            }
         }
 
         .title {
             text-align: center;
             margin-top: 20px;
-            font-size: 40px;
-            font-weight: 700;
-            color: #d4744e;
-            letter-spacing: 2rpx;
+            animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s
+                backwards;
         }
 
         .form {
-            padding: 0 30px;
+            padding: 0 60px;
             margin-top: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s
+                backwards;
 
             ::v-deep .u-form-item {
                 margin-bottom: 24px;
+
+                .u--input__input-box {
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                    }
+                }
             }
 
             ::v-deep .u--input {
                 font-size: 16px;
+
+                input {
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                    &:focus {
+                        transform: scale(1.02);
+                    }
+                }
             }
 
             ::v-deep .u-btn {
-                background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
+                background: #e07856;
                 color: white;
                 font-weight: 700;
                 font-size: 18px;
                 border-radius: 24px;
                 box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
                 border: none;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    transition:
+                        width 0.6s,
+                        height 0.6s;
+                }
 
                 &:active {
-                    transform: scale(0.98);
+                    transform: scale(0.95);
+                    box-shadow: 0 12rpx 32rpx rgba(224, 120, 86, 0.35);
+                }
+
+                &:hover {
+                    animation: bounce 0.6s ease-in-out;
                     box-shadow: 0 12rpx 28rpx rgba(224, 120, 86, 0.3);
                 }
             }
@@ -295,16 +454,25 @@ export default {
             text-align: center;
             align-items: center;
             margin-top: 40px;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s
+                backwards;
 
             .footer-text {
                 font-size: 14px;
                 color: #d4744e;
                 padding: 15px;
                 font-weight: 600;
-                transition: all 0.3s;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                    opacity: 0.8;
+                }
 
                 &:active {
-                    opacity: 0.7;
+                    opacity: 0.6;
+                    transform: scale(0.95);
                 }
             }
         }
