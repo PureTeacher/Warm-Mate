@@ -9,7 +9,7 @@
                 </view>
                 <view class="item">
                     <text class="label">版本号</text>
-                    <text class="value">1.2.1</text>
+                    <text class="value">1.3.0</text>
                 </view>
                 <view class="item">
                     <text class="label">描述</text>
