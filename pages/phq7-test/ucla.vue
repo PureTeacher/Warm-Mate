@@ -512,6 +512,9 @@ export default {
     },
     closeResult() {
       this.showResult = false
+      uni.navigateBack({
+        delta: 1
+      })
     },
     restartTest() {
       this.showResult = false
@@ -531,9 +534,14 @@ export default {
     async saveTestResultToDatabase() {
       const requestData = {
         questionnaireName: 'UCLA孤独感量表',
+        questionnaireType: 'social',
+        score: this.resultData.totalScore,
         depressionLevel: this.resultData.lonelinessLevel,
         levelDescription: this.resultData.levelDescription,
-        suggestion: this.resultData.suggestion
+        resultData: {
+          answers: this.answers,
+          suggestion: this.resultData.suggestion
+        }
       }
       
       console.log('准备保存测试结果:', requestData)
@@ -542,7 +550,7 @@ export default {
         // 调用后端接口保存数据
         const result = await this.$api.questionnaire.saveResult(requestData)
         
-        if (result.success) {
+        if (result.code === 200) {
           // console.log('保存测试结果成功:', result)
           // uni.showToast({
           //   title: '测试结果已保存',

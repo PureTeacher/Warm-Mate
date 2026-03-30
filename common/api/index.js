@@ -4,14 +4,14 @@ const api = {
      * 登录
      */
     login(params) {
-        return http.post("/login", params, { custom: { auth: false } });
+        return http.post("/login", params, { custom: { auth: false, catch: true, toast: false } });
     },
 
     /**
      * 注册
      */
     register(params) {
-        return http.post("/register", params, { custom: { auth: false } });
+        return http.post("/register", params, { custom: { auth: false, catch: true, toast: false } });
     },
 
     /**
@@ -26,6 +26,48 @@ const api = {
      */
     messagePage(params) {
         return http.get("/message", { params });
+    },
+
+    /**
+     * 创建新对话
+     */
+    createConversation(data) {
+        return http.post("/conversation", data, { custom: { auth: true } });
+    },
+
+    /**
+     * 获取对话列表
+     */
+    getConversationList(params) {
+        return http.get("/conversation", { params });
+    },
+
+    /**
+     * 获取对话详情
+     */
+    getConversationDetail(id, params) {
+        return http.get(`/conversation/${id}`, { params });
+    },
+
+    /**
+     * 删除对话
+     */
+    deleteConversation(id) {
+        return http.delete(`/conversation/${id}`, { custom: { auth: true } });
+    },
+
+    /**
+     * 更新对话标题
+     */
+    updateConversation(id, data) {
+        return http.put(`/conversation/${id}`, data, { custom: { auth: true } });
+    },
+
+    /**
+     * 生成对话标题
+     */
+    generateConversationTitle(id) {
+        return http.post(`/conversation/${id}/generate-title`, {}, { custom: { auth: true } });
     },
 
     /**
@@ -119,6 +161,21 @@ const api = {
     },
 
     /**
+     * 用户信息相关API
+     */
+    user: {
+        // 获取用户信息
+        getInfo() {
+            return http.get("/user/info");
+        },
+
+        // 更新用户信息
+        updateInfo(data) {
+            return http.put("/user/info", data);
+        },
+    },
+
+    /**
      * 账户管理相关API
      */
     account: {
@@ -129,7 +186,7 @@ const api = {
 
         // 更新账户基本信息
         updateAccountInfo(data) {
-            return http.put("/user/account", data);
+            return http.put("/user/info", data);
         },
 
         // 更新邮箱
@@ -205,6 +262,41 @@ const api = {
         // 获取账户安全状态
         getSecurityStatus() {
             return http.get("/user/security-status");
+        },
+
+        // 获取登录日志（分页）
+        getLoginLogs(params) {
+            return http.get("/user/login-logs", { params });
+        },
+
+        // 获取最近的登录记录
+        getLatestLoginLogs(params) {
+            return http.get("/user/login-logs/latest", { params });
+        },
+
+        // 删除指定登录日志
+        deleteLoginLog(logId) {
+            return http.post("/user/login-logs/delete", { logId });
+        },
+
+        // 清空所有登录日志
+        clearLoginLogs() {
+            return http.post("/user/login-logs/clear");
+        },
+
+        // 发送找回密码验证码（不需要认证）
+        sendResetPasswordCode(data) {
+            return http.post("/user/password/reset-code", data, { custom: { auth: false, catch: true, toast: false } });
+        },
+
+        // 重置密码（不需要认证）
+        resetPassword(data) {
+            return http.post("/user/password/reset", data, { custom: { auth: false, catch: true, toast: false } });
+        },
+
+        // 上传头像
+        uploadAvatar(avatar) {
+            return http.post("/user/avatar", { avatar });
         },
     },
 };

@@ -1,5 +1,8 @@
 <template>
-    <view :class="['test-container', containerClasses]" :style="{ '--theme-color': themeColor }">
+    <view
+        :class="['test-container', containerClasses]"
+        :style="{ '--theme-color': themeColor }"
+    >
         <!-- 角色引导区 -->
         <view class="guide-area">
             <text class="guide-emoji">☀️</text>
@@ -232,7 +235,12 @@ export default {
 <style lang="scss">
 .test-container {
     min-height: 100vh;
-    background-color: #f8faff;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     padding-bottom: 120rpx;
 }
 
@@ -241,8 +249,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 30rpx;
-    background-color: white;
-    border-bottom: 1rpx solid #eee;
+    background: linear-gradient(135deg, #e07856 0%, #d4744e 50%, #c85a3a 100%);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
+    border: none;
 
     .header-left {
         display: flex;
@@ -252,22 +261,24 @@ export default {
     .back-arrow {
         font-size: 40rpx;
         margin-right: 20rpx;
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .header-title {
         font-size: 36rpx;
-        font-weight: bold;
-        color: var(--theme-color);
+        font-weight: 700;
+        color: #ffffff;
     }
 }
 
 .guide-area {
     display: flex;
     padding: 30rpx;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     margin: 20rpx;
-    border-radius: 16rpx;
-    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    border-radius: 24rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .guide-emoji {
         font-size: 80rpx;
@@ -276,10 +287,15 @@ export default {
 
     .guide-speech {
         flex: 1;
-        background: #f5f9ff;
+        background: linear-gradient(
+            135deg,
+            rgba(224, 120, 86, 0.05) 0%,
+            rgba(212, 116, 78, 0.05) 100%
+        );
         padding: 20rpx;
-        border-radius: 12rpx;
+        border-radius: 16rpx;
         position: relative;
+        border: 1rpx solid rgba(224, 120, 86, 0.1);
 
         &::before {
             content: "";
@@ -288,12 +304,14 @@ export default {
             top: 30rpx;
             border-width: 10rpx;
             border-style: solid;
-            border-color: transparent #f5f9ff transparent transparent;
+            border-color: transparent rgba(224, 120, 86, 0.05) transparent
+                transparent;
         }
 
         text {
             font-size: 28rpx;
             line-height: 1.6;
+            color: #333;
         }
     }
 }
@@ -315,8 +333,8 @@ export default {
             opacity: 1;
             transform: scale(1.05);
             text {
-                color: var(--theme-color);
-                font-weight: bold;
+                color: #d4744e;
+                font-weight: 700;
             }
         }
 
@@ -327,6 +345,7 @@ export default {
 
         text {
             font-size: 26rpx;
+            color: #666;
         }
     }
 }
@@ -336,25 +355,33 @@ export default {
 }
 
 .test-card {
-    background: white;
-    border-radius: 16rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     margin-bottom: 30rpx;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
     display: flex;
     height: 200rpx;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(20rpx);
+
+    &:hover {
+        transform: translateY(-8rpx);
+        box-shadow: 0 16rpx 32rpx rgba(224, 120, 86, 0.18);
+    }
 
     .card-badge {
         position: absolute;
         top: 20rpx;
         right: 20rpx;
-        background: #ff4757;
+        background: #e07856;
         color: white;
         padding: 4rpx 12rpx;
         border-radius: 20rpx;
         font-size: 22rpx;
         z-index: 2;
+        font-weight: 700;
     }
 
     .test-cover-emoji {
@@ -364,7 +391,11 @@ export default {
         align-items: center;
         justify-content: center;
         font-size: 80rpx;
-        background: rgba(93, 155, 255, 0.05);
+        background: linear-gradient(
+            135deg,
+            rgba(224, 120, 86, 0.08) 0%,
+            rgba(224, 120, 86, 0.04) 100%
+        );
     }
 
     .test-info {
@@ -403,11 +434,20 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 25rpx;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     margin: 40rpx 30rpx 0;
-    border-radius: 12rpx;
-    color: var(--theme-color);
+    border-radius: 24rpx;
+    color: #d4744e;
     font-size: 28rpx;
+    font-weight: 600;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    transition: all 0.3s;
+    backdrop-filter: blur(20rpx);
+
+    &:hover {
+        transform: translateY(-4rpx);
+        color: #e07856;
+    }
 
     .emoji {
         font-size: 30rpx;
@@ -419,16 +459,17 @@ export default {
 .test-info-popup {
     width: 650rpx;
     padding: 40rpx;
-    border-radius: 20rpx;
-    background: white;
+    border-radius: 24rpx;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2);
 
     .popup-title {
         display: block;
         text-align: center;
         font-size: 36rpx;
-        font-weight: bold;
+        font-weight: 700;
         margin-bottom: 30rpx;
-        color: var(--theme-color);
+        color: #d4744e;
     }
 
     .popup-content {
@@ -441,10 +482,15 @@ export default {
         .warning-box {
             display: flex;
             align-items: center;
-            background: #fff8e6;
+            background: linear-gradient(
+                135deg,
+                rgba(224, 120, 86, 0.08) 0%,
+                rgba(224, 120, 86, 0.04) 100%
+            );
             padding: 20rpx;
-            border-radius: 12rpx;
+            border-radius: 16rpx;
             margin-top: 30rpx;
+            border: 1rpx solid rgba(224, 120, 86, 0.2);
 
             .emoji {
                 font-size: 36rpx;
@@ -454,15 +500,18 @@ export default {
             text {
                 flex: 1;
                 font-size: 26rpx;
-                color: #ff9500;
+                color: #d4744e;
+                font-weight: 600;
             }
         }
     }
 
     .start-btn {
-        background: var(--theme-color);
+        background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
         color: white;
-        border-radius: 50rpx;
+        border-radius: 24rpx;
+        font-weight: 700;
+        box-shadow: 0 8rpx 20rpx rgba(224, 120, 86, 0.25);
     }
 }
 </style>

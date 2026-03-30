@@ -217,62 +217,17 @@ export default {
 
 <style lang="scss" scoped>
 .help-page {
-    background: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
     padding-bottom: 30rpx;
 
     &.dark-mode {
         background: #1a1a1a;
-    }
-}
-
-/* 导航栏 */
-.nav-header {
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15rpx 20rpx;
-    padding-top: max(15rpx, env(safe-area-inset-top));
-    border-bottom: 1rpx solid #f0f0f0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    .dark-mode & {
-        background: #2a2a2a;
-        border-bottom: 1rpx solid #444;
-    }
-
-    .nav-back {
-        font-size: 36rpx;
-        color: #333;
-        padding: 10rpx;
-        width: 50rpx;
-        height: 50rpx;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .dark-mode & {
-            color: #fff;
-        }
-    }
-
-    .nav-title {
-        font-size: 32rpx;
-        font-weight: bold;
-        color: #333;
-        flex: 1;
-        text-align: center;
-
-        .dark-mode & {
-            color: #fff;
-        }
-    }
-
-    .nav-placeholder {
-        width: 50rpx;
     }
 }
 
@@ -288,11 +243,11 @@ export default {
 .section-title {
     display: block;
     font-size: 32rpx;
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: #e07856;
     margin-bottom: 15rpx;
     padding-bottom: 10rpx;
-    border-bottom: 2rpx solid #667eea;
+    border-bottom: 3rpx solid #d4744e;
 
     .dark-mode & {
         color: #fff;
@@ -307,8 +262,8 @@ export default {
 }
 
 .nav-item {
-    background: white;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 20rpx;
     text-align: center;
     display: flex;
@@ -317,10 +272,16 @@ export default {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .dark-mode & {
         background: #2a2a2a;
+    }
+
+    &:hover {
+        transform: translateY(-4rpx);
+        box-shadow: 0 12rpx 32rpx rgba(224, 120, 86, 0.18);
     }
 
     &:active {
@@ -335,8 +296,8 @@ export default {
 
     .nav-text {
         font-size: 24rpx;
-        color: #333;
-        font-weight: bold;
+        color: #d4744e;
+        font-weight: 700;
 
         .dark-mode & {
             color: #fff;
@@ -345,12 +306,13 @@ export default {
 }
 
 .help-card {
-    background: white;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 20rpx;
     margin-bottom: 15rpx;
-    border-left: 4rpx solid #667eea;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    border-left: 4rpx solid #e07856;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .dark-mode & {
         background: #2a2a2a;
@@ -359,8 +321,8 @@ export default {
     .card-title {
         display: block;
         font-size: 26rpx;
-        font-weight: bold;
-        color: #333;
+        font-weight: 700;
+        color: #d4744e;
         margin-bottom: 10rpx;
 
         .dark-mode & {
@@ -387,18 +349,23 @@ export default {
 }
 
 .method {
-    background: white;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 20rpx;
     display: flex;
     align-items: center;
     gap: 15rpx;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    backdrop-filter: blur(20rpx);
 
     .dark-mode & {
         background: #2a2a2a;
+    }
+
+    &:hover {
+        transform: translateY(-4rpx);
     }
 
     &:active {
@@ -417,8 +384,8 @@ export default {
         .method-name {
             display: block;
             font-size: 26rpx;
-            font-weight: bold;
-            color: #333;
+            font-weight: 700;
+            color: #d4744e;
             margin-bottom: 5rpx;
 
             .dark-mode & {

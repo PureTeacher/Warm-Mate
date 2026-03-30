@@ -10,20 +10,59 @@
         <view class="account-section">
             <view class="section-title">基本信息</view>
 
+            <!-- 头像 -->
+            <view class="account-item avatar-item">
+                <view class="item-label">
+                    <text class="label-text">头像</text>
+                </view>
+                <view class="item-content avatar-content">
+                    <view
+                        v-if="accountInfo.avatar_url"
+                        class="avatar-image-wrapper"
+                        style="
+                            border-radius: 50%;
+                            overflow: hidden;
+                            width: 80rpx;
+                            height: 80rpx;
+                            border: 2rpx solid #ddd;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        "
+                    >
+                        <image
+                            :src="accountInfo.avatar_url"
+                            mode="aspectFill"
+                            style="
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            "
+                        />
+                    </view>
+                    <view v-else class="avatar-placeholder">
+                        <text class="placeholder-text">无头像</text>
+                    </view>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="chooseAvatar">上传</button>
+                </view>
+            </view>
+
             <!-- 用户名 -->
             <view class="account-item">
                 <view class="item-label">
                     <text class="label-text">用户名</text>
-                    <text class="label-required">*</text>
                 </view>
                 <view class="item-content">
-                    <input
-                        v-model="accountInfo.username"
-                        type="text"
-                        placeholder="请输入用户名"
-                        class="account-input"
-                        @blur="validateUsername"
-                    />
+                    <text class="username-text">{{
+                        accountInfo.username
+                    }}</text>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="openUsernameModal">
+                        修改
+                    </button>
                 </view>
             </view>
 
@@ -66,97 +105,72 @@
             </view>
         </view>
 
-        <!-- 社交账号部分 -->
-        <view class="account-section">
-            <view class="section-title">社交账号</view>
-
-            <view class="social-item">
-                <view class="social-header">
-                    <text class="social-icon">🔗</text>
-                    <text class="social-name">微信</text>
-                </view>
-                <view class="social-status">
-                    <text
-                        v-if="accountInfo.wechatBound"
-                        class="status-badge verified"
-                    >
-                        已绑定
-                    </text>
-                    <text v-else class="status-badge unbound">未绑定</text>
-                </view>
-                <button
-                    class="social-btn"
-                    :class="{ 'unbind-btn': accountInfo.wechatBound }"
-                    @click="toggleWechatBinding"
-                >
-                    {{ accountInfo.wechatBound ? "解绑" : "绑定" }}
-                </button>
-            </view>
-
-            <view class="social-item">
-                <view class="social-header">
-                    <text class="social-icon">🆔</text>
-                    <text class="social-name">QQ</text>
-                </view>
-                <view class="social-status">
-                    <text
-                        v-if="accountInfo.qqBound"
-                        class="status-badge verified"
-                    >
-                        已绑定
-                    </text>
-                    <text v-else class="status-badge unbound">未绑定</text>
-                </view>
-                <button
-                    class="social-btn"
-                    :class="{ 'unbind-btn': accountInfo.qqBound }"
-                    @click="toggleQqBinding"
-                >
-                    {{ accountInfo.qqBound ? "解绑" : "绑定" }}
-                </button>
-            </view>
-        </view>
-
         <!-- 账号安全部分 -->
         <view class="account-section">
             <view class="section-title">账号安全</view>
 
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">修改密码</text>
-                    <text class="item-desc">定期更新密码保护账号安全</text>
+            <view class="account-item">
+                <view class="item-label">
+                    <text class="label-text">修改密码</text>
                 </view>
-                <button class="edit-btn" @click="navigateToPassword">
-                    修改
-                </button>
+                <view class="item-content">
+                    <text class="security-text">定期更新密码保护账号安全</text>
+                </view>
+                <view class="item-action">
+                    <button class="edit-btn" @click="navigateToPassword">
+                        修改
+                    </button>
+                </view>
             </view>
 
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">登录设备</text>
-                    <text class="item-desc">查看和管理登录过的设备</text>
+            <view class="account-item">
+                <view class="item-label">
+                    <text class="label-text">登录日志</text>
                 </view>
-                <button class="edit-btn" @click="showDeviceList">管理</button>
-            </view>
-
-            <view class="account-item security-item">
-                <view class="item-left">
-                    <text class="item-label">登录日志</text>
-                    <text class="item-desc">查看账号的登录历史记录</text>
+                <view class="item-content">
+                    <text class="security-text">查看账号的登录历史记录</text>
                 </view>
-                <button class="edit-btn" @click="showLoginHistory">查看</button>
+                <view class="item-action">
+                    <button class="edit-btn" @click="showLoginHistory">
+                        查看
+                    </button>
+                </view>
             </view>
         </view>
 
-        <!-- 操作按钮 -->
-        <view class="action-section">
-            <button
-                class="save-btn"
-                :loading="saveLoading"
-                @click="saveAccountInfo"
-            >
-                保存修改
-            </button>
+        <!-- 修改用户名弹窗 -->
+        <view
+            v-if="showUsernameModal"
+            class="modal-overlay"
+            @click="showUsernameModal = false"
+        >
+            <view class="modal-content" @click.stop>
+                <view class="modal-header">
+                    <text class="modal-title">修改用户名</text>
+                    <view class="modal-close" @click="showUsernameModal = false"
+                        >✕</view
+                    >
+                </view>
+                <view class="modal-body">
+                    <input
+                        v-model="usernameInput"
+                        type="text"
+                        placeholder="请输入新用户名"
+                        class="modal-input"
+                    />
+                </view>
+                <view class="modal-footer">
+                    <button
+                        class="btn-cancel"
+                        @click="showUsernameModal = false"
+                    >
+                        取消
+                    </button>
+                    <button class="btn-confirm" @click="updateUsername">
+                        确认
+                    </button>
+                </view>
+            </view>
         </view>
 
         <!-- 修改邮箱弹窗 -->
@@ -197,7 +211,7 @@
             class="modal-overlay"
             @click="showPhoneModal = false"
         >
-            <view class="modal-content phone-modal-content" @click.stop>
+            <view class="modal-content" @click.stop>
                 <view class="modal-header">
                     <text class="modal-title">修改手机号</text>
                     <view class="modal-close" @click="showPhoneModal = false">
@@ -205,86 +219,20 @@
                     </view>
                 </view>
                 <view class="modal-body">
-                    <view class="form-group">
-                        <text class="form-label">新手机号</text>
-                        <input
-                            v-model="phoneInput"
-                            type="number"
-                            placeholder="请输入新手机号"
-                            class="form-input"
-                        />
-                    </view>
-                    <view class="form-group">
-                        <view class="verify-section">
-                            <input
-                                v-model="phoneCode"
-                                type="text"
-                                placeholder="验证码"
-                                class="form-input verify-input"
-                            />
-                            <button
-                                class="send-code-btn"
-                                :disabled="codeCountdown > 0"
-                                @click="sendPhoneCode"
-                            >
-                                {{
-                                    codeCountdown > 0
-                                        ? `${codeCountdown}s`
-                                        : "发送验证码"
-                                }}
-                            </button>
-                        </view>
-                    </view>
+                    <input
+                        v-model="phoneInput"
+                        type="number"
+                        placeholder="请输入新手机号"
+                        class="modal-input"
+                    />
                 </view>
                 <view class="modal-footer">
-                    <button
-                        class="btn btn-cancel"
-                        @click="showPhoneModal = false"
-                    >
+                    <button class="btn-cancel" @click="showPhoneModal = false">
                         取消
                     </button>
-                    <button
-                        class="btn btn-confirm"
-                        :loading="phoneLoading"
-                        @click="confirmPhoneUpdate"
-                    >
-                        确认修改
+                    <button class="btn-confirm" @click="confirmPhoneUpdate">
+                        确认
                     </button>
-                </view>
-            </view>
-        </view>
-
-        <!-- 设备列表弹窗 -->
-        <view
-            v-if="showDeviceModal"
-            class="modal-overlay-bottom"
-            @click="showDeviceModal = false"
-        >
-            <view class="device-modal" @click.stop>
-                <view class="modal-header">
-                    <text class="modal-title">登录设备</text>
-                </view>
-                <view class="device-list">
-                    <view
-                        v-for="device in deviceList"
-                        :key="device.id"
-                        class="device-item"
-                    >
-                        <view class="device-info">
-                            <text class="device-name">{{
-                                device.deviceName
-                            }}</text>
-                            <text class="device-time">
-                                最后登录: {{ formatTime(device.lastLoginTime) }}
-                            </text>
-                        </view>
-                        <button
-                            class="logout-device-btn"
-                            @click="logoutDevice(device.id)"
-                        >
-                            退出登录
-                        </button>
-                    </view>
                 </view>
             </view>
         </view>
@@ -298,31 +246,61 @@
             <view class="history-modal" @click.stop>
                 <view class="modal-header">
                     <text class="modal-title">登录日志</text>
+                    <view class="modal-close" @click="showHistoryModal = false"
+                        >✕</view
+                    >
+                </view>
+                <view class="history-controls">
+                    <button
+                        class="btn-clear"
+                        @click="clearAllLogs"
+                        v-if="loginHistory.length > 0"
+                    >
+                        清空所有
+                    </button>
                 </view>
                 <view class="history-list">
+                    <view v-if="loginLoading" class="loading-tip">
+                        <text>加载中...</text>
+                    </view>
+                    <view
+                        v-else-if="loginHistory.length === 0"
+                        class="empty-tip"
+                    >
+                        <text>暂无登录记录</text>
+                    </view>
                     <view
                         v-for="log in loginHistory"
                         :key="log.id"
                         class="history-item"
                     >
                         <view class="history-info">
-                            <text class="history-device">{{
-                                log.deviceInfo
-                            }}</text>
-                            <text class="history-time">
-                                {{ formatTime(log.loginTime) }}
-                            </text>
-                            <text class="history-location">{{
-                                log.location || "未知位置"
-                            }}</text>
+                            <view class="history-device">{{
+                                log.device_info
+                            }}</view>
+                            <view class="history-time">
+                                {{ formatTime(log.login_time) }}
+                            </view>
+                            <view v-if="log.ip_address" class="history-ip">
+                                IP: {{ log.ip_address }}
+                            </view>
                         </view>
-                        <text class="status-badge verified">{{
-                            log.status
-                        }}</text>
+                        <button
+                            class="btn-delete"
+                            @click="deleteLoginLog(log.id)"
+                        >
+                            删除
+                        </button>
                     </view>
                 </view>
             </view>
         </view>
+
+        <!-- 隐藏的 canvas，用于图片转换 -->
+        <canvas
+            id="temp-canvas"
+            style="display: none; width: 200px; height: 200px"
+        ></canvas>
     </view>
 </template>
 
@@ -334,25 +312,40 @@ export default {
                 username: "",
                 email: "",
                 phone: "",
-                wechatBound: false,
-                qqBound: false,
+                avatar_url: "",
             },
             emailInput: "",
             phoneInput: "",
+            usernameInput: "",
             phoneCode: "",
             codeCountdown: 0,
-            saveLoading: false,
             phoneLoading: false,
-            deviceList: [],
             loginHistory: [],
-            containerClasses: "",
             showEmailModal: false,
             showPhoneModal: false,
-            showDeviceModal: false,
+            showUsernameModal: false,
             showHistoryModal: false,
+            loginLoading: false,
         };
     },
     computed: {
+        containerClasses() {
+            const isDark = uni.getStorageSync("darkMode");
+            const fontSize = this.$themeManager.getFontSize();
+            const classes = [];
+
+            if (isDark) {
+                classes.push("dark-mode");
+            }
+
+            if (fontSize === "small") {
+                classes.push("font-small");
+            } else if (fontSize === "large") {
+                classes.push("font-large");
+            }
+
+            return classes.join(" ");
+        },
         maskedPhone() {
             const phone = this.accountInfo.phone;
             if (!phone) return "未绑定";
@@ -362,13 +355,13 @@ export default {
     onLoad() {
         console.log("账号管理页面加载");
         this.loadAccountInfo();
-        this.applyTheme();
     },
     onShow() {
-        this.applyTheme();
+        // 刷新主题
     },
     methods: {
         loadAccountInfo() {
+            // 先从缓存加载，然后从服务器同步最新数据
             try {
                 const userInfo = uni.getStorageSync("userInfo");
                 if (userInfo) {
@@ -376,17 +369,47 @@ export default {
                         username: userInfo.username || "",
                         email: userInfo.email || "",
                         phone: userInfo.phone || "",
-                        wechatBound: userInfo.wechatBound || false,
-                        qqBound: userInfo.qqBound || false,
+                        avatar_url: userInfo.avatar_url || "",
                     };
                 }
             } catch (e) {
                 console.error("加载账号信息失败", e);
             }
+
+            // 从服务器同步最新的用户信息
+            this.syncUserInfoFromServer();
         },
-        applyTheme() {
-            const isDark = uni.getStorageSync("darkMode");
-            this.containerClasses = isDark ? "dark-mode" : "";
+        syncUserInfoFromServer() {
+            // 从服务器获取最新的用户信息
+            this.$api.account
+                .getAccountInfo()
+                .then((res) => {
+                    if (res && res.code === 200 && res.data) {
+                        // 更新本地信息
+                        this.accountInfo = {
+                            username: res.data.username || "",
+                            email: res.data.email || "",
+                            phone: res.data.phone || "",
+                            avatar_url: res.data.avatar_url || "",
+                        };
+
+                        // 更新缓存
+                        const userInfo = uni.getStorageSync("userInfo");
+                        if (userInfo) {
+                            userInfo.username = res.data.username;
+                            userInfo.email = res.data.email;
+                            userInfo.phone = res.data.phone;
+                            userInfo.avatar_url = res.data.avatar_url;
+                            uni.setStorageSync("userInfo", userInfo);
+                        }
+
+                        console.log("用户信息已从服务器同步");
+                    }
+                })
+                .catch((err) => {
+                    console.error("同步用户信息失败", err);
+                    // 不显示错误提示，只在控制台记录
+                });
         },
         validateUsername() {
             if (!this.accountInfo.username.trim()) {
@@ -430,14 +453,54 @@ export default {
             }
             return true;
         },
+        openUsernameModal() {
+            this.usernameInput = this.accountInfo.username || "";
+            this.showUsernameModal = true;
+        },
         openEmailModal() {
             this.emailInput = this.accountInfo.email || "";
             this.showEmailModal = true;
         },
         openPhoneModal() {
             this.phoneInput = this.accountInfo.phone || "";
-            this.phoneCode = "";
             this.showPhoneModal = true;
+        },
+        updateUsername() {
+            if (!this.validateUsername()) {
+                return;
+            }
+
+            uni.showLoading({
+                title: "更新中...",
+            });
+
+            this.$api.account
+                .updateAccountInfo({
+                    username: this.usernameInput,
+                })
+                .then((res) => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.username = this.usernameInput;
+                        uni.showToast({
+                            title: "用户名修改成功",
+                            icon: "success",
+                        });
+                        this.showUsernameModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch((err) => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
+                });
         },
         updateEmail() {
             if (!this.validateEmail()) {
@@ -448,206 +511,185 @@ export default {
                 title: "更新中...",
             });
 
-            // 模拟API调用
-            setTimeout(() => {
-                uni.hideLoading();
-                this.accountInfo.email = this.emailInput;
-                uni.showToast({
-                    title: "邮箱修改成功",
-                    icon: "success",
+            this.$api.account
+                .updateAccountInfo({
+                    email: this.emailInput,
+                })
+                .then((res) => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.email = this.emailInput;
+                        uni.showToast({
+                            title: "邮箱修改成功",
+                            icon: "success",
+                        });
+                        this.showEmailModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch((err) => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
                 });
-                this.showEmailModal = false;
-            }, 1000);
         },
         sendPhoneCode() {
-            if (!this.validatePhone()) {
-                return;
-            }
-
-            uni.showLoading({
-                title: "发送中...",
-            });
-
-            // 模拟发送验证码
-            setTimeout(() => {
-                uni.hideLoading();
-                this.codeCountdown = 60;
-                const timer = setInterval(() => {
-                    this.codeCountdown--;
-                    if (this.codeCountdown <= 0) {
-                        clearInterval(timer);
-                    }
-                }, 1000);
-                uni.showToast({
-                    title: "验证码已发送",
-                    icon: "success",
-                });
-            }, 500);
+            // 暂未实现，直接进行验证
+            this.confirmPhoneUpdate();
         },
         confirmPhoneUpdate() {
             if (!this.validatePhone()) {
                 return;
             }
-            if (!this.phoneCode || this.phoneCode.length < 4) {
-                uni.showToast({
-                    title: "请输入验证码",
-                    icon: "none",
-                });
-                return;
-            }
 
-            this.phoneLoading = true;
             uni.showLoading({
-                title: "验证中...",
+                title: "更新中...",
             });
 
-            // 模拟API调用
-            setTimeout(() => {
-                uni.hideLoading();
-                this.phoneLoading = false;
-                this.accountInfo.phone = this.phoneInput;
-                uni.showToast({
-                    title: "手机号修改成功",
-                    icon: "success",
-                });
-                this.showPhoneModal = false;
-            }, 1000);
-        },
-        toggleWechatBinding() {
-            if (this.accountInfo.wechatBound) {
-                this.confirmUnbind("微信");
-            } else {
-                this.bindWechat();
-            }
-        },
-        toggleQqBinding() {
-            if (this.accountInfo.qqBound) {
-                this.confirmUnbind("QQ");
-            } else {
-                this.bindQq();
-            }
-        },
-        bindWechat() {
-            uni.showToast({
-                title: "微信绑定功能开发中",
-                icon: "none",
-            });
-        },
-        bindQq() {
-            uni.showToast({
-                title: "QQ绑定功能开发中",
-                icon: "none",
-            });
-        },
-        confirmUnbind(platform) {
-            uni.showModal({
-                title: "解绑确认",
-                content: `确定要解绑${platform}账号吗？`,
-                confirmText: "确定",
-                cancelText: "取消",
-                success: (res) => {
-                    if (res.confirm) {
-                        this.unbindPlatform(platform);
+            this.$api.account
+                .updateAccountInfo({
+                    phone: this.phoneInput,
+                })
+                .then((res) => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        this.accountInfo.phone = this.phoneInput;
+                        uni.showToast({
+                            title: "手机号修改成功",
+                            icon: "success",
+                        });
+                        this.showPhoneModal = false;
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "修改失败",
+                            icon: "none",
+                        });
                     }
-                },
-            });
-        },
-        unbindPlatform(platform) {
-            uni.showLoading({
-                title: "解绑中...",
-            });
-
-            setTimeout(() => {
-                uni.hideLoading();
-                if (platform === "微信") {
-                    this.accountInfo.wechatBound = false;
-                } else if (platform === "QQ") {
-                    this.accountInfo.qqBound = false;
-                }
-                uni.showToast({
-                    title: `已解绑${platform}`,
-                    icon: "success",
+                })
+                .catch((err) => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
                 });
-            }, 1000);
         },
         navigateToPassword() {
             uni.navigateTo({
                 url: "/pages/user/change-password",
             });
         },
-        showDeviceList() {
-            this.loadDevices();
-            this.showDeviceModal = true;
-        },
         showLoginHistory() {
-            this.loadLoginHistory();
+            this.loginLoading = true;
             this.showHistoryModal = true;
-        },
-        loadDevices() {
-            // 模拟设备列表数据
-            this.deviceList = [
-                {
-                    id: 1,
-                    deviceName: "iPhone 12 - Safari",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 5,
-                },
-                {
-                    id: 2,
-                    deviceName: "Android - Chrome",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 60 * 2,
-                },
-                {
-                    id: 3,
-                    deviceName: "Windows - Edge",
-                    lastLoginTime: new Date().getTime() - 1000 * 60 * 60 * 24,
-                },
-            ];
+            this.loadLoginHistory();
         },
         loadLoginHistory() {
-            // 模拟登录历史数据
-            this.loginHistory = [
-                {
-                    id: 1,
-                    deviceInfo: "iPhone 12 - Safari",
-                    loginTime: new Date().getTime() - 1000 * 60 * 5,
-                    location: "北京",
-                    status: "成功",
-                },
-                {
-                    id: 2,
-                    deviceInfo: "Android - Chrome",
-                    loginTime: new Date().getTime() - 1000 * 60 * 60 * 2,
-                    location: "上海",
-                    status: "成功",
-                },
-                {
-                    id: 3,
-                    deviceInfo: "Windows - Edge",
-                    loginTime: new Date().getTime() - 1000 * 60 * 60 * 24,
-                    location: "深圳",
-                    status: "成功",
-                },
-            ];
+            this.loginLoading = true;
+            this.$api.account
+                .getLatestLoginLogs({ limit: 20 })
+                .then((res) => {
+                    this.loginLoading = false;
+                    if (res && res.code === 200) {
+                        this.loginHistory = res.data || [];
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "加载失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch((err) => {
+                    this.loginLoading = false;
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
+                });
         },
-        logoutDevice(deviceId) {
+        deleteLoginLog(logId) {
             uni.showModal({
-                title: "退出登录",
-                content: "确定要在该设备上退出登录吗？",
+                title: "删除登录日志",
+                content: "确定要删除这条登录记录吗？",
+                confirmText: "删除",
+                cancelText: "取消",
                 success: (res) => {
                     if (res.confirm) {
-                        this.deviceList = this.deviceList.filter(
-                            (d) => d.id !== deviceId,
-                        );
-                        uni.showToast({
-                            title: "已退出该设备",
-                            icon: "success",
-                        });
+                        this.$api.account
+                            .deleteLoginLog(logId)
+                            .then((response) => {
+                                if (response && response.code === 200) {
+                                    uni.showToast({
+                                        title: "删除成功",
+                                        icon: "success",
+                                    });
+                                    this.loadLoginHistory();
+                                } else {
+                                    uni.showToast({
+                                        title: response?.message || "删除失败",
+                                        icon: "none",
+                                    });
+                                }
+                            })
+                            .catch((err) => {
+                                uni.showToast({
+                                    title: this.getErrorMessage(err),
+                                    icon: "none",
+                                });
+                            });
+                    }
+                },
+            });
+        },
+        clearAllLogs() {
+            uni.showModal({
+                title: "清空登录日志",
+                content: "确定要清空所有登录记录吗？此操作不可撤销。",
+                confirmText: "清空",
+                cancelText: "取消",
+                confirmColor: "#f5576c",
+                success: (res) => {
+                    if (res.confirm) {
+                        this.$api.account
+                            .clearLoginLogs()
+                            .then((response) => {
+                                if (response && response.code === 200) {
+                                    uni.showToast({
+                                        title: "清空成功",
+                                        icon: "success",
+                                    });
+                                    this.loginHistory = [];
+                                } else {
+                                    uni.showToast({
+                                        title: response?.message || "清空失败",
+                                        icon: "none",
+                                    });
+                                }
+                            })
+                            .catch((err) => {
+                                uni.showToast({
+                                    title: this.getErrorMessage(err),
+                                    icon: "none",
+                                });
+                            });
                     }
                 },
             });
         },
         formatTime(timestamp) {
-            const date = new Date(timestamp);
+            // 处理 MySQL 返回的时间戳格式 (YYYY-MM-DD HH:MM:SS)
+            let date;
+            if (typeof timestamp === "string") {
+                date = new Date(timestamp.replace(" ", "T"));
+            } else {
+                date = new Date(timestamp);
+            }
             const now = new Date();
             const diff = now - date;
 
@@ -660,38 +702,274 @@ export default {
                 const hours = Math.floor(diff / (1000 * 60 * 60));
                 return `${hours}小时前`;
             } else {
-                return date.toLocaleDateString();
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                if (days < 30) {
+                    return `${days}天前`;
+                } else {
+                    // 返回具体时间
+                    return date.toLocaleString("zh-CN", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    });
+                }
             }
         },
-        saveAccountInfo() {
-            if (!this.validateUsername()) {
-                return;
-            }
+        getErrorMessage(err) {
+            // 统一处理错误信息
+            if (!err) return "操作失败";
+            if (typeof err === "string") return err;
+            if (err.message) return err.message;
+            if (err.statusText) return err.statusText;
+            if (err.errMsg) return err.errMsg;
+            return "操作失败";
+        },
+        chooseAvatar() {
+            console.log("chooseAvatar - 检测环境");
 
-            this.saveLoading = true;
+            // 检测是否是浏览器环境（H5）
+            const isH5 =
+                process.env.VUE_APP_PLATFORM === "h5" ||
+                (typeof window !== "undefined" &&
+                    typeof document !== "undefined" &&
+                    !uni.getSystemInfoSync().platform);
+
+            console.log("isH5:", isH5);
+
+            if (isH5) {
+                console.log("使用 H5 file input");
+                this.chooseAvatarWeb();
+            } else {
+                console.log("使用 uni.chooseImage");
+                this.chooseAvatarNative();
+            }
+        },
+        chooseAvatarWeb() {
+            // 浏览器环境：使用 HTML5 file input
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    this.convertImageToBase64Web(file);
+                }
+            };
+            input.click();
+        },
+        chooseAvatarNative() {
+            // 原生 App 环境 + 小程序
+            uni.chooseImage({
+                count: 1,
+                sizeType: ["compressed"],
+                sourceType: ["album", "camera"],
+                success: (res) => {
+                    const tempFilePath = res.tempFilePaths[0];
+                    console.log("选择图片成功:", tempFilePath);
+                    // 直接上传文件，不转换为 Base64
+                    this.uploadAvatarAsFile(tempFilePath);
+                },
+                fail: (err) => {
+                    console.error("选择图片失败", err);
+                },
+            });
+        },
+        uploadAvatarAsFile(filePath) {
+            // 直接上传文件到服务器
             uni.showLoading({
-                title: "保存中...",
+                title: "上传中...",
             });
 
-            // 模拟API调用
-            setTimeout(() => {
+            console.log("开始上传文件:", filePath);
+
+            // 获取 token
+            const token = uni.getStorageSync("Access-Token");
+
+            // 获取完整的服务器 URL
+            const env = require("@/common/config/env.js").default;
+            const uploadUrl = env.baseUrl + "/user/avatar/file";
+
+            console.log("上传地址:", uploadUrl);
+
+            uni.uploadFile({
+                url: uploadUrl,
+                filePath: filePath,
+                name: "avatar",
+                header: {
+                    "Access-Token": token,
+                },
+                success: (res) => {
+                    uni.hideLoading();
+                    console.log("上传响应状态码:", res.statusCode);
+                    console.log("上传响应数据:", res.data);
+
+                    if (res.statusCode === 200) {
+                        const data = JSON.parse(res.data);
+                        if (data && data.code === 200) {
+                            // 显示返回的图片 URL（如果后端支持的话）
+                            // 或者直接显示本地文件
+                            this.accountInfo.avatar_url =
+                                data.data?.avatar_url || filePath;
+
+                            // 更新缓存
+                            const userInfo = uni.getStorageSync("userInfo");
+                            if (userInfo) {
+                                userInfo.avatar_url =
+                                    data.data?.avatar_url || filePath;
+                                uni.setStorageSync("userInfo", userInfo);
+                            }
+
+                            uni.showToast({
+                                title: "头像上传成功",
+                                icon: "success",
+                            });
+                        } else {
+                            uni.showToast({
+                                title: data?.message || "上传失败",
+                                icon: "none",
+                            });
+                        }
+                    } else {
+                        console.error("HTTP 错误:", res.statusCode);
+                        uni.showToast({
+                            title: "上传失败，请重试",
+                            icon: "none",
+                        });
+                    }
+                },
+                fail: (err) => {
+                    uni.hideLoading();
+                    console.error("上传失败详情:", err);
+                    uni.showToast({
+                        title: "网络错误，请检查连接",
+                        icon: "none",
+                    });
+                },
+            });
+        },
+        convertImageToBase64Web(file) {
+            // 浏览器环境：使用 FileReader
+            uni.showLoading({
+                title: "处理中...",
+            });
+
+            console.log("准备读取文件:", file.name);
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                console.log("读取成功");
                 uni.hideLoading();
-                this.saveLoading = false;
-
-                // 保存到本地存储
-                const userInfo = uni.getStorageSync("userInfo") || {};
-                userInfo.username = this.accountInfo.username;
-                userInfo.email = this.accountInfo.email;
-                userInfo.phone = this.accountInfo.phone;
-                userInfo.wechatBound = this.accountInfo.wechatBound;
-                userInfo.qqBound = this.accountInfo.qqBound;
-                uni.setStorageSync("userInfo", userInfo);
-
+                const avatarDataUrl = e.target.result;
+                console.log("base64 URL已生成，长度:", avatarDataUrl.length);
+                this.uploadAvatarToServer(avatarDataUrl);
+            };
+            reader.onerror = (err) => {
+                console.error("读取文件失败:", err);
+                uni.hideLoading();
                 uni.showToast({
-                    title: "账号信息已保存",
-                    icon: "success",
+                    title: "读取文件失败",
+                    icon: "none",
                 });
-            }, 1000);
+            };
+            reader.readAsDataURL(file);
+        },
+        convertImageToBase64Native(filePath) {
+            // 原生 App 环境
+            uni.showLoading({
+                title: "处理中...",
+            });
+
+            console.log("准备读取文件:", filePath);
+
+            try {
+                const fileSystemManager = uni.getFileSystemManager();
+                console.log("获取文件系统管理器成功");
+
+                fileSystemManager.readFile({
+                    filePath: filePath,
+                    encoding: "base64",
+                    success: (res) => {
+                        console.log(
+                            "readFile success, data length:",
+                            res.data.length,
+                        );
+                        uni.hideLoading();
+                        const base64Data = res.data;
+                        // 获取文件类型
+                        const ext = filePath.split(".").pop().toLowerCase();
+                        let mimeType = "image/jpeg";
+                        if (ext === "png") {
+                            mimeType = "image/png";
+                        } else if (ext === "gif") {
+                            mimeType = "image/gif";
+                        } else if (ext === "webp") {
+                            mimeType = "image/webp";
+                        }
+
+                        const avatarDataUrl = `data:${mimeType};base64,${base64Data}`;
+                        console.log(
+                            "base64 URL已生成，长度:",
+                            avatarDataUrl.length,
+                        );
+                        this.uploadAvatarToServer(avatarDataUrl);
+                    },
+                    fail: (err) => {
+                        console.error("readFile fail:", err);
+                        uni.hideLoading();
+                        uni.showToast({
+                            title: "读取文件失败",
+                            icon: "none",
+                        });
+                    },
+                });
+            } catch (e) {
+                console.error("获取文件系统管理器失败:", e);
+                uni.hideLoading();
+                uni.showToast({
+                    title: "系统不支持",
+                    icon: "none",
+                });
+            }
+        },
+        uploadAvatarToServer(avatarDataUrl) {
+            uni.showLoading({
+                title: "上传中...",
+            });
+
+            this.$api.account
+                .uploadAvatar(avatarDataUrl)
+                .then((res) => {
+                    uni.hideLoading();
+                    if (res && res.code === 200) {
+                        // 更新本地显示
+                        this.accountInfo.avatar_url = avatarDataUrl;
+                        // 更新缓存中的用户信息
+                        const userInfo = uni.getStorageSync("userInfo");
+                        if (userInfo) {
+                            userInfo.avatar_url =
+                                res.data?.avatar_url || avatarDataUrl;
+                            uni.setStorageSync("userInfo", userInfo);
+                        }
+                        uni.showToast({
+                            title: "头像上传成功",
+                            icon: "success",
+                        });
+                    } else {
+                        uni.showToast({
+                            title: res?.message || "上传失败",
+                            icon: "none",
+                        });
+                    }
+                })
+                .catch((err) => {
+                    uni.hideLoading();
+                    uni.showToast({
+                        title: this.getErrorMessage(err),
+                        icon: "none",
+                    });
+                    console.error("上传头像失败", err);
+                });
         },
     },
 };
@@ -700,12 +978,26 @@ export default {
 <style lang="scss" scoped>
 .account-container {
     padding: 20rpx 0;
-    background-color: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
+    font-size: 28rpx;
 
     &.dark-mode {
         background-color: #1a1a1a;
         color: #fff;
+    }
+
+    &.font-small {
+        font-size: 24rpx;
+    }
+
+    &.font-large {
+        font-size: 32rpx;
     }
 }
 
@@ -716,9 +1008,9 @@ export default {
     .page-title {
         display: block;
         font-size: 36rpx;
-        font-weight: bold;
+        font-weight: 700;
         margin-bottom: 10rpx;
-        color: #333;
+        color: #d4744e;
 
         .dark-mode & {
             color: #fff;
@@ -738,9 +1030,10 @@ export default {
 
 .account-section {
     margin: 20rpx;
-    background-color: #fff;
-    border-radius: 12rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
     padding: 30rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
 
     .dark-mode & {
         background-color: #2a2a2a;
@@ -750,7 +1043,7 @@ export default {
         font-size: 28rpx;
         font-weight: 600;
         margin-bottom: 20rpx;
-        color: #333;
+        color: #d4744e;
 
         .dark-mode & {
             color: #fff;
@@ -805,8 +1098,9 @@ export default {
             border-radius: 6rpx;
             font-size: 28rpx;
             color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
             height: 80rpx;
-            line-height: 56rpx;
 
             .dark-mode & {
                 background-color: #333;
@@ -832,14 +1126,14 @@ export default {
 
     .edit-btn {
         padding: 8rpx 20rpx;
-        background-color: #667eea;
+        background-color: #e07856;
         color: #fff;
         border-radius: 6rpx;
         font-size: 24rpx;
         border: none;
 
         &:active {
-            background-color: #5568d3;
+            background-color: #d4744e;
         }
     }
 
@@ -876,6 +1170,81 @@ export default {
             margin-top: 16rpx;
             align-self: flex-end;
         }
+
+        &.avatar-item {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20rpx 0;
+
+            .item-label {
+                margin-bottom: 12rpx;
+            }
+
+            .avatar-content {
+                width: auto;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 16rpx;
+
+                .avatar-image-wrapper {
+                    width: 80rpx;
+                    height: 80rpx;
+                    border-radius: 50%;
+                    border: 2rpx solid #ddd;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .dark-mode & {
+                        border-color: #666;
+                    }
+
+                    .avatar-image {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                }
+
+                .avatar-placeholder {
+                    width: 80rpx;
+                    height: 80rpx;
+                    border-radius: 50%;
+                    background-color: #f5f5f5;
+                    border: 2rpx solid #ddd;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    .dark-mode & {
+                        background-color: #333;
+                        border-color: #666;
+                    }
+
+                    .placeholder-text {
+                        font-size: 20rpx;
+                        color: #999;
+
+                        .dark-mode & {
+                            color: #aaa;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .security-text {
+        font-size: 24rpx;
+        color: #999;
+
+        .dark-mode & {
+            color: #aaa;
+        }
     }
 }
 
@@ -900,80 +1269,6 @@ export default {
 
         .dark-mode & {
             background-color: #3a1a1a;
-        }
-    }
-}
-
-.social-item {
-    display: flex;
-    align-items: center;
-    padding: 20rpx;
-    background-color: #f9f9f9;
-    border-radius: 8rpx;
-    margin-bottom: 16rpx;
-
-    .dark-mode & {
-        background-color: #333;
-    }
-
-    .social-header {
-        display: flex;
-        align-items: center;
-        flex: 1;
-
-        .social-icon {
-            font-size: 40rpx;
-            margin-right: 12rpx;
-        }
-
-        .social-name {
-            font-size: 28rpx;
-            color: #333;
-
-            .dark-mode & {
-                color: #fff;
-            }
-        }
-    }
-
-    .social-status {
-        margin: 0 20rpx;
-    }
-
-    .social-btn {
-        padding: 8rpx 16rpx;
-        background-color: #667eea;
-        color: #fff;
-        border-radius: 6rpx;
-        font-size: 24rpx;
-        border: none;
-
-        &.unbind-btn {
-            background-color: #f5576c;
-        }
-
-        &:active {
-            opacity: 0.8;
-        }
-    }
-}
-
-.action-section {
-    padding: 30rpx;
-    margin-top: 20rpx;
-
-    .save-btn {
-        width: 100%;
-        padding: 16rpx;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
-        border-radius: 8rpx;
-        font-size: 32rpx;
-        font-weight: 600;
-        border: none;
-
-        &:active {
-            opacity: 0.9;
         }
     }
 }
@@ -1041,9 +1336,9 @@ export default {
                 border-radius: 6rpx;
                 font-size: 28rpx;
                 color: #333;
+                background-color: #fff;
                 box-sizing: border-box;
                 height: 80rpx;
-                line-height: 56rpx;
 
                 .dark-mode & {
                     background-color: #333;
@@ -1073,9 +1368,9 @@ export default {
                     border-radius: 6rpx;
                     font-size: 28rpx;
                     color: #333;
+                    background-color: #fff;
                     box-sizing: border-box;
                     height: 80rpx;
-                    line-height: 56rpx;
 
                     .dark-mode & {
                         background-color: #333;
@@ -1274,6 +1569,95 @@ export default {
 
         &:active {
             opacity: 0.8;
+        }
+    }
+}
+
+// 登录日志样式
+.history-controls {
+    padding: 16rpx 30rpx;
+    border-bottom: 1rpx solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10rpx;
+
+    .btn-clear {
+        padding: 8rpx 16rpx;
+        background-color: #f5576c;
+        color: #fff;
+        border-radius: 6rpx;
+        font-size: 24rpx;
+        border: none;
+
+        &:active {
+            opacity: 0.8;
+        }
+    }
+}
+
+.loading-tip,
+.empty-tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40rpx 20rpx;
+    color: #999;
+    font-size: 28rpx;
+
+    .dark-mode & {
+        color: #aaa;
+    }
+}
+
+.history-item {
+    .history-info {
+        .history-device {
+            font-size: 28rpx;
+            color: #333;
+            margin-bottom: 8rpx;
+            font-weight: 500;
+
+            .dark-mode & {
+                color: #fff;
+            }
+        }
+
+        .history-time {
+            font-size: 24rpx;
+            color: #999;
+            margin-bottom: 4rpx;
+
+            .dark-mode & {
+                color: #aaa;
+            }
+        }
+
+        .history-ip {
+            font-size: 22rpx;
+            color: #bbb;
+
+            .dark-mode & {
+                color: #888;
+            }
+        }
+    }
+
+    .btn-delete {
+        padding: 8rpx 16rpx;
+        background-color: #f0f0f0;
+        color: #999;
+        border-radius: 6rpx;
+        font-size: 22rpx;
+        border: none;
+        margin-left: 10rpx;
+
+        .dark-mode & {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        &:active {
+            opacity: 0.7;
         }
     }
 }

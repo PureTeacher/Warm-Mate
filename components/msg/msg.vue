@@ -44,7 +44,12 @@ export default {
   computed: {},
   mounted() {
   },
-  methods: {}
+  methods: {
+    // 处理头像点击事件
+    friendInfo() {
+      console.log('Avatar clicked');
+    }
+  }
 }
 </script>
 
@@ -86,7 +91,7 @@ export default {
 }
 
 .u-content {
-  font-size: 12px;
+  font-size: 15px;
   color: $u-content-color;
   line-height: 1.6;
 }

@@ -30,7 +30,7 @@
           <view class="card-header">
             <view class="doctor-info">
               <text class="doctor-name">{{record.doctorName}}</text>
-              <text class="appointment-time">{{record.createTime}}</text>
+              <text class="appointment-time">{{formatDate(record.createTime)}}</text>
             </view>
             <!-- <view class="status-badge" :class="getStatusClass(record.status)">
               <text class="status-text">{{record.status}}</text>
@@ -180,14 +180,14 @@ export default {
           size: 100
         })
         
-        if (result.success) {
-          this.records = result.data.records || []
-          this.totalCount = result.data.total || 0
+        if (result.code === 200) {
+          this.records = result.data || []
+          this.totalCount = this.records.length || 0
         } else {
-          // uni.showToast({
-          //   title: result.message || '加载失败，请重试',
-          //   icon: 'error'
-          // })
+          uni.showToast({
+            title: result.message || '加载失败，请重试',
+            icon: 'error'
+          })
         }
       } catch (error) {
         console.error('加载预约记录失败:', error)
@@ -202,25 +202,13 @@ export default {
     
     formatDate(dateStr) {
       const date = new Date(dateStr)
-      const now = new Date()
-      const diff = now - date
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+      const year = date.getFullYear()
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const hours = String(date.getHours()).padStart(2, '0')
+      const minutes = String(date.getMinutes()).padStart(2, '0')
       
-      if (days === 0) {
-        return '今天 ' + date.toLocaleTimeString('zh-CN', {hour: '2-digit', minute: '2-digit'})
-      } else if (days === 1) {
-        return '昨天 ' + date.toLocaleTimeString('zh-CN', {hour: '2-digit', minute: '2-digit'})
-      } else if (days < 7) {
-        return `${days}天前`
-      } else {
-        return date.toLocaleDateString('zh-CN', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        })
-      }
+      return `${year}-${month}-${day} ${hours}:${minutes}`
     },
     
     getStatusClass(status) {

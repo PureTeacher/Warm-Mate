@@ -4,17 +4,16 @@
         <view class="user-info-card">
             <view class="avatar-container">
                 <image
-                    :src="userInfo.avatar || '/static/default-avatar.png'"
+                    :src="userInfo.avatar_url || '/static/default-avatar.png'"
                     class="avatar"
                     mode="aspectFill"
                 />
             </view>
             <view class="user-details">
                 <text class="user-name">{{ userInfo.username || "用户" }}</text>
-                <text class="user-id">ID: {{ userInfo.id || "暂未获取" }}</text>
-                <text class="user-phone">{{
-                    userInfo.phone || "未绑定手机"
-                }}</text>
+                <text class="user-id"
+                    >UID: {{ userInfo.uid || userInfo.id || "暂未获取" }}</text
+                >
             </view>
         </view>
 
@@ -80,54 +79,93 @@
         <view class="logout-section">
             <button class="logout-btn" @click="confirmLogout">退出登录</button>
         </view>
+
+        <!-- 底部导航栏 -->
+        <custom-bottom-nav currentPage="user" />
     </view>
 </template>
 
 <script>
+import customBottomNav from "@/components/customBottomNav/customBottomNav.vue";
+
 export default {
+    components: {
+        customBottomNav,
+    },
     data() {
         return {
             userInfo: {
                 username: "",
                 id: "",
-                avatar: "",
+                uid: "",
+                avatar_url: "",
                 phone: "",
                 email: "",
             },
         };
     },
     onLoad() {
+        console.log("[user/index] onLoad 被调用");
+        // 隐藏底部导航栏
+        uni.hideTabBar();
         this.loadUserInfo();
     },
     onShow() {
+        console.log("[user/index] onShow 被调用");
         // 每次进入页面刷新用户信息，确保退出后状态正确
         this.loadUserInfo();
     },
     methods: {
         loadUserInfo() {
             try {
-                console.log("开始读取用户信息");
                 const userInfo = uni.getStorageSync("userInfo");
-                console.log("读取到的用户信息：", userInfo);
                 if (userInfo) {
                     this.userInfo = {
                         username: userInfo.username || "用户",
                         id: userInfo.id || userInfo.userId || "暂未获取",
-                        avatar: userInfo.avatar || "",
+                        uid:
+                            userInfo.uid ||
+                            (userInfo.id
+                                ? 100000000 + parseInt(userInfo.id)
+                                : "暂未获取"),
+                        avatar_url: userInfo.avatar_url || "",
                         phone: userInfo.phone || "未绑定手机",
                         email: userInfo.email || "",
                     };
+                    this.fetchUserInfoFromServer();
                 } else {
                     this.userInfo = {
                         username: "",
                         id: "",
-                        avatar: "",
+                        uid: "",
+                        avatar_url: "",
                         phone: "",
                         email: "",
                     };
+                    this.fetchUserInfoFromServer();
                 }
             } catch (e) {
                 console.error("获取用户信息失败", e);
+            }
+        },
+
+        async fetchUserInfoFromServer() {
+            try {
+                const response = await this.$api.user.getInfo();
+                if (response && response.code === 200 && response.data) {
+                    const data = response.data;
+                    this.userInfo = {
+                        username: data.username || "用户",
+                        id: data.id || "暂未获取",
+                        uid: data.uid || 100000000 + data.id || "暂未获取",
+                        avatar_url: data.avatar_url || "",
+                        phone: data.phone || "未绑定手机",
+                        email: data.email || "",
+                    };
+                    uni.setStorageSync("userInfo", this.userInfo);
+                }
+            } catch (error) {
+                console.error("获取用户信息出错", error);
             }
         },
         navigateTo(page) {
@@ -229,18 +267,23 @@ export default {
 
 <style lang="scss" scoped>
 .user-center {
-    background: #f5f5f5;
+    background: linear-gradient(
+        to bottom,
+        #fff8f3 0%,
+        #ffe8d6 50%,
+        #fff5f0 100%
+    );
     min-height: 100vh;
-    padding-bottom: 120rpx;
+    padding-bottom: 220rpx;
 }
 
 /* 用户信息卡片 */
 .user-info-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #e07856 0%, #d4744e 50%, #c85a3a 100%);
     padding: 40rpx 30rpx;
     display: flex;
     align-items: center;
-    box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
 
     .avatar-container {
         margin-right: 30rpx;
@@ -288,19 +331,21 @@ export default {
 
 /* 功能菜单列表 */
 .menu-container {
-    background: white;
-    margin: 20rpx 0;
-    border-top: 1rpx solid #f0f0f0;
-    border-bottom: 1rpx solid #f0f0f0;
+    background: rgba(255, 255, 255, 0.95);
+    margin: 24rpx 20rpx;
+    border-radius: 24rpx;
+    box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.12);
+    overflow: hidden;
+    backdrop-filter: blur(20rpx);
 }
 
 .menu-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30rpx;
-    border-bottom: 1rpx solid #f0f0f0;
-    transition: all 0.2s ease;
+    padding: 30rpx 24rpx;
+    border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     &:last-child {
         border-bottom: none;
@@ -345,8 +390,14 @@ export default {
 
     .menu-arrow {
         font-size: 24rpx;
-        color: #ccc;
+        color: #d4744e;
         margin-left: 10rpx;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+
+    &:hover .menu-arrow {
+        opacity: 1;
     }
 }
 
@@ -357,13 +408,13 @@ export default {
     .logout-btn {
         width: 100%;
         height: 80rpx;
-        background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        background: linear-gradient(135deg, #e07856 0%, #d4744e 100%);
         color: white;
         font-size: 28rpx;
-        font-weight: 600;
+        font-weight: 700;
         border: none;
-        border-radius: 16rpx;
-        box-shadow: 0 4rpx 15rpx rgba(245, 87, 108, 0.3);
+        border-radius: 24rpx;
+        box-shadow: 0 8rpx 24rpx rgba(224, 120, 86, 0.25);
         transition: all 0.3s ease;
 
         &:active {
