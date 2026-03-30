@@ -6,12 +6,11 @@
         <view class="container">
             <!-- logo -->
             <view class="logo">
-                <u-avatar
+                <image
                     src="/static/logo4.png"
-                    shape="square"
-                    size="100"
-                    class="logo-avatar"
-                ></u-avatar>
+                    class="logo-image"
+                    mode="aspectFit"
+                ></image>
             </view>
             <!-- title -->
             <view class="title">
@@ -363,7 +362,9 @@ export default {
             animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s
                 backwards;
 
-            .logo-avatar {
+            .logo-image {
+                width: 100px;
+                height: 100px;
                 animation: float 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
             }
         }
@@ -373,6 +374,14 @@ export default {
             margin-top: 20px;
             animation: slideInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s
                 backwards;
+
+            image {
+                width: 85%;
+                max-width: 450px;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+            }
         }
 
         .form {
