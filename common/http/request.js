@@ -37,6 +37,7 @@ module.exports = (vm) => {
         // 自定义参数
         const custom = response.config?.custom
         if (data.code !== 200) {
+            uni.hideLoading();
             // 如果没有显式定义custom的toast参数为false的话，默认对报错进行toast弹出提示
             if (custom.toast !== false) {
                 uni.$u.toast(data.message)
@@ -59,8 +60,32 @@ module.exports = (vm) => {
         uni.hideLoading();
         return data === undefined ? {} : data
     }, (response) => {
-        // 对响应错误做点什么 （statusCode !== 200）
-        uni.$u.toast("工程师被UFO带走了-_-!");
-        return Promise.reject(response)
+        // 对HTTP状态码异常做统一处理，尽量透传后端错误信息
+        uni.hideLoading();
+        const custom = response?.config?.custom || {};
+        const serverData = response?.data || {};
+        const statusCode = response?.statusCode;
+        const errMessage =
+            serverData.message ||
+            serverData.msg ||
+            (statusCode === 409
+                ? "用户名已存在，请更换用户名"
+                : "网络错误，请检查连接后重试");
+
+        if (custom.toast !== false) {
+            uni.$u.toast(errMessage);
+        }
+
+        const errPayload = {
+            ...serverData,
+            code: serverData.code || statusCode,
+            statusCode,
+            message: errMessage,
+        };
+
+        if (custom?.catch) {
+            return Promise.reject(errPayload)
+        }
+        return new Promise(() => { })
     })
 }

@@ -217,8 +217,15 @@ export default {
                             }
                         })
                         .catch((err) => {
+                            const errCode = err?.code || err?.statusCode;
                             const errMsg =
-                                err.message || "网络错误，请检查连接后重试";
+                                err?.message ||
+                                err?.msg ||
+                                err?.data?.message ||
+                                err?.data?.msg ||
+                                (errCode === 409
+                                    ? "用户名已存在，请更换用户名"
+                                    : "网络错误，请检查连接后重试");
                             uni.$u.toast(errMsg);
                         });
                 })
